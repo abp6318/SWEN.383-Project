@@ -17,6 +17,7 @@ public class WebServer {
     public static final String ADMIN = "/admin";
     public static final String PROFESSOR = "/professor";
     public static final String LEARNER = "/learner";
+    public static final String FAILED = "/failed";
 
 
     public WebServer(UserManager manager, TemplateEngine engine){
@@ -35,6 +36,9 @@ public class WebServer {
         get(REGISTER, new GetRegisterRoute(manager, engine));
         post(REGISTER, new PostRegisterRoute(manager, engine));
         get(ADMIN, new GetAdminRoute(manager, engine));
+        get(PROFESSOR, new GetProfessorRoute(manager, engine));
+        get(LEARNER, new GetLearnerRoute(manager, engine));
+        get(FAILED, new GetFailedRoute(manager, engine));
     }
 
     public static void main(String[] args) {
