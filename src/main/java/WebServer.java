@@ -11,7 +11,13 @@ public class WebServer {
     private TemplateEngine engine;
 
     // Routes
-    private static final String HOMEPAGE = "/";
+    public static final String HOMEPAGE = "/";
+    public static final String LOGIN = "/login";
+    public static final String REGISTER = "/register";
+    public static final String ADMIN = "/admin";
+    public static final String PROFESSOR = "/professor";
+    public static final String LEARNER = "/learner";
+
 
     public WebServer(UserManager manager, TemplateEngine engine){
         this.manager = manager;
@@ -24,6 +30,11 @@ public class WebServer {
 
         // routes
         get(HOMEPAGE, new GetHomepageRoute(manager, engine));
+        get(LOGIN, new GetLoginRoute(manager, engine));
+        post(LOGIN, new PostLoginRoute(manager, engine));
+        get(REGISTER, new GetRegisterRoute(manager, engine));
+        post(REGISTER, new PostRegisterRoute(manager, engine));
+        get(ADMIN, new GetAdminRoute(manager, engine));
     }
 
     public static void main(String[] args) {

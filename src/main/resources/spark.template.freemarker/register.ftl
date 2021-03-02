@@ -124,7 +124,7 @@
     <h1>myPLS</h1>
     <h2>Register</h2>
 
-    <form action="" method="POST">
+    <form action="/register" method="POST">
         <input class="input-text" placeholder="First name" name="fname" type="text"><br>
         <input class="input-text" placeholder="Last name" name="lname" type="text"><br>
         <input class="input-text" placeholder="Email" name="email" type="email"><br>

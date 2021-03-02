@@ -124,7 +124,7 @@
     <h1>myPLS</h1>
     <h2>Login</h2>
 
-    <form action="" method="POST">
+    <form action="/login" method="POST">
         <input class="input-text" placeholder="Email" name="email" type="email"><br>
         <input class="input-text" placeholder="Password" name="password" type="password"><br>
         <input class="input-submit" value="Login" type="submit">
