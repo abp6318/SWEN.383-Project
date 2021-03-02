@@ -82,7 +82,7 @@
 <body>
 	<h1>myPLS</h1>
 	<h2>Not Authorized</h2>
-	<form action="" method="POST">
+	<form action="/failed" method="POST">
 		<input type="button" value="Resend Email"/><br>
 		<input type="button" value="Sign Up"/>
 	</form>

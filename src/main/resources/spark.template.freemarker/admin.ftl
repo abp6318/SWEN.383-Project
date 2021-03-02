@@ -17,7 +17,7 @@
     </style>
 </head>
 <body>
-    <h1>Supreme Meme</h1>
+    <h1>Admin</h1>
     <h2>All Classes</h2>
     <p>Relevant course materials, and other functionality are stored within the class itself.</p>
     <p><a href="#">Create a new class</a></p>

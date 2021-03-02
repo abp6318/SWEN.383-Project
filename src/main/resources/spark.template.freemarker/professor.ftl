@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Justin Cole</title>
+    <title>Dashboard - ${fname} ${lname}</title>
     <style>
         td{
             border:thin solid black;
@@ -17,7 +17,7 @@
     </style>
 </head>
 <body>
-    <h1>Justin Cole</h1>
+    <h1>${fname} ${lname}</h1>
     <h2>All Classes</h2>
     <p>Relevant course materials, and other functionality are stored within the class itself.</p>
     <table>

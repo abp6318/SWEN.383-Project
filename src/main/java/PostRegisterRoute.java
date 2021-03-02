@@ -12,11 +12,9 @@ public class PostRegisterRoute implements Route{
     private static final Logger LOGGER = Logger.getLogger(PostRegisterRoute.class.getName());
 
     private UserManagerTwo manager;
-    private TemplateEngine engine;
 
-    public PostRegisterRoute(UserManagerTwo manager, TemplateEngine engine){
+    public PostRegisterRoute(UserManagerTwo manager){
         this.manager = manager;
-        this.engine = engine;
         LOGGER.config("PostRegisterRoute Created");
     }
 
@@ -28,10 +26,6 @@ public class PostRegisterRoute implements Route{
         String password = request.queryParams("password");
         String fname = request.queryParams("fname");
         String lname = request.queryParams("lname");
-        email = "abdul@gmail.com";
-        password = "abdul123";
-        fname = "Professor";
-        lname = "Abdul";
 
         // manager.userregister(email, password, fname, lname); ---- this will be where the methods aaron's working on are called :)
 

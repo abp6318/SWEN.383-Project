@@ -24,13 +24,13 @@ public class UserManagerTwo {
             BufferedWriter buff = new BufferedWriter(write);
 
             if(lname.toLowerCase().equals("admin") && fname.toLowerCase().equals("admin")){
-                buff.write(email.toLowerCase() + "," + encryptPassword(password) + "," + fname + "," + lname + ",admin");
+                buff.write(email.toLowerCase() + "," + encryptPassword(password) + "," + fname + "," + lname + ",admin,0");
             }
             else if(fname.toLowerCase().contains("professor")){
-                buff.write(email.toLowerCase() + "," + encryptPassword(password) + "," + fname + "," + lname + ",professor");
+                buff.write(email.toLowerCase() + "," + encryptPassword(password) + "," + fname + "," + lname + ",professor,0");
             }
             else{
-                buff.write(email.toLowerCase() + "," + encryptPassword(password) + "," + fname + "," + lname + ",learner");
+                buff.write(email.toLowerCase() + "," + encryptPassword(password) + "," + fname + "," + lname + ",learner,0");
             }
             buff.close();
             write.close();
@@ -64,14 +64,19 @@ public class UserManagerTwo {
     }
 
     //signin
-    public String getRole(String email){
+    public String[] getRole(String email){
         try{
             BufferedReader reader = new BufferedReader(new FileReader(DATAPATH));
             String line = reader.readLine();
+            String[] userInfo = new String[4];
             while(line != null){
                 String[] dataLine = line.split(",");
                 if(dataLine[0].toLowerCase().equals(email.toLowerCase())){
-                    return dataLine[4];
+                    userInfo[0] = dataLine[2];
+                    userInfo[1] = dataLine[3];
+                    userInfo[2] = dataLine[4];
+                    userInfo[3] = dataLine[5];
+                    return userInfo;
                 }
             }
             reader.close();
@@ -94,7 +99,7 @@ public class UserManagerTwo {
     public String encryptPassword(String secret){
 
         String sha1 = "";
-        String value = new String(secret);
+        String value = secret;
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-1");
             digest.reset();
@@ -104,8 +109,7 @@ public class UserManagerTwo {
             e.printStackTrace();
         }// end of catch
 
-        System.out.println( "The sha1 of \""+ value + "\" is:");
-        System.out.println("--->" + sha1 );
+
         return sha1;
     }//end of function
 }
