@@ -19,7 +19,11 @@ public class WebServer {
     }
 
     public void initialize(){
-        get(HOMEPAGE, new GetHomepageRoute(engine, manager));
+        // healthcheck
+        get("/ping", (res, req) -> "pong");
+
+        // routes
+        get(HOMEPAGE, new GetHomepageRoute(manager, engine));
     }
 
     public static void main(String[] args) {

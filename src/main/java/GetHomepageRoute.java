@@ -21,9 +21,14 @@ public class GetHomepageRoute implements Route{
     @Override
     public Object handle(Request request, Response response) {
         LOGGER.info("GetHomepage Called");
-        Map<String, Object> viewModel = new HashMap<>(); // mapping dynamic variables for ftl files (freemarker template)
-        viewModel.put("appName", "myPLS"); // second param can be any object
-        return engine.render(new ModelAndView(viewModel, "home.ftl"));
+        try {
+            Map<String, Object> viewModel = new HashMap<>(); // mapping dynamic variables for ftl files (freemarker template)
+            viewModel.put("appName", "myPLS"); // second param can be any object
+            return engine.render(new ModelAndView(viewModel, "home.ftl"));
+        } catch (Exception e){
+            LOGGER.warning(e.getMessage());
+        }
+        return null;
     }
 
 }
