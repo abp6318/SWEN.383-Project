@@ -9,6 +9,7 @@ public class WebServer {
 
     private UserManager manager;
     private TemplateEngine engine;
+    private UserManagerTwo managerTwo;
 
     // Routes
     public static final String HOMEPAGE = "/";
@@ -20,9 +21,10 @@ public class WebServer {
     public static final String FAILED = "/failed";
 
 
-    public WebServer(UserManager manager, TemplateEngine engine){
+    public WebServer(UserManager manager, TemplateEngine engine, UserManagerTwo two){
         this.manager = manager;
         this.engine = engine;
+        this.managerTwo = two;
     }
 
     public void initialize(){
@@ -32,9 +34,9 @@ public class WebServer {
         // routes
         get(HOMEPAGE, new GetHomepageRoute(manager, engine));
         get(LOGIN, new GetLoginRoute(manager, engine));
-        post(LOGIN, new PostLoginRoute(manager, engine));
+        post(LOGIN, new PostLoginRoute(managerTwo, engine));
         get(REGISTER, new GetRegisterRoute(manager, engine));
-        post(REGISTER, new PostRegisterRoute(manager, engine));
+        post(REGISTER, new PostRegisterRoute(managerTwo, engine));
         get(ADMIN, new GetAdminRoute(manager, engine));
         get(PROFESSOR, new GetProfessorRoute(manager, engine));
         get(LEARNER, new GetLearnerRoute(manager, engine));
@@ -44,7 +46,8 @@ public class WebServer {
     public static void main(String[] args) {
         UserManager uMan = new UserManager();
         TemplateEngine eng = new FreeMarkerEngine();
-        WebServer server = new WebServer(uMan, eng);
+        UserManagerTwo manTwo = new UserManagerTwo();
+        WebServer server = new WebServer(uMan, eng, manTwo);
 
         server.initialize();
         LOGGER.config("Initialization Complete: Ready to handle request");

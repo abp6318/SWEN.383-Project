@@ -5,13 +5,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Scanner;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 
 public class UserManager{
 
     private Connection conn;
-    // private ResultSet rs;
+    private ResultSet rs;
     private Statement stmt;
     private String sql;
     private int col;
@@ -57,7 +58,7 @@ public class UserManager{
      */
     public void close(){
         try {
-            // rs.close();
+            rs.close();
             stmt.close();
             conn.close();
         }
@@ -69,18 +70,14 @@ public class UserManager{
 
     /* **************************************************************************************** */
     /* **************************************************************************************** */
-    /*
-          userEmail VARCHAR(100) NOT NULL,
-          fName VARCHAR(75) NOT NULL,
-          lName VARCHAR(75) NOT NULL,
-          accountType CHAR (1),
-          verified BOOLEAN NOT NULL,
-          userPassword VARCHAR(20) NOT NULL ,
-     */
     /* **************************************************************************************** */
 
     /**
-     Inserts a user into the user table
+     * Inserts a user into the user table
+     * @param email                 A user's email
+     * @param fname                 A user's first name
+     * @param lname                 A user's last name
+     * @param passwordUnencrypted   A user's unencrypted password
      */
     public void insertUserSQL(String email, String fname, String lname, String passwordUnencrypted){
         int rows = 0;
@@ -106,6 +103,53 @@ public class UserManager{
     }
 
 
+    /**
+     * Changes the user with the parameter email to be verified.
+     * @param email     A user's email
+     */
+    public void updateUserVerification(String email){
+        int rows = 0;
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE user SET verified=? WHERE userEmail=?");
+            preparedStatement.setInt(1, 1);
+            preparedStatement.setString(2, email);
+
+            rows = preparedStatement.executeUpdate();
+            System.out.println("Rows affected: " + rows + "\n");
+        }catch(SQLException sqle){
+            System.out.println("\n\nUPDATE USER VERIFICATION FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+    }
+
+    /**
+     * Confirms whether users have a verified account and should be allowed to log in
+     * @param email                 The user's input email
+     * @param passwordUnencrypted   The user's input password
+     * @return                      True if the user is permitted, false otherwise
+     */
+    public boolean userLogin(String email, String passwordUnencrypted){
+        String passwordEncrypted = this.encryptPassword(passwordUnencrypted);
+        try{
+            stmt = conn.createStatement();
+            String query = "SELECT verified FROM user WHERE userEmail=\""+email+"\" AND userPassword=\""+passwordEncrypted+"\";";
+            rs = stmt.executeQuery(query);
+            String verifiedValue = "";
+
+            if(rs.next()){
+                verifiedValue = rs.getString(1);
+                return true;
+            }else{
+                return false;
+            }
+        }catch(SQLException sqle){
+            System.out.println("\n\nUSER LOGIN FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+        return false;
+    }
 
 
     /**
