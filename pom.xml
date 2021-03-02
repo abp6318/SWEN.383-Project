@@ -29,5 +29,18 @@
         </dependency>
     </dependencies>
 
+    <!-- Spark FreeMarker integration -->
+    <dependency>
+          <groupId>com.sparkjava</groupId>
+          <artifactId>spark-template-freemarker</artifactId>
+          <version>${spark.freemarker.version}</version>
+    </dependency>
+
+    <!-- FreeMarker library -->
+    <dependency>
+          <groupId>org.freemarker</groupId>
+          <artifactId>freemarker</artifactId>
+          <version>${freemarker.version}</version>
+    </dependency>
 
 </project>
