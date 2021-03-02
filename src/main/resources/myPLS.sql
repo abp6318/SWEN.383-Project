@@ -11,6 +11,7 @@ CREATE TABLE user (
   verified BOOLEAN NOT NULL,
   userPassword VARCHAR(20) NOT NULL ,
   PRIMARY KEY (userEmail),
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE classGrade (
