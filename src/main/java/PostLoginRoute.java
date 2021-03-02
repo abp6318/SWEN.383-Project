@@ -25,17 +25,19 @@ public class PostLoginRoute implements Route{
 
         String email = request.queryParams("email");
         String password = request.queryParams("password");
+        email = "abdul@gmail.com";
+        password = "abdul123";
 
         // manager.userlogin(email, password, request.session()); ---- this will be where the method aaron's working on is called :)
 
-        if(manager.validUser("abdul@gmail.com", "abdul123")){ // if successful login
-            // check user type
-            // redirect accordingly (update location)
+        if(manager.validUser(email, password)){ // if successful login
             String role = manager.getRole(email);
-            if(role.equals("admin"))
+            if(role.equals("admin")){
                 response.redirect(WebServer.ADMIN, HttpURLConnection.HTTP_MOVED_PERM);
-            else if (role.equals("professor"))
+            }
+            else if (role.equals("professor")){
                 response.redirect(WebServer.PROFESSOR, HttpURLConnection.HTTP_MOVED_PERM);
+            }
             else
                 response.redirect(WebServer.LEARNER, HttpURLConnection.HTTP_MOVED_PERM);
 
@@ -43,6 +45,7 @@ public class PostLoginRoute implements Route{
         else{ // redirect to login page (or not authenticated page)
             response.redirect(WebServer.LOGIN, HttpURLConnection.HTTP_MOVED_PERM);
         }
+
         return null;
     }
 

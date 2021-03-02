@@ -28,11 +28,15 @@ public class PostRegisterRoute implements Route{
         String password = request.queryParams("password");
         String fname = request.queryParams("fname");
         String lname = request.queryParams("lname");
+        email = "abdul@gmail.com";
+        password = "abdul123";
+        fname = "Professor";
+        lname = "Abdul";
 
         // manager.userregister(email, password, fname, lname); ---- this will be where the methods aaron's working on are called :)
 
         //manager.userRegister(email, password, fname, lname);
-        manager.userRegister("abdul@gmail.com", "abdul123", "Professor", "Abdul");
+        manager.userRegister(email, password, fname, lname);
 
         response.redirect(WebServer.LOGIN, HttpURLConnection.HTTP_MOVED_PERM);
 

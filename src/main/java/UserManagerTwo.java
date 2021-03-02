@@ -52,6 +52,7 @@ public class UserManagerTwo {
                     return true;
                 }
             }
+            reader.close();
 
         } catch (FileNotFoundException e){
             LOGGER.warning(e.getMessage());
@@ -69,10 +70,11 @@ public class UserManagerTwo {
             String line = reader.readLine();
             while(line != null){
                 String[] dataLine = line.split(",");
-                if(dataLine[0].equals(email.toLowerCase())){
+                if(dataLine[0].toLowerCase().equals(email.toLowerCase())){
                     return dataLine[4];
                 }
             }
+            reader.close();
 
         } catch (FileNotFoundException e){
             LOGGER.warning(e.getMessage());
