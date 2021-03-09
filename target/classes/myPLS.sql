@@ -11,7 +11,7 @@ CREATE TABLE user (
   lName VARCHAR(75) NOT NULL,
   accountType CHAR (1),
   verified BOOLEAN NOT NULL,
-  userPassword VARCHAR(40) NOT NULL ,
+  userPassword VARCHAR(20) NOT NULL ,
   PRIMARY KEY (userEmail)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
