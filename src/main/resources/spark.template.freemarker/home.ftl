@@ -116,19 +116,11 @@
             top:50px;
         }
 
-        
-        
+
+
     </style>
 </head>
 <body>
-    <h1>myPLS</h1>
-    <h2>Login</h2>
-
-    <form action="" method="POST">
-        <input class="input-text" placeholder="Email" name="email" type="email"><br>
-        <input class="input-text" placeholder="Password" name="password" type="password"><br>
-        <input class="input-submit" value="Login" type="submit">
-    </form>
-    
+    <h1>hi</h1>
 </body>
 </html>

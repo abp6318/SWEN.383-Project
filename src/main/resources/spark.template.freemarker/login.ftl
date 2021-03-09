@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Login</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -122,14 +122,12 @@
 </head>
 <body>
     <h1>myPLS</h1>
-    <h2>Register</h2>
+    <h2>Login</h2>
 
-    <form action="" method="POST">
-        <input class="input-text" placeholder="First name" name="fname" type="text"><br>
-        <input class="input-text" placeholder="Last name" name="lname" type="text"><br>
+    <form action="/login" method="POST">
         <input class="input-text" placeholder="Email" name="email" type="email"><br>
         <input class="input-text" placeholder="Password" name="password" type="password"><br>
-        <input class="input-submit" value="Register" type="submit">
+        <input class="input-submit" value="Login" type="submit">
     </form>
     
 </body>

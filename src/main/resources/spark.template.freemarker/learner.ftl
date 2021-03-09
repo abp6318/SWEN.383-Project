@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Aaron Putterman</title>
+    <title>Dashboard - ${fname} ${lname}</title>
     <style>
         td{
             border:thin solid black;
@@ -17,7 +17,7 @@
     </style>
 </head>
 <body>
-    <h1>Aaron Putterman</h1>
+    <h1>${fname} ${lname}</h1>
     <h2>Classes</h2>
     <p>Relevant course materials, and other functionality are stored within the class itself.</p>
     <table>
@@ -163,12 +163,6 @@
             <td>Ewwy Booger</td>
             <td><a href="#">Link</a></td>
         </tr>
-        <tr>
-            <td>SWEN.780.01</td>
-            <td>Watching Paint Dry</td>
-            <td>Abdulmutalib Masaud-Wahaishi</td>
-            <td><a href="#">Link</a></td>
-        </tr>
     </table>
 
     <h2>Dicussions</h2>
@@ -184,12 +178,6 @@
             <td>Public</td>
             <td>Community Channel</td>
             <td>N/A</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>Private</td>
-            <td>Aaron's Channel</td>
-            <td>abp6318@rit.edu</td>
             <td><a href="#">Link</a></td>
         </tr>
         <tr>
