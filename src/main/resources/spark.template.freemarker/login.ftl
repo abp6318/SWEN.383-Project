@@ -116,19 +116,45 @@
             top:50px;
         }
 
-        
-        
+
+
     </style>
 </head>
 <body>
     <h1>myPLS</h1>
     <h2>Login</h2>
 
-    <form action="/login" method="POST">
+    <form id="f" action="/login" method="POST">
         <input class="input-text" placeholder="Email" name="email" type="email"><br>
         <input class="input-text" placeholder="Password" name="password" type="password"><br>
-        <input class="input-submit" value="Login" type="submit">
+        <input class="input-submit" value="Login" type="submit"><br>
+		<input id="verify" class="input-submit" value="Verify" type="button"><br>
     </form>
-    
 </body>
+<script>
+	var form = document.getElementById("f");
+	var btn = document.getElementById("verify");
+	btn.addEventListener("click", function() {
+		var code = document.createElement("input");
+		code.setAttribute('type', 'text');
+		code.setAttribute('placeholder', 'Input Code');
+		code.className = "input-text";
+		code.name="";
+		var br = document.createElement("br");
+		form.appendChild(br);
+		var send = document.createElement("input");
+		send.setAttribute('type','button');
+		send.setAttribute('value','Verify Code');
+		send.className = "input-submit";
+		send.style.width = "220px";
+		form.appendChild(code);
+		var br2 = document.createElement("br");
+		form.appendChild(br2);
+		form.appendChild(send);
+		send.addEventListener("click", function() {
+			code.name="entered";
+		})
+	})
+
+	</script>
 </html>
