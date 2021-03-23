@@ -16,6 +16,8 @@ public class UserManager{
     private Statement stmt;
     private String sql;
     private int col;
+    private User userObj;
+    private static User invalidUserObj = new User("", "", "", "", "false", "");
 
     final String DEFAULT_DRIVER = "com.mysql.cj.jdbc.Driver";
 
@@ -27,12 +29,9 @@ public class UserManager{
      */
     public boolean connect() {
         conn = null;
-        String userName = "root";
-        String password = "student?";
-        String url = "jdbc:mysql://localhost/mypls";
-
-        // comment out the line below if you are not using a mac
-        url = url + "?serverTimezone=UTC"; //added 8/27
+        String userName = "be068263fb79ee";
+        String password = "a082b918";
+        String url = "jdbc:mysql://us-cdbr-east-03.cleardb.com/heroku_6cdec71a68a6b18";
 
         try {
             Class.forName(DEFAULT_DRIVER);
@@ -81,7 +80,7 @@ public class UserManager{
      */
     public void insertUserSQL(String email, String fname, String lname, String passwordUnencrypted){
         int rows = 0;
-        // encrypt student's password
+        // encrypt users' password
         String passwordEncrypted = this.encryptPassword(passwordUnencrypted);
         try{
             // add them to the students table
@@ -101,7 +100,6 @@ public class UserManager{
             sqle.printStackTrace();
         }
     }
-
 
     /**
      * Changes the user with the parameter email to be verified.
@@ -129,28 +127,31 @@ public class UserManager{
      * @param passwordUnencrypted   The user's input password
      * @return                      True if the user is permitted, false otherwise
      */
-    public boolean userLogin(String email, String passwordUnencrypted){
+    public User userLogin(String email, String passwordUnencrypted){
         String passwordEncrypted = this.encryptPassword(passwordUnencrypted);
         try{
             stmt = conn.createStatement();
-            String query = "SELECT verified FROM user WHERE userEmail=\""+email+"\" AND userPassword=\""+passwordEncrypted+"\";";
+            String query = "SELECT userEmail, fName, lName, accountType, verified, userPassword FROM user WHERE userEmail=\""+email+"\" AND userPassword=\""+passwordEncrypted+"\";";
             rs = stmt.executeQuery(query);
             String verifiedValue = "";
 
             if(rs.next()){
-                verifiedValue = rs.getString(1);
-                return true;
-            }else{
-                return false;
+                String userEmailTemp = rs.getString(1);
+                String fNameTemp = rs.getString(2);
+                String lNameTemp = rs.getString(3);
+                String accountTypeTemp = rs.getString(4);
+                String verifiedTemp = rs.getString(5);
+                String userPasswordTemp = rs.getString(6);
+                userObj = new User(userEmailTemp, fNameTemp, lNameTemp, accountTypeTemp, verifiedTemp, userPasswordTemp);
+                return userObj;
             }
         }catch(SQLException sqle){
             System.out.println("\n\nUSER LOGIN FAILED!!!!");
             System.out.println("ERROR MESSAGE IS -> " + sqle);
             sqle.printStackTrace();
         }
-        return false;
+        return invalidUserObj;
     }
-
 
     /**
      Encrypts a password using SHA1

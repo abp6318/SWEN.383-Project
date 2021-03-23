@@ -9,6 +9,16 @@ import spark.template.freemarker.FreeMarkerEngine;
 
 public class WebServer {
 
+
+    // general TODOs
+    // TODO: create discussion group ftl files
+    // TODO: Create discussion group object?
+    // TODO: Create get/post routes for discussion group page
+    // TODO: add redirect in POST to new discussion group page if something is added/updated
+
+
+    // TODO: some kind of search functionality???? on discussion groups??
+
     private static final Logger LOGGER = Logger.getLogger(WebServer.class.getName());
 
     private UserManager manager;
@@ -35,7 +45,7 @@ public class WebServer {
         // routes
         get(HOMEPAGE, new GetHomepageRoute(conf));
         get(LOGIN, new GetLoginRoute(conf));
-        post(LOGIN, new PostLoginRoute(managerTwo, engine));
+        post(LOGIN, new PostLoginRoute(manager, engine));
         get(REGISTER, new GetRegisterRoute(manager, conf));
         post(REGISTER, new PostRegisterRoute(managerTwo));
         get(ADMIN, new GetAdminRoute(manager, conf));
@@ -45,12 +55,12 @@ public class WebServer {
     }
 
     public void initialize(){
-        this.managerTwo = new UserManagerTwo();
+        this.manager = new UserManager();
+        manager.connect();
         Configuration conf = new Configuration(new Version(2, 3, 23));
         conf.setClassForTemplateLoading(WebServer.class, "/spark.template.freemarker");
         this.conf = conf;
         this.engine = new FreeMarkerEngine(conf);
-        this.managerTwo = new UserManagerTwo();
 
         setRoutes();
     }
