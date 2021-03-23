@@ -30,6 +30,12 @@ public class GetAdminRoute implements Route{
             viewModel.put("fname", user.getFirstName());
             viewModel.put("lname", user.getLastName());
 
+            // TODO: need a database call to get all of the admin's classes so they can by dynamically put into the ftl file
+
+            // TODO: need to figure out some way to dynamically put classes into the ftl file (there may be some kind of for-loop we can use with the html table elements
+
+            // TODO: add some logic in the admin ftl file that lets people move from this page to the discussion group page by clicking some 'discussion group button'
+
             Template template = conf.getTemplate("admin.ftl");
             StringWriter writer = new StringWriter();
             template.process(viewModel, writer);
