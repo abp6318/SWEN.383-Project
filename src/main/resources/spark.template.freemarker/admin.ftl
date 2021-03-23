@@ -152,6 +152,11 @@
 
     <h2>Dicussions</h2>
     <p><a href="#">Create a new discussion</a></p>
+
+    <!-- button allowing people to add class, if clicked 2 fields appear to be filled in -->
+    <!-- button allowing people to update class (with proper fields), if clicked 2+ fields appear to be filled in -->
+    <!-- button allowing people to delete class via class code, if clicked 1 fields appear to be filled in -->
+
     <table>
         <tr>
             <th>Access</th>
