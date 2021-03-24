@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Supreme Meme</title>
+    <title>Dashboard</title>
     <style>
         td{
             border:thin solid black;
@@ -151,7 +151,7 @@
     </table>
 
     <h2>Dicussions</h2>
-    <p><a href="#">Create a new discussion</a></p>
+    <p><a href="discussion.ftl">Create a new discussion</a></p>
     <table>
         <tr>
             <th>Access</th>
@@ -184,5 +184,8 @@
             <td><a href="#">Link</a></td>
         </tr>
     </table>
+
+    <h2>Feedbdack Module</h2>
+    <p><a href="rating.ftl">View Feedback Module</a></p>
 </body>
 </html>
