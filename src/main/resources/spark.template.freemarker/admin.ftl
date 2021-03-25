@@ -28,130 +28,23 @@
             <th>Professor</th>
             <th>Link</th>
         </tr>
-        <tr>
-            <td>IGME.384.02</td>
-            <td>Introduction To Geographic Information Systems</td>
-            <td>Justin Cole</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>ISTE.252.01</td>
-            <td>Foundations of Mobile Design</td>
-            <td>Stephen Cady</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>ISTE.340.01</td>
-            <td>Client Programming</td>
-            <td>Paul Goldman</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>ISTE.438.01</td>
-            <td>Contemporary Databases</td>
-            <td>Edward Holden</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>SWEN.383.01</td>
-            <td>Software Design Principles and Patterns</td>
-            <td>Abdulmutalib Masaud-Wahaishi</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>IGME.384.02</td>
-            <td>Introduction To Geographic Information Systems</td>
-            <td>Justin Cole</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>ISTE.252.01</td>
-            <td>Foundations of Mobile Design</td>
-            <td>Stephen Cady</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>ISTE.340.01</td>
-            <td>Client Programming</td>
-            <td>Paul Goldman</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>ISTE.438.01</td>
-            <td>Contemporary Databases</td>
-            <td>Edward Holden</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>SWEN.383.01</td>
-            <td>Software Design Principles and Patterns</td>
-            <td>Abdulmutalib Masaud-Wahaishi</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>IGME.384.02</td>
-            <td>Introduction To Geographic Information Systems</td>
-            <td>Justin Cole</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>ISTE.252.01</td>
-            <td>Foundations of Mobile Design</td>
-            <td>Stephen Cady</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>ISTE.340.01</td>
-            <td>Client Programming</td>
-            <td>Paul Goldman</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>ISTE.438.01</td>
-            <td>Contemporary Databases</td>
-            <td>Edward Holden</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>SWEN.383.01</td>
-            <td>Software Design Principles and Patterns</td>
-            <td>Abdulmutalib Masaud-Wahaishi</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>IGME.384.02</td>
-            <td>Introduction To Geographic Information Systems</td>
-            <td>Justin Cole</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>ISTE.252.01</td>
-            <td>Foundations of Mobile Design</td>
-            <td>Stephen Cady</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>ISTE.340.01</td>
-            <td>Client Programming</td>
-            <td>Paul Goldman</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>ISTE.438.01</td>
-            <td>Contemporary Databases</td>
-            <td>Edward Holden</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>SWEN.383.01</td>
-            <td>Software Design Principles and Patterns</td>
-            <td>Abdulmutalib Masaud-Wahaishi</td>
-            <td><a href="#">Link</a></td>
-        </tr>
+        <#list classes as class>
+            <tr>
+                    <td>${class.classcode}</th>
+                    <td>${class.className}</th>
+                    <td>${class.profEmail}</th>
+                    <td><a href="#">Link</a></th>
+                </tr>
+         </#list>
     </table>
 
     <h2>Dicussions</h2>
     <p><a href="discussion.ftl">Create a new discussion</a></p>
+
+    <!-- button allowing people to add class, if clicked 2 fields appear to be filled in -->
+    <!-- button allowing people to update class (with proper fields), if clicked 2+ fields appear to be filled in -->
+    <!-- button allowing people to delete class via class code, if clicked 1 fields appear to be filled in -->
+
     <table>
         <tr>
             <th>Access</th>

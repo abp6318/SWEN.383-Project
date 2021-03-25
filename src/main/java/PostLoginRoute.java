@@ -3,7 +3,13 @@ import spark.*;
 import java.net.HttpURLConnection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 import java.util.logging.Logger;
+import java.util.*;
+import javax.mail.*;
+import javax.mail.Session;
+import javax.mail.internet.*;
+import javax.activation.*;
 
 
 public class PostLoginRoute implements Route{
@@ -25,7 +31,6 @@ public class PostLoginRoute implements Route{
         String password = request.queryParams("password");
         System.out.println(email);
         System.out.println(password);
-
 
         // TODO: check if the verufy field is empty
             // TODO: if empty, continue like normal
@@ -63,3 +68,5 @@ public class PostLoginRoute implements Route{
     }
 
 }
+
+
