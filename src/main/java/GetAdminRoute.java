@@ -3,8 +3,11 @@ import freemarker.template.Template;
 import spark.*;
 
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.logging.Logger;
 
 
@@ -27,14 +30,38 @@ public class GetAdminRoute implements Route{
         try {
             Map<String, Object> viewModel = new HashMap<>(); // mapping dynamic variables for ftl files (freemarker template)
             User user = request.session().attribute("User");
-            viewModel.put("fname", user.getFirstName());
-            viewModel.put("lname", user.getLastName());
+
 
             // TODO: need a database call to get all of the admin's classes so they can by dynamically put into the ftl file
 
             // TODO: need to figure out some way to dynamically put classes into the ftl file (there may be some kind of for-loop we can use with the html table elements
 
             // TODO: add some logic in the admin ftl file that lets people move from this page to the discussion group page by clicking some 'discussion group button'
+
+            HashMap<String, String> one = new HashMap<>();
+            one.put("classcode", "CLASS1234");
+            one.put("adminEmail","admin@admin.com");
+            one.put("profEmail","professor@prof.com");
+            one.put("className", "ClassName");
+            one.put("objective", "objective");
+            one.put("outcome","outcome");
+            one.put("start","start");
+            one.put("end","end");
+
+            HashMap<String, String> two = new HashMap<>();
+            two.put("classcode", "ABDUL123");
+            two.put("adminEmail","abdul@abdul.abdul");
+            two.put("profEmail","abdul@abdul.abdul");
+            two.put("className","abdul");
+            two.put("objective","abdulObj");
+            two.put("outcome","abdulOut");
+            two.put("start","abdulStart");
+            two.put("end","abdulEnd");
+
+            Collection classes = new ArrayList();
+            ((ArrayList) classes).add(one);
+            ((ArrayList) classes).add(two);
+            viewModel.put("classes", classes.iterator());
 
             Template template = conf.getTemplate("admin.ftl");
             StringWriter writer = new StringWriter();
