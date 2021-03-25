@@ -121,6 +121,7 @@ public class UserManager{
         }
     }
 
+    // TODO: Have it return everything, rather than just the verfied status & store in User object
     /**
      * Confirms whether users have a verified account and should be allowed to log in
      * @param email                 The user's input email
@@ -176,7 +177,201 @@ public class UserManager{
         return sha1;
     }//end of function
 
-    /**
+    public void insertClassSQL(String classCode, String creatorEmail, String professorEmail, String className, String learningObj, String learningOutcome, String beginDate, String endDate){
+        int rows = 0;
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO `class` (`classCode`, `creatorEmail`, `professorEmail`, `className`, `learningObj`, `learningOutcome`, `beginDate`, `endDate`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            preparedStatement.setString(1, classCode);
+            preparedStatement.setString(2, creatorEmail);
+            preparedStatement.setString(3, professorEmail);
+            preparedStatement.setString(4, className);
+            preparedStatement.setString(5, learningObj);
+            preparedStatement.setString(6, learningOutcome);
+            preparedStatement.setString(7, beginDate);
+            preparedStatement.setString(8, endDate);
+
+            rows = preparedStatement.executeUpdate();
+            System.out.println("Rows affected: " + rows + "\n");
+
+        }catch(SQLException sqle){
+            System.out.println("\n\nINSERT CLASS FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+    }
+
+    public void updateClassBeginDateSQL(String beginDate, String classCode){
+        int rows = 0;
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE `class` SET beginDate = ? WHERE `classCode` = ?");
+            preparedStatement.setString(1, beginDate);
+            preparedStatement.setString(2, classCode);
+
+            rows = preparedStatement.executeUpdate();
+            System.out.println("Rows affected: " + rows + "\n");
+
+        }catch(SQLException sqle){
+            System.out.println("\n\nUPDATE CLASS BEGIN DATE FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+    }
+
+    public void updateClassEndDateSQL(String endDate, String classCode){
+        int rows = 0;
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE `class` SET endDate = ? WHERE `classCode` = ?");
+            preparedStatement.setString(1, endDate);
+            preparedStatement.setString(2, classCode);
+
+            rows = preparedStatement.executeUpdate();
+            System.out.println("Rows affected: " + rows + "\n");
+
+        }catch(SQLException sqle){
+            System.out.println("\n\nUPDATE CLASS END DATE FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+    }
+
+    public void updateClassLearningObjectiveSQL(String learningObj, String classCode){
+        int rows = 0;
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE `class` SET learningObj = ? WHERE `classCode` = ?");
+            preparedStatement.setString(1, learningObj);
+            preparedStatement.setString(2, classCode);
+
+            rows = preparedStatement.executeUpdate();
+            System.out.println("Rows affected: " + rows + "\n");
+
+        }catch(SQLException sqle){
+            System.out.println("\n\nUPDATE CLASS LEARNING OBJECTIVE FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+    }
+
+    public void updateClassLearningOutcomeSQL(String learningOutcome, String classCode){
+        int rows = 0;
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE `class` SET learningOutcome = ? WHERE `classCode` = ?");
+            preparedStatement.setString(1, learningOutcome);
+            preparedStatement.setString(2, classCode);
+
+            rows = preparedStatement.executeUpdate();
+            System.out.println("Rows affected: " + rows + "\n");
+
+        }catch(SQLException sqle){
+            System.out.println("\n\nUPDATE CLASS LEARNING OUTCOME FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+    }
+
+    public void updateClassNameSQL(String className, String classCode){
+        int rows = 0;
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE `class` SET className = ? WHERE `classCode` = ?");
+            preparedStatement.setString(1, className);
+            preparedStatement.setString(2, classCode);
+
+            rows = preparedStatement.executeUpdate();
+            System.out.println("Rows affected: " + rows + "\n");
+
+        }catch(SQLException sqle){
+            System.out.println("\n\nUPDATE CLASS NAME FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+    }
+
+    public void updateClassProfessorEmailSQL(String professorEmail, String classCode){
+        int rows = 0;
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE `class` SET professorEmail = ? WHERE `classCode` = ?");
+            preparedStatement.setString(1, professorEmail);
+            preparedStatement.setString(2, classCode);
+
+            rows = preparedStatement.executeUpdate();
+            System.out.println("Rows affected: " + rows + "\n");
+
+        }catch(SQLException sqle){
+            System.out.println("\n\nUPDATE CLASS PROFESSOR EMAIL FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+    }
+
+    public void deleteClassSQL(String classCode){
+        int rows = 0;
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement("DELETE FROM `class` WHERE `classCode` = ?");
+            preparedStatement.setString(1, classCode);
+
+            rows = preparedStatement.executeUpdate();
+            System.out.println("Rows affected: " + rows + "\n");
+
+        }catch(SQLException sqle){
+            System.out.println("\n\nDELETE CLASS FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+    }
+
+    public void insertClassRatingSQL(String userEmail, String classCode, int rating){
+        int rows = 0;
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO `classRating` (`userEmail`, `classCode`, `rating`) VALUES (?, ?, ?)");
+            preparedStatement.setString(1, userEmail);
+            preparedStatement.setString(2, classCode);
+            preparedStatement.setInt(3, rating);
+
+            rows = preparedStatement.executeUpdate();
+            System.out.println("Rows affected: " + rows + "\n");
+
+        }catch(SQLException sqle){
+            System.out.println("\n\nINSERT CLASS RATING FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+    }
+
+    public void insertClassPrerequisiteSQL(String classCode, String preReqClassCode){
+        int rows = 0;
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO `prerequisitesLookup` (`classCode`, `preReqClassCode`) VALUES (?, ?)");
+            preparedStatement.setString(1, classCode);
+            preparedStatement.setString(2, preReqClassCode);
+
+            rows = preparedStatement.executeUpdate();
+            System.out.println("Rows affected: " + rows + "\n");
+
+        }catch(SQLException sqle){
+            System.out.println("\n\nINSERT CLASS PREREQUISITE FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+    }
+
+    public void updateClassPrerequisiteSQL(String newPreReqClassCode, String classCode, String oldPreReqClassCode){
+        int rows = 0;
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE `prerequisitesLookup` SET `preReqClassCode` = ? WHERE `classCode` = ? AND `preReqClassCode` = ?");
+            preparedStatement.setString(1, newPreReqClassCode);
+            preparedStatement.setString(2, classCode);
+            preparedStatement.setString(3, oldPreReqClassCode);
+
+            rows = preparedStatement.executeUpdate();
+            System.out.println("Rows affected: " + rows + "\n");
+
+        }catch(SQLException sqle){
+            System.out.println("\n\nUPDATE CLASS PREREQUISITE FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+    }
+
+  /**
      * Creates a discussion group 
      @param    groupName    The name of the discussion group
      @param    email        The creator's email 
