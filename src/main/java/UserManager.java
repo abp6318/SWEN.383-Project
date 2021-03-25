@@ -175,4 +175,39 @@ public class UserManager{
         System.out.println("--->" + sha1 );
         return sha1;
     }//end of function
+
+    /**
+     * Creates a discussion group 
+     @param    groupName    The name of the discussion group
+     @param    email        The creator's email 
+     */
+    public void addDiscussionGroupSQL(String groupName, String email) {
+        try {
+            PreparedStatement stmt;
+            stmt = conn.prepareStatement("INSERT INTO discussionGroups(groupName, email) VALUES (?,?)");
+            stmt.setString(1, groupName);
+            stmt.setString(2, email);
+            stmt.executeUpdate();
+        }//end of try
+        catch (Exception e) {
+            System.out.println("Error while trying to add discussion group.");
+            System.out.println("ERROR MESSAGE --> " + e);
+        }//end of catch
+    }//end of function
+
+    /**
+     * Deletes a discussion group
+     @param    groupName    The name of the group to be deleted
+     */
+    public void deleteDiscussionGroupSQL(String groupName) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM discussionGroups WHERE groupName=?");
+            stmt.setString(1, groupName);
+            stmt.executeUpdate();
+        }//end of try
+        catch (SQLException sqle) {
+            System.out.println("Error while trying to delete a discussion group.");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }//end of catch
+    }//end of function
 }
