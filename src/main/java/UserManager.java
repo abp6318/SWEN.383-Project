@@ -17,7 +17,7 @@ public class UserManager{
     private String sql;
     private int col;
     private User userObj;
-    private static User invalidUserObj = new User("", "", "", "", "false", "");
+    private static User invalidUserObj = new User("", "", "", "", "0", "");
 
     final String DEFAULT_DRIVER = "com.mysql.cj.jdbc.Driver";
 
@@ -371,10 +371,10 @@ public class UserManager{
         }
     }
 
-  /**
-     * Creates a discussion group 
+    /**
+     * Creates a discussion group
      @param    groupName    The name of the discussion group
-     @param    email        The creator's email 
+     @param    email        The creator's email
      */
     public void addDiscussionGroupSQL(String groupName, String email) {
         try {
@@ -405,4 +405,84 @@ public class UserManager{
             System.out.println("ERROR MESSAGE --> " + sqle);
         }//end of catch
     }//end of function
+
+    public void selectDiscussionGroupsSQL(){
+        int discussionIDReturned;
+        String groupNameReturned;
+        String userEmailReturned;
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT discussionID, groupName, userEmail FROM discussionGroups");
+            rs = preparedStatement.executeQuery();
+            if(rs.next()) {
+                discussionIDReturned = rs.getInt(1);
+                groupNameReturned = rs.getString(2);
+                userEmailReturned = rs.getString(3);
+                System.out.println(discussionIDReturned + " " + groupNameReturned + " " + userEmailReturned);
+            }
+
+        }catch(SQLException sqle){
+            System.out.println("\n\nSELECT FROM DISCUSSION GROUPS FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+    }
+
+    public void selectDiscussionMessagesSQL(int discussionID){
+        int discussionIDReturned;
+        String messagesReturned;
+        String userEmailReturned;
+        String datePostedReturned;
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT discussionID, messages, userEmail, datePosted FROM discussionMessages WHERE discussionID = ?");
+            preparedStatement.setInt(1, discussionID);
+            rs = preparedStatement.executeQuery();
+            while(rs.next()) {
+                discussionIDReturned = rs.getInt(1);
+                messagesReturned = rs.getString(2);
+                userEmailReturned = rs.getString(3);
+                datePostedReturned = rs.getString(4);
+                System.out.println(discussionIDReturned + " " + messagesReturned + " " + userEmailReturned + " " + datePostedReturned);
+            }
+
+        }catch(SQLException sqle){
+            System.out.println("\n\nSELECT FROM DISCUSSION MESSAGES FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+    }
+
+    public void selectAdminClassesSQL(String creatorEmail){
+        String classCodeReturned;
+        String creatorEmailReturned;
+        String professorEmailReturned;
+        String classNameReturned;
+        String learningObjReturned;
+        String learningOutcomeReturned;
+        String beginDateReturned;
+        String endDateReturned;
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT classCode, creatorEmail, professorEmail, className, learningObj, learningOutcome, beginDate, endDate WHERE creatorEmail = ?");
+            preparedStatement.setString(1, creatorEmail);
+            rs = preparedStatement.executeQuery();
+            while(rs.next()) {
+                classCodeReturned = rs.getString(1);
+                creatorEmailReturned = rs.getString(2);
+                professorEmailReturned = rs.getString(3);
+                classNameReturned = rs.getString(4);
+                learningObjReturned = rs.getString(5);
+                learningOutcomeReturned = rs.getString(6);
+                beginDateReturned = rs.getString(7);
+                endDateReturned = rs.getString(8);
+
+                System.out.println(classCodeReturned + " " + creatorEmailReturned + " " + professorEmailReturned + " " + classNameReturned + " " + learningObjReturned + " " + learningOutcomeReturned + " " + beginDateReturned + " " + endDateReturned);
+            }
+
+        }catch(SQLException sqle){
+            System.out.println("\n\nSELECT ADMIN CLASSES FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+    }
+
+
 }
