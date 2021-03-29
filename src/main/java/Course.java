@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class Course {
     //Attributes 
     private String courseCode;
@@ -18,6 +20,20 @@ public class Course {
         learningOutcome = inOutcome;
         beginDate = inStart;
         endDate = inEnd;
+    }
+
+    //hashmap method 
+    public HashMap<String, String> getHash() {
+        HashMap<String, String> cMap = new HashMap<>();
+        cMap.put("classcode", courseCode);
+        cMap.put("adminEmail",creatorEmail);
+        cMap.put("profEmail",professorEmail);
+        cMap.put("className", className);
+        cMap.put("objective",learningObj);
+        cMap.put("outcome",learningOutcome);
+        cMap.put("start",beginDate);
+        cMap.put("end",endDate);
+        return cMap;
     }
 
     public String getCourseCode() {

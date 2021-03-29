@@ -48,42 +48,40 @@ public class PostRegisterRoute implements Route{
 
     public void sendValidationEmail(String to) {
 
-        // Sender's email ID needs to be mentioned
-        String from = "dmolee@gmail.com";
+        final String username = "iste383dreamteam";
+        final String password = "abdulisourteacher";
 
-        // Assuming you are sending email from localhost
-        String host = "localhost";
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.port", "587");
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.starttls.enable", "true"); //TLS
 
-        // Get system properties
-        Properties properties = System.getProperties();
-
-        // Setup mail server
-        properties.setProperty("mail.smtp.host", host);
-
-        // Get the default Session object.
-        Session session = Session.getDefaultInstance(properties);
+        Session session = Session.getInstance(prop,
+                new javax.mail.Authenticator() {
+                    protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+                        return new javax.mail.PasswordAuthentication(username, password);
+                    }
+                });
 
         try {
-            // Create a default MimeMessage object.
-            MimeMessage message = new MimeMessage(session);
 
-            // Set From: header field of the header.
-            message.setFrom(new InternetAddress(from));
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("iste383dreamteam@gmail.com"));
+            message.setRecipients(
+                    Message.RecipientType.TO,
+                    InternetAddress.parse("**insert email**")
+            );
+            message.setSubject("Verify your email");
+            int code = (int)(Math.random()*10000)+1;
+            message.setText("Your verification code is " + code);
 
-            // Set To: header field of the header.
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-
-            // Set Subject: header field
-            message.setSubject("This is the Subject Line!");
-
-            // Now set the actual message
-            message.setText("This is actual message");
-
-            // Send message
             Transport.send(message);
-            LOGGER.info("Sent message successfully....");
-        } catch (MessagingException mex) {
-            mex.printStackTrace();
+
+            System.out.println("Done");
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
         }
 
     }
