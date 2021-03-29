@@ -451,7 +451,7 @@ public class UserManager{
         }
     }
 
-    public void selectAdminClassesSQL(String creatorEmail){
+    public List<Course> selectAdminClassesSQL(String creatorEmail){
         String classCodeReturned;
         String creatorEmailReturned;
         String professorEmailReturned;
@@ -460,6 +460,7 @@ public class UserManager{
         String learningOutcomeReturned;
         String beginDateReturned;
         String endDateReturned;
+        List<Course> courses = new ArrayList<Course>();
         try{
             PreparedStatement preparedStatement = conn.prepareStatement("SELECT classCode, creatorEmail, professorEmail, className, learningObj, learningOutcome, beginDate, endDate WHERE creatorEmail = ?");
             preparedStatement.setString(1, creatorEmail);
@@ -475,13 +476,17 @@ public class UserManager{
                 endDateReturned = rs.getString(8);
 
                 System.out.println(classCodeReturned + " " + creatorEmailReturned + " " + professorEmailReturned + " " + classNameReturned + " " + learningObjReturned + " " + learningOutcomeReturned + " " + beginDateReturned + " " + endDateReturned);
+                Course courseTemp = new Course(classCodeReturned, creatorEmailReturned, professorEmailReturned, classNameReturned, learningObjReturned, learningOutcomeReturned, beginDateReturned, endDateReturned);
+                courses.add(courseTemp);
             }
+            return courses;
 
         }catch(SQLException sqle){
             System.out.println("\n\nSELECT ADMIN CLASSES FAILED!!!!");
             System.out.println("ERROR MESSAGE IS -> " + sqle);
             sqle.printStackTrace();
         }
+        return courses;
     }
 
 

@@ -3,10 +3,7 @@ import freemarker.template.Template;
 import spark.*;
 
 import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.logging.Logger;
 
@@ -33,6 +30,8 @@ public class GetAdminRoute implements Route{
 
 
             // TODO: need a database call to get all of the admin's classes so they can by dynamically put into the ftl file
+            List<Course> courses = manager.selectAdminClassesSQL(user.getEmail());
+            // iterate through courses and add attributes to hashmap -- Vicky is making a method to convert to HashMap and then we can do the thing!
 
             // TODO: need to figure out some way to dynamically put classes into the ftl file (there may be some kind of for-loop we can use with the html table elements
 
