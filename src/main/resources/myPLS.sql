@@ -10,6 +10,7 @@ CREATE TABLE user (
   fName VARCHAR(75) NOT NULL,
   lName VARCHAR(75) NOT NULL,
   accountType CHAR (1),
+  verificationCode VARCHAR(5),
   verified BOOLEAN NOT NULL,
   userPassword VARCHAR(40) NOT NULL ,
   PRIMARY KEY (userEmail)
