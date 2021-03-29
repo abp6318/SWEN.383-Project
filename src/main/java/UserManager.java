@@ -462,7 +462,7 @@ public class UserManager{
         String endDateReturned;
         List<Course> courses = new ArrayList<Course>();
         try{
-            PreparedStatement preparedStatement = conn.prepareStatement("SELECT classCode, creatorEmail, professorEmail, className, learningObj, learningOutcome, beginDate, endDate WHERE creatorEmail = ?");
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT classCode, creatorEmail, professorEmail, className, learningObj, learningOutcome, beginDate, endDate FROM class WHERE creatorEmail = ?");
             preparedStatement.setString(1, creatorEmail);
             rs = preparedStatement.executeQuery();
             while(rs.next()) {

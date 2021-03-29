@@ -20,9 +20,9 @@ public class PostRegisterRoute implements Route{
 
     private static final Logger LOGGER = Logger.getLogger(PostRegisterRoute.class.getName());
 
-    private UserManagerTwo manager;
+    private UserManager manager;
 
-    public PostRegisterRoute(UserManagerTwo manager){
+    public PostRegisterRoute(UserManager manager){
         this.manager = manager;
         LOGGER.config("PostRegisterRoute Created");
     }
@@ -36,9 +36,8 @@ public class PostRegisterRoute implements Route{
         String fname = request.queryParams("fname");
         String lname = request.queryParams("lname");
 
-        manager.userRegister(email, password, fname, lname);
+        manager.insertUserSQL(email, password, fname, lname);
 
-        //sendValidationEmail("dmolee@gmail.com");
 
         response.redirect(WebServer.LOGIN, HttpURLConnection.HTTP_MOVED_PERM);
 

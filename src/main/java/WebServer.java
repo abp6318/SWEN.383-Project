@@ -33,6 +33,7 @@ public class WebServer {
     public static final String PROFESSOR = "/professor";
     public static final String LEARNER = "/learner";
     public static final String FAILED = "/failed";
+    public static final String DISCUSSION = "/discussion";
     private Configuration conf;
 
 
@@ -47,11 +48,13 @@ public class WebServer {
         get(LOGIN, new GetLoginRoute(conf));
         post(LOGIN, new PostLoginRoute(manager, engine));
         get(REGISTER, new GetRegisterRoute(manager, conf));
-        post(REGISTER, new PostRegisterRoute(managerTwo));
+        post(REGISTER, new PostRegisterRoute(manager));
         get(ADMIN, new GetAdminRoute(manager, conf));
         get(PROFESSOR, new GetProfessorRoute(manager, conf));
         get(LEARNER, new GetLearnerRoute(manager, conf));
         get(FAILED, new GetFailedRoute(manager, conf));
+        get(DISCUSSION, new GetDiscussionRoute(manager,conf));
+        post(DISCUSSION, new PostDiscussionRoute(manager, engine));
     }
 
     public void initialize(){

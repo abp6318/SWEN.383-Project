@@ -38,8 +38,10 @@
          </#list>
     </table>
 
-    <h2>Dicussions</h2>
-    <p><a href="discussion.ftl">Create a new discussion</a></p>
+    <h2>Discussions</h2>
+     <form action="/discussion" method="GET">
+        <input class="input-submit" value="Discussion" type="submit">
+     </form>
 
     <!-- button allowing people to add class, if clicked 2 fields appear to be filled in -->
     <!-- button allowing people to update class (with proper fields), if clicked 2+ fields appear to be filled in -->
