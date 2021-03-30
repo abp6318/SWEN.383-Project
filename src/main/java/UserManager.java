@@ -456,6 +456,33 @@ public class UserManager{
         }
     }
 
+    public List<Feedback> selectRatingClassesSQL() {
+        String userEmailReturned;
+        String classCodeReturned;
+        String feedbackReturned;
+        List<Feedback> feedback = new ArrayList<Feedback>();
+        try {
+            sql = "SELECT * FROM classRating";
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+		  			                  ResultSet.CONCUR_UPDATABLE);
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                userEmailReturned = rs.getString(1);
+                classCodeReturned = rs.getString(2);
+                feedbackReturned = rs.getString(3);
+                System.out.println(userEmailReturned + " " + classCodeReturned + " " + feedbackReturned);
+                Feedback temp = new Feedback(userEmailReturned,classCodeReturned,feedbackReturned);
+                feedback.add(temp);
+            }
+ 
+        } catch(SQLException sqle){
+            System.out.println("\n\nSELECT ADMIN CLASSES FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+        return feedback;
+    }
+
     public List<Course> selectAdminClassesSQL(String creatorEmail){
         String classCodeReturned;
         String creatorEmailReturned;
