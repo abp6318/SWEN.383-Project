@@ -56,9 +56,26 @@
     </table>
 
     <h2>Discussions</h2>
-     <form action="/discussion" method="GET">
+    <form action="/discussion" method="GET">
         <input class="input-submit" value="Discussion" type="submit">
-     </form>
+    </form>
+    <table>
+        <tr>
+            <th>Discussion Group ID</th>
+            <th>Name</th>
+            <th>Owner</th>
+            <th>Link</th> <!-- Users can click on the link to view the discussion page, and either join or request for access -->
+        </tr>
+        <#list discussionGroupsList as discussionGroup>
+            <tr>
+                    <td>${discussionGroup.discussionID}</th>
+                    <td>${discussionGroup.groupName}</th>
+                    <td>${discussionGroup.userEmail}</th>
+                    <td><a href="#">Link</a></th>
+                </tr>
+         </#list>
+    </table>
+
 
     <table>
         <tr>
