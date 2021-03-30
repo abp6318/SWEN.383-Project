@@ -32,6 +32,7 @@ public class WebServer {
     public static final String LEARNER = "/learner";
     public static final String FAILED = "/failed";
     public static final String DISCUSSION = "/discussion";
+    public static final String FEEDBACK = "/feedback";
     private Configuration conf;
 
 
@@ -53,6 +54,8 @@ public class WebServer {
         get(FAILED, new GetFailedRoute(manager, conf));
         get(DISCUSSION, new GetDiscussionRoute(manager,conf));
         post(DISCUSSION, new PostDiscussionRoute(manager, engine));
+        get(FEEDBACK, new GetFeedbackRoute(manager,conf));
+        post(FEEDBACK, new PostFeedbackRoute(manager, engine));
     }
 
     public void initialize(){
