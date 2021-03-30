@@ -139,7 +139,7 @@
 		code.setAttribute('type', 'text');
 		code.setAttribute('placeholder', 'Input Code');
 		code.className = "input-text";
-		code.name="";
+		code.name="entered";
 		var br = document.createElement("br");
 		form.appendChild(br);
 		var send = document.createElement("input");

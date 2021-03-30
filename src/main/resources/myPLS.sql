@@ -10,6 +10,7 @@ CREATE TABLE user (
   fName VARCHAR(75) NOT NULL,
   lName VARCHAR(75) NOT NULL,
   accountType CHAR (1),
+  verificationCode VARCHAR(5),
   verified BOOLEAN NOT NULL,
   userPassword VARCHAR(40) NOT NULL ,
   PRIMARY KEY (userEmail)
@@ -137,11 +138,20 @@ CREATE TABLE discussionGroups (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE discussionMessages (
+  discussionMessageID INT AUTO_INCREMENT,
   discussionID INT, -- FK discussionGroups
   messages TEXT,
   userEmail VARCHAR(100) NOT NULL, -- FK user
   datePosted DATE,
-  PRIMARY KEY (discussionID),
+  PRIMARY KEY (discussionMessageID),
   CONSTRAINT discussionIDdiscussionMessages FOREIGN KEY (discussionID) REFERENCES discussionGroups(discussionID),
   CONSTRAINT userEmaildiscussionMessages FOREIGN KEY (userEmail) REFERENCES user(userEmail)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE discussionGroupsMembers (
+  discussionID INT NOT NULL, -- FK ID
+  userEmail VARCHAR(100) NOT NULL, -- FK user
+  PRIMARY KEY (discussionID, userEmail),
+  CONSTRAINT discussionIDdiscussionGroupMembers FOREIGN KEY (discussionID) REFERENCES discussionGroups(discussionID),
+  CONSTRAINT userEmaildiscussionGroupMembers FOREIGN KEY (userEmail) REFERENCES user(userEmail)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

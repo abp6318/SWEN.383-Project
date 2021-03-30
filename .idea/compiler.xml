@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="projectClone" />
         <module name="SWEN.383-Project" />
+        <module name="project" />
       </profile>
     </annotationProcessing>
   </component>

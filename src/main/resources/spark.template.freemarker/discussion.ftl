@@ -11,7 +11,7 @@
 <body>
     <h1>Create a Discussion Group</h1>
 
-    <form>
+    <form id="dis" action="/discussion" method="POST">
         <input class="input-text" placeholder="Group Name" name="groupname" type="text"><br>
         <input class="input-text" placeholder="Email" name="email" type="text"><br>
         <input class="input-submit" value="Create Discussion Group" type="submit">
