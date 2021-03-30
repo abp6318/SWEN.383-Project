@@ -30,25 +30,17 @@
 	<table>
 		<tr>
 			<th>Course Code</th>
+			<th>User Email</th>
 			<th>Rating(1-10)</th>
 			<th>
 		</tr>
-		<tr>
-			<td>ISTE230-01</td>
-			<td>8</td>
-		</tr>
-		<tr>
-			<td>ISTE340-02</td>
-			<td>7</td>
-		</tr>
-		<tr>
-			<td>ISTE120-03</td>
-			<td>9</td>
-		</tr>
-		<tr>
-			<td>ISTE330-01</td>
-			<td>9</td>
-		</tr>
+		<#list feedbackList as feedback>
+            <tr>
+                <td>${feedback.classCode}</td>
+                <td>${feedback.userEmail}</td>
+                <td>${feedback.feedback}</td>
+            </tr>
+         </#list>
 	</table><br>
 	<h2>Professor Feedback</h2><br>
 	<table>
