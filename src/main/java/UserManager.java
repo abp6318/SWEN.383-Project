@@ -3,8 +3,6 @@ import java.util.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.Scanner;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -121,7 +119,6 @@ public class UserManager{
         }
     }
 
-    // TODO: Have it return everything, rather than just the verfied status & store in User object
     /**
      * Confirms whether users have a verified account and should be allowed to log in
      * @param email                 The user's input email
@@ -408,25 +405,31 @@ public class UserManager{
         }//end of catch
     }//end of function
 
-    public void selectDiscussionGroupsSQL(){
-        int discussionIDReturned;
-        String groupNameReturned;
-        String userEmailReturned;
+    public List<DiscussionGroup> selectDiscussionGroupsSQL(String email){
+        String discussionIDReturned = "";
+        String groupNameReturned = "";
+        String userEmailReturned = "";
+        List<DiscussionGroup> discussionGroupsList = new ArrayList<DiscussionGroup>();
         try{
-            PreparedStatement preparedStatement = conn.prepareStatement("SELECT discussionID, groupName, userEmail FROM discussionGroups");
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT discussionID, groupName, discussionGroups.userEmail FROM discussionGroups JOIN discussionGroupsMembers USING(discussionID) WHERE discussionGroupsMembers.userEmail=?");
+            preparedStatement.setString(1, email);
             rs = preparedStatement.executeQuery();
-            if(rs.next()) {
-                discussionIDReturned = rs.getInt(1);
+            while(rs.next()) {
+                discussionIDReturned = rs.getString(1);
                 groupNameReturned = rs.getString(2);
                 userEmailReturned = rs.getString(3);
                 System.out.println(discussionIDReturned + " " + groupNameReturned + " " + userEmailReturned);
+                DiscussionGroup dg = new DiscussionGroup(discussionIDReturned, groupNameReturned, userEmailReturned);
+                discussionGroupsList.add(dg);
             }
+            return discussionGroupsList;
 
         }catch(SQLException sqle){
             System.out.println("\n\nSELECT FROM DISCUSSION GROUPS FAILED!!!!");
             System.out.println("ERROR MESSAGE IS -> " + sqle);
             sqle.printStackTrace();
         }
+        return null;
     }
 
     public void selectDiscussionMessagesSQL(int discussionID){

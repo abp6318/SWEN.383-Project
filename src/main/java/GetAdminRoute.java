@@ -38,6 +38,20 @@ public class GetAdminRoute implements Route{
             }
             viewModel.put("classes", classes.iterator());
 
+            // start of adding discussion groups to admin dashboard
+
+            List<DiscussionGroup> discussionGroupsList = manager.selectDiscussionGroupsSQL(user.getEmail());
+
+            Collection discussionGroups = new ArrayList();
+            for (int index = 0; index<discussionGroupsList.size(); index++) {
+                HashMap<String, String> discussionGroup = discussionGroupsList.get(index).getHash();
+                ((ArrayList) discussionGroups).add(discussionGroup);
+            }
+
+            viewModel.put("discussionGroups", discussionGroups.iterator());
+
+            // end of adding discussion groups to admin dashboard
+
             Template template = conf.getTemplate("admin.ftl");
             StringWriter writer = new StringWriter();
             template.process(viewModel, writer);

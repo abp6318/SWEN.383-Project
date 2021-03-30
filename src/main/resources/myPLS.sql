@@ -129,20 +129,29 @@ PRIMARY KEY (quizID),
 CONSTRAINT quizIDquizQuestions  FOREIGN KEY (quizID) REFERENCES quiz(quizID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE discussionGroups {
+CREATE TABLE discussionGroups (
   discussionID INT AUTO_INCREMENT,
   groupName VARCHAR(25),
   userEmail VARCHAR(100) NOT NULL, -- FK user
   PRIMARY KEY (discussionID),
   CONSTRAINT userEmaildiscussionGroups FOREIGN KEY (userEmail) REFERENCES user(userEmail)
-} ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE discussionMessages {
-  discussionID INT, --FK discussionGroups
+CREATE TABLE discussionMessages (
+  discussionMessageID INT AUTO_INCREMENT,
+  discussionID INT, -- FK discussionGroups
   messages TEXT,
   userEmail VARCHAR(100) NOT NULL, -- FK user
   datePosted DATE,
-  PRIMARY KEY (discussionID),
+  PRIMARY KEY (discussionMessageID),
   CONSTRAINT discussionIDdiscussionMessages FOREIGN KEY (discussionID) REFERENCES discussionGroups(discussionID),
   CONSTRAINT userEmaildiscussionMessages FOREIGN KEY (userEmail) REFERENCES user(userEmail)
-} ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE discussionGroupsMembers (
+  discussionID INT NOT NULL, -- FK ID
+  userEmail VARCHAR(100) NOT NULL, -- FK user
+  PRIMARY KEY (discussionID, userEmail),
+  CONSTRAINT discussionIDdiscussionGroupMembers FOREIGN KEY (discussionID) REFERENCES discussionGroups(discussionID),
+  CONSTRAINT userEmaildiscussionGroupMembers FOREIGN KEY (userEmail) REFERENCES user(userEmail)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
