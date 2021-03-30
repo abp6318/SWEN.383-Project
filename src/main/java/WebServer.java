@@ -11,9 +11,7 @@ public class WebServer {
 
 
     // general TODOs
-    // TODO: create discussion group ftl files
     // TODO: Create discussion group object?
-    // TODO: Create get/post routes for discussion group page
     // TODO: add redirect in POST to new discussion group page if something is added/updated
 
 

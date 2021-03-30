@@ -38,9 +38,6 @@ public class GetAdminRoute implements Route{
             }
             viewModel.put("classes", classes.iterator());
 
-            // TODO: add some logic in the admin ftl file that lets people move from this page to the discussion group page by clicking some 'discussion group button'
-            
-
             Template template = conf.getTemplate("admin.ftl");
             StringWriter writer = new StringWriter();
             template.process(viewModel, writer);
