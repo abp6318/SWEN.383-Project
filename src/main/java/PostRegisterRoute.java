@@ -32,12 +32,13 @@ public class PostRegisterRoute implements Route{
         LOGGER.info("POST /register");
 
         String email = request.queryParams("email");
-        String password = request.queryParams("password");
         String fname = request.queryParams("fname");
         String lname = request.queryParams("lname");
+        String password = request.queryParams("password");
 
-        manager.insertUserSQL(email, password, fname, lname);
+        manager.insertUserSQL(email, fname, lname, password);
 
+        sendValidationEmail(email);
 
         response.redirect(WebServer.LOGIN, HttpURLConnection.HTTP_MOVED_PERM);
 
@@ -69,11 +70,13 @@ public class PostRegisterRoute implements Route{
             message.setFrom(new InternetAddress("iste383dreamteam@gmail.com"));
             message.setRecipients(
                     Message.RecipientType.TO,
-                    InternetAddress.parse("**insert email**")
+                    InternetAddress.parse(to)
             );
             message.setSubject("Verify your email");
             int code = (int)(Math.random()*10000)+1;
             message.setText("Your verification code is " + code);
+
+            manager.updateUserVerificationSQL(to, Integer.toString(code));
 
             Transport.send(message);
 

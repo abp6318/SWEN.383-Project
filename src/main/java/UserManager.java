@@ -131,10 +131,12 @@ public class UserManager{
     public User userLogin(String email, String passwordUnencrypted){
         String passwordEncrypted = this.encryptPassword(passwordUnencrypted);
         try{
-            stmt = conn.createStatement();
-            String query = "SELECT userEmail, fName, lName, accountType, verified, userPassword FROM user WHERE userEmail=\""+email+"\" AND userPassword=\""+passwordEncrypted+"\";";
-            rs = stmt.executeQuery(query);
-            String verifiedValue = "";
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT userEmail, fName, lName, accountType, verified, userPassword FROM user WHERE userEmail=? AND userPassword=?");
+            System.out.println(email);
+            System.out.println(passwordEncrypted);
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, passwordEncrypted);
+            rs = preparedStatement.executeQuery();
 
             if(rs.next()){
                 String userEmailTemp = rs.getString(1);
@@ -487,6 +489,42 @@ public class UserManager{
             sqle.printStackTrace();
         }
         return courses;
+    }
+
+    public void updateUserVerificationSQL(String email, String verifyCode){
+        int rows = 0;
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE `user` SET `verificationCode` = ? WHERE `userEmail` = ?");
+            preparedStatement.setString(1, verifyCode);
+            preparedStatement.setString(2, email);
+
+            rows = preparedStatement.executeUpdate();
+            System.out.println("Rows affected: " + rows + "\n");
+
+        }catch(SQLException sqle){
+            System.out.println("\n\nUPDATE USER VERIFICATION FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+    }
+
+    public String selectVerifyCodeSQL(String email){
+        String verifyReturned;
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT verificationCode FROM user WHERE userEmail = ?");
+            preparedStatement.setString(1, email);
+            rs = preparedStatement.executeQuery();
+            if(rs.next()) {
+                verifyReturned = rs.getString(1);
+                System.out.println(verifyReturned);
+                return verifyReturned;
+            }
+        }catch(SQLException sqle){
+            System.out.println("\n\nSELECT FROM USER FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+        return "";
     }
 
 

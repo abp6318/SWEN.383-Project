@@ -29,6 +29,8 @@ public class PostLoginRoute implements Route{
 
         String email = request.queryParams("email");
         String password = request.queryParams("password");
+        String verify = request.queryParams("entered");
+        System.out.println(verify);
         System.out.println(email);
         System.out.println(password);
 
@@ -38,6 +40,15 @@ public class PostLoginRoute implements Route{
         // if it is, change their verified status and log them in
         // if it is not, redirect to failed page (or some page saying incorrect verification code)
 
+        // verify value exists, trying to validate account
+        if(verify != null && !verify.equals("")){
+            // if verifies match
+            if(verify.equals(manager.selectVerifyCodeSQL(email))){
+                manager.updateUserVerification(email);
+            }
+        }
+
+        System.out.println(":)");
         User tempUserObj = manager.userLogin(email, password);
         System.out.println("TEMP-USER-OBJ (LINE 29 of PostLoginRoutes): " + tempUserObj);
 
