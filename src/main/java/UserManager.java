@@ -371,6 +371,23 @@ public class UserManager{
         }
     }
 
+    public void deletePrerequisiteSQL(String classCode, String prereqClassCode){
+        int rows = 0;
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement("DELETE FROM `prerequisitesLookup` WHERE `classCode` = ? AND `preReqClassCode` = ?");
+            preparedStatement.setString(1, classCode);
+            preparedStatement.setString(2, prereqClassCode);
+
+            rows = preparedStatement.executeUpdate();
+            System.out.println("Rows affected: " + rows + "\n");
+
+        }catch(SQLException sqle){
+            System.out.println("\n\nDELETE PREREQ FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+    }
+
     /**
      * Creates a discussion group
      @param    groupName    The name of the discussion group

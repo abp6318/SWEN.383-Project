@@ -315,6 +315,24 @@
         var br7 = document.createElement("br");
 		uDiv.appendChild(br7);
 
+		//add pre-req input
+        var addPR = document.createElement("input");
+        addPR.setAttribute('type','text');
+        addPR.setAttribute('placeholder','Add Pre-Req');
+        addPR.name = "AddPreReq";
+        uDiv.appendChild(addPR);
+        var br10 = document.createElement("br");
+        uDiv.appendChild(br10);
+
+        //remove pre-req input
+        var removePR = document.createElement("input");
+        removePR.setAttribute('type','text');
+        removePR.setAttribute('placeholder','Remove Pre-Req');
+        removePR.name = "DeletePreReq";
+        uDiv.appendChild(removePR);
+        var br11 = document.createElement("br");
+        uDiv.appendChild(br11);
+
         //submit btn
 		var submit = document.createElement("input");
 		submit.setAttribute('type','submit');

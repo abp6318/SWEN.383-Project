@@ -43,7 +43,8 @@ public class PostAdminRoute implements Route{
         String updateClassLearningOutcome = request.queryParams("UpdateClassLearningOutcome");
         String updateClassStartDate = request.queryParams("UpdateClassStartDate");
         String updateClassEndDate = request.queryParams("UpdateClassEndDate");
-        String updatePreReqs = request.queryParams("UpdatePreReqs");
+        String addPreReq = request.queryParams("AddPreReq");
+        String deletePreReq = request.queryParams("DeletePreReq");
 
         // update Class Name
         if(updateClassName != null && !updateClassName.equals("")){
@@ -82,14 +83,15 @@ public class PostAdminRoute implements Route{
             manager.updateClassEndDateSQL(updateClassEndDate, updateClassID);
         }
 
-        // update pre-reqs
-        //if(updatePreReqs != null && !updatePreReqs.equals("")){
-           // manager.updateClassPrerequisiteSQL(updatePreReqs, updateClassID);
-       // }
+        // add pre-req
+        if(addPreReq != null && !addPreReq.equals("")){
+            manager.insertClassPrerequisiteSQL(updateClassID, addPreReq);
+        }
 
-
-
-
+        // delete pre-req
+        if(deletePreReq != null && !deletePreReq.equals("")){
+            manager.deletePrerequisiteSQL(updateClassID, deletePreReq);
+        }
 
         // end updateClass functionality
 
