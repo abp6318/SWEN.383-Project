@@ -287,7 +287,8 @@ public class UserManager{
     public void updateClassProfessorEmailSQL(String professorEmail, String classCode){
         int rows = 0;
         try{
-            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE `class` SET professorEmail = ? WHERE `classCode` = ?");
+            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE class SET professorEmail = ? WHERE classCode = ?");
+            System.out.println(preparedStatement);
             preparedStatement.setString(1, professorEmail);
             preparedStatement.setString(2, classCode);
 

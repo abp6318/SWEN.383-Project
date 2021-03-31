@@ -23,20 +23,23 @@
     <p>Relevant course materials, and other functionality are stored within the class itself.</p>
     <!-- button allowing people to add class, if clicked 2 fields appear to be filled in -->
     <div id="addClass">
-        <input id="add" value="Add Class" type="button">
-        <form action="/admin" method="POST" id="AddClassForm"></form>
+        <form action="/admin" method="POST" id="AddClassForm">
+              <input id="add" value="Add Class" type="button">
+        </form>
     </div>
 
     <!-- button allowing people to update class (with proper fields), if clicked 2+ fields appear to be filled in -->
     <div id="updateClass">
+    <form action="/admin" method="POST" id="UpdateClassForm">
         <input id="update" value="Update Class" type="button">
-        <form action="/admin" method="POST" id="UpdateClassForm"></form>
+        </form>
     </div>
 
     <!-- button allowing people to delete class via class code, if clicked 1 fields appear to be filled in -->
     <div id="deleteClass">
+    <form action="/admin" method="POST" id="DeleteClassForm">
         <input id="delete" value="Delete Class" type="button">
-        <form action="/admin" method="POST" id="DeleteClassForm"></form>
+        </form>
     </div>
     <table>
         <tr>
@@ -66,6 +69,7 @@
             <th>Owner</th>
             <th>Link</th> <!-- Users can click on the link to view the discussion page, and either join or request for access -->
         </tr>
+        <#if discussionGroupsList??>
         <#list discussionGroupsList as discussionGroup>
             <tr>
                     <td>${discussionGroup.discussionID}</th>
@@ -74,6 +78,7 @@
                     <td><a href="#">Link</a></th>
                 </tr>
          </#list>
+         </#if>
     </table>
 
 
@@ -95,7 +100,9 @@
     </table>
 
     <h2>Feedbdack Module</h2>
-    <p><a href="rating.ftl">View Feedback Module</a></p>
+    <form action="/feedback" method="GET">
+            <input class="input-submit" value="Feedback" type="submit">
+        </form>
 </body>
 <script>
     var aBtn = document.getElementById("add");
@@ -200,23 +207,15 @@
          var br1 = document.createElement("br");
 		uDiv.appendChild(br1);
 
-        //class code input
+		//class code input
         var id = document.createElement("input");
-		id.setAttribute('type', 'text');
-		id.setAttribute('placeholder', 'Enter Class Code');
+        id.setAttribute('type', 'text');
+        id.setAttribute('placeholder', 'Enter Class Code to be Updated');
         id.name = "UpdateClassID";
+        id.require = true;
         uDiv.appendChild(id);
-		var br = document.createElement("br");
-		uDiv.appendChild(br);
-
-        //class name input
-        var name = document.createElement("input");
-        name.setAttribute('type','text');
-        name.setAttribute('placeholder','Enter Class Name');
-        name.name = "UpdateClassID";
-        uDiv.appendChild(name);
-        var br2 = document.createElement("br");
-		uDiv.appendChild(br2);
+        var br = document.createElement("br");
+        uDiv.appendChild(br);
 
         //prof email input
         var prof = document.createElement("input");
@@ -274,6 +273,17 @@
         uDiv.appendChild(end);
         var br7 = document.createElement("br");
 		uDiv.appendChild(br7);
+
+		//Pre-req input
+        var prereq = document.createElement("input");
+        prereq.setAttribute('type','text');
+        prereq.setAttribute('placeholder','Enter Pre Reqs');
+        prereq.name = "UpdatePreReqs";
+        uDiv.appendChild(prereq);
+        var br10 = document.createElement("br");
+        uDiv.appendChild(br10);
+
+
 
         //submit btn
 		var submit = document.createElement("input");

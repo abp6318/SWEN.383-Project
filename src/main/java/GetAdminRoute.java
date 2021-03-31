@@ -52,15 +52,7 @@ public class GetAdminRoute implements Route{
 
             // end of adding discussion groups to admin dashboard
 
-            //adding ratings to admin dashboard
-            List<Feedback> feedbackList = manager.selectRatingClassesSQL();
-            Collection feedback = new ArrayList();
-            for (int index = 0; index<feedbackList.size(); index++) {
-                HashMap<String, String> rating = feedbackList.get(index).getHash();
-                ((ArrayList) feedbackList).add(rating);
-            }
 
-            viewModel.put("feedback", feedbackList.iterator());
 
 
             Template template = conf.getTemplate("admin.ftl");

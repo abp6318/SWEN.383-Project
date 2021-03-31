@@ -35,6 +35,58 @@ public class PostAdminRoute implements Route{
             // fill in ratings dynamically? - needs to be done in separate DB call I think?
         // TODO: add method to add a professor to a course in the handle method here and handle logic accordingly
 
+        // start updateClass functionality
+        String updateClassID = request.queryParams("UpdateClassID");
+        String updateClassProfessor = request.queryParams("UpdateClassProfessor");
+        String updateClassLearningObjective = request.queryParams("UpdateClassLearningObjective");
+        String updateClassLearningOutcome = request.queryParams("UpdateClassLearningOutcome");
+        String updateClassStartDate = request.queryParams("UpdateClassStartDate");
+        String updateClassEndDate = request.queryParams("UpdateClassEndDate");
+        String updatePreReqs = request.queryParams("UpdatePreReqs");
+
+        // update professor email
+        LOGGER.info("checking prof email");
+        if(updateClassProfessor != null && !updateClassProfessor.equals("")){
+            LOGGER.info("prof email exists");
+            if(updateClassProfessor.contains("@")){
+                LOGGER.info("Email validated");
+                manager.updateClassProfessorEmailSQL(updateClassProfessor, updateClassID);
+                LOGGER.info("updated");
+
+            }
+        }
+
+        // update learning objective
+        if(updateClassLearningObjective != null && !updateClassLearningObjective.equals("")){
+            manager.updateClassLearningObjectiveSQL(updateClassLearningObjective, updateClassID);
+        }
+
+        // update learning outcome
+        if(updateClassLearningOutcome != null && !updateClassLearningOutcome.equals("")){
+            manager.updateClassLearningOutcomeSQL(updateClassLearningOutcome, updateClassID);
+        }
+
+        // update start date
+        if(updateClassStartDate != null && !updateClassStartDate.equals("")){
+            manager.updateClassBeginDateSQL(updateClassStartDate, updateClassID);
+        }
+
+        // update end date
+        if(updateClassEndDate != null && !updateClassEndDate.equals("")){
+            manager.updateClassEndDateSQL(updateClassEndDate, updateClassID);
+        }
+
+        // update pre-reqs
+        //if(updatePreReqs != null && !updatePreReqs.equals("")){
+           // manager.updateClassPrerequisiteSQL(updatePreReqs, updateClassID);
+       // }
+
+
+
+
+
+        // end updateClass functionality
+
         response.redirect(WebServer.ADMIN, HttpURLConnection.HTTP_MOVED_PERM);
 
 

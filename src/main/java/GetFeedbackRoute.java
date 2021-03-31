@@ -5,8 +5,7 @@ import spark.Response;
 import spark.Route;
 
 import java.io.StringWriter;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Logger;
 
 
@@ -27,6 +26,16 @@ public class GetFeedbackRoute implements Route{
         LOGGER.info("GetFeedback Called");
         try {
             Map<String, Object> viewModel = new HashMap<>(); // mapping dynamic variables for ftl files (freemarker template)
+
+            //adding ratings to admin dashboard
+            List<Feedback> feedbackList = manager.selectRatingClassesSQL();
+            Collection feedback = new ArrayList();
+            for (int index = 0; index<feedbackList.size(); index++) {
+                HashMap<String, String> rating = feedbackList.get(index).getHash();
+                ((ArrayList) feedback).add(rating);
+            }
+
+            viewModel.put("feedback", feedback.iterator());
 
             Template template = conf.getTemplate("rating.ftl");
             StringWriter writer = new StringWriter();

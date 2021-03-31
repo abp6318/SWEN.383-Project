@@ -56,6 +56,7 @@ public class WebServer {
         post(DISCUSSION, new PostDiscussionRoute(manager, engine));
         get(FEEDBACK, new GetFeedbackRoute(manager,conf));
         post(FEEDBACK, new PostFeedbackRoute(manager, engine));
+        post(ADMIN, new PostAdminRoute(manager, engine));
     }
 
     public void initialize(){
