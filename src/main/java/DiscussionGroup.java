@@ -32,6 +32,19 @@ public class DiscussionGroup {
         return userEmail;
     }
 
+    public void setDiscussionID(String inID) {
+        discussionID = inID;
+    }
+
+    public void setGroupName(String inName) {
+        groupName = inName;
+    }
+
+    public void setUserEmail(String inEmail) {
+        userEmail = inEmail;
+    }
+
+
     @Override
     public String toString() {
         return "DiscussionGroup{" +
