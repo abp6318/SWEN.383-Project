@@ -22,9 +22,50 @@
 		th{
 			text-align: left;
 		}
+		.nav a:hover{
+                    background-color: #F8D7FD;
+                    color: black;
+                }
+                .nav a.active {
+                    background-color: #F8D7FD;
+                    color: black;
+                }
+        .nav a {
+
+          float: left;
+          display: block;
+          color: black;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+        }
+        h2 {
+          text-decoration: underline overline dotted black;
+        }
+
+        .nav {
+          overflow: hidden;
+        }
+        .content {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 10px;
+			height: 100%;
+        }
+        body {
+            background-color: #F8D7FD;
+        }
 	</style>
 </head>
 <body>
+<div class="content">
+	<nav class="nav" id ="myNav">
+        <a href="/admin">Dashboard</a>
+        <a href="/discussion" >Discussion Groups</a>
+        <a href="/feedback" class="active">Feedback Module</a>
+    </nav>
 	<h1>Ratings</h1>
 	<h2>Course Averages</h2><br>
     	<table>
@@ -84,5 +125,6 @@
 			<td>6</td>
 		</tr>
 	</table>
+	</div>
 </body>
 </html>

@@ -39,19 +39,46 @@
         .nav {
           overflow: hidden;
         }
+        .content {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 10px;
+            height: 100%;
+        }
+        body {
+            background-color: #F8D7FD;
+        }
     </style>
 </head>
 <body>
+<div class="content">
     <nav class="nav" id ="myNav">
-        <a href="#dashboard" class="active">Dashboard</a>
-        <a href="#discussion">Discussion Groups</a>
-        <a href="#feedback">Feedback Module</a>
+        <a href="/admin" class="active">Dashboard</a>
+        <a href="/discussion">Discussion Groups</a>
+        <a href="/feedback">Feedback Module</a>
     </nav>
-    </br>
 
     <h1>Admin</h1>
     <h2>All Classes</h2>
     <p>Relevant course materials, and other functionality are stored within the class itself.</p>
+
+    <table>
+        <tr>
+            <th>Number</th>
+            <th>Name</th>
+            <th>Professor</th>
+            <th>Link</th>
+        </tr>
+        <#list classes as class>
+            <tr>
+                    <td>${class.classcode}</th>
+                    <td>${class.className}</th>
+                    <td>${class.profEmail}</th>
+                    <td><a href="#">Link</a></th>
+                </tr>
+         </#list>
+    </table>
 
     <!-- button allowing people to add class, if clicked 2 fields appear to be filled in -->
     <div id="addClass">
@@ -71,36 +98,8 @@
         <form action="/admin" method="POST" id="DeleteClassForm"></form>
     </div>
 
-    <table>
-        <tr>
-            <th>Number</th>
-            <th>Name</th>
-            <th>Professor</th>
-            <th>Link</th>
-        </tr>
-        <#list classes as class>
-            <tr>
-                    <td>${class.classcode}</th>
-                    <td>${class.className}</th>
-                    <td>${class.profEmail}</th>
-                    <td><a href="#">Link</a></th>
-                </tr>
-         </#list>
-    </table>
-
     <h2>Discussions</h2>
-    <form action="/discussion" method="GET">
-        <input class="input-submit" value="Discussion" type="submit">
-    </form>
-	
-    <!-- button adding members -->
-    <input id="addMem" value="Add Members" type="button">
-    <form action="/admin" method="POST" id="AddMembersForm"></form>
-	
-    <!-- button deleting members -->
-    <input id="deleteMem" value="Delete Members" type="button">
-    <form action="/admin" method="POST" id="DeleteMembersForm"></form>
-	
+
     <table>
         <tr>
             <th>Discussion Group ID</th>
@@ -118,11 +117,25 @@
          </#list>
     </table>
 
+    <form action="/discussion" method="GET">
+        <input class="input-submit" value="Discussion" type="submit">
+    </form>
+	
+    <!-- button adding members -->
+    <input id="addMem" value="Add Members" type="button">
+    <form action="/admin" method="POST" id="AddMembersForm"></form>
+	
+    <!-- button deleting members -->
+    <input id="deleteMem" value="Delete Members" type="button">
+    <form action="/admin" method="POST" id="DeleteMembersForm"></form>
+	
+
 
     <h2>Feedback Module</h2>
     <form action="/feedback" method="GET" id="feedbackButtonForm">
         <input id="feedbackButton" value="Feedback" type="submit">
     </form>
+    </div>
 </body>
 <script>
     var aBtn = document.getElementById("add");
