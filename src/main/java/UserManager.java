@@ -613,8 +613,9 @@ public class UserManager{
     }
 
     //search for discussion groups
-    public DiscussionGroup searchDiscussionGroup(String name) {
-        DiscussionGroup result = new DiscussionGroup(" "," "," ");
+    public List<DiscussionGroup> searchDiscussionGroup(String name) {
+        List<DiscussionGroup> results = new ArrayList<DiscussionGroup>();
+        DiscussionGroup result = new DiscussionGroup("","","");
         try {
             PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM discussionGroups WHERE groupName = ?");
             preparedStatement.setString(1, name);
@@ -623,13 +624,14 @@ public class UserManager{
                 result.setDiscussionID(rs.getString(1));
                 result.setGroupName(rs.getString(2));
                 result.setUserEmail(rs.getString(3));
+                results.add(result);
             }
         } catch(SQLException sqle){
             System.out.println("\n\nSELECT FROM USER FAILED!!!!");
             System.out.println("ERROR MESSAGE IS -> " + sqle);
             sqle.printStackTrace();
         }
-        return result;
+        return results;
     }
 
 
