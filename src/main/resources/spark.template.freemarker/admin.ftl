@@ -75,7 +75,7 @@
             <th>Owner</th>
             <th>Link</th> <!-- Users can click on the link to view the discussion page, and either join or request for access -->
         </tr>
-        <#list discussionGroupsList as discussionGroup>
+        <#list discussionGroups as discussionGroup>
             <tr>
                     <td>${discussionGroup.discussionID}</th>
                     <td>${discussionGroup.groupName}</th>
