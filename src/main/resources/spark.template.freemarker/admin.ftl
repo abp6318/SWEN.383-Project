@@ -23,20 +23,23 @@
     <p>Relevant course materials, and other functionality are stored within the class itself.</p>
     <!-- button allowing people to add class, if clicked 2 fields appear to be filled in -->
     <div id="addClass">
+    <form action="/admin" method="POST" id="AddClassForm">
         <input id="add" value="Add Class" type="button">
-        <form action="/admin" method="POST" id="AddClassForm"></form>
+        </form>
     </div>
 
     <!-- button allowing people to update class (with proper fields), if clicked 2+ fields appear to be filled in -->
     <div id="updateClass">
+        <form action="/admin" method="POST" id="UpdateClassForm">
         <input id="update" value="Update Class" type="button">
-        <form action="/admin" method="POST" id="UpdateClassForm"></form>
+        </form>
     </div>
 
     <!-- button allowing people to delete class via class code, if clicked 1 fields appear to be filled in -->
     <div id="deleteClass">
+    <form action="/admin" method="POST" id="DeleteClassForm">
         <input id="delete" value="Delete Class" type="button">
-        <form action="/admin" method="POST" id="DeleteClassForm"></form>
+        </form>
     </div>
     <table>
         <tr>
@@ -87,7 +90,9 @@
 
 
     <h2>Feedbdack Module</h2>
-    <p><a href="rating.ftl">View Feedback Module</a></p>
+    <form action="/feedback" method="GET" id="feedbackButtonForm">
+            <input id="feedbackButton" value="Feedback" type="submit">
+            </form>
 </body>
 <script>
     var aBtn = document.getElementById("add");
