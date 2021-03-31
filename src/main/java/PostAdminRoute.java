@@ -95,6 +95,22 @@ public class PostAdminRoute implements Route{
 
         // end updateClass functionality
 
+        // start delete class
+        String deleteClassCode = request.queryParams("DeleteClassCode");
+
+        if(deleteClassCode != null && !deleteClassCode.equals("")){
+            // call delete method
+            manager.deleteClassSQL(deleteClassCode);
+        }
+        // end delete class
+
+        // start add class
+            // get all queryParam necessary
+            // check if they are null
+            // check if they are empty strings
+            // manager.function(...)
+        // end add class
+
         response.redirect(WebServer.ADMIN, HttpURLConnection.HTTP_MOVED_PERM);
 
 
