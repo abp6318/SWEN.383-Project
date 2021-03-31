@@ -18,6 +18,7 @@ public class GetFeedbackRoute implements Route{
 
     public GetFeedbackRoute(UserManager manager, Configuration conf){
         this.conf = conf;
+        this.manager = manager;
         LOGGER.config("GetFeedbackRoute Created");
     }
 
@@ -36,6 +37,15 @@ public class GetFeedbackRoute implements Route{
             }
 
             viewModel.put("feedback", feedback.iterator());
+
+            HashMap<String, String> classAvgs = new HashMap<>();
+            List<String> classCodes = manager.selectRatedClassesSQL();
+            for (String code : classCodes){
+                int avg = manager.selectClassAvgSQL(code);
+                classAvgs.put(code, Integer.toString(avg));
+            }
+
+            viewModel.put("avgs", classAvgs);
 
             Template template = conf.getTemplate("rating.ftl");
             StringWriter writer = new StringWriter();

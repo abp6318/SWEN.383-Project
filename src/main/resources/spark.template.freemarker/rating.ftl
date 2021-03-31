@@ -26,6 +26,23 @@
 </head>
 <body>
 	<h1>Ratings</h1>
+	<h2>Course Averages</h2><br>
+    	<table>
+    		<tr>
+    			<th>Course Code</th>
+    			<th>Average Rating(1-10)</th>
+    			<th>
+    		</tr>
+    		<body>
+                <#list avgs?keys as key>
+                <tr>
+                    <td>${key}</td>
+                    <td>${avgs[key]}</td>
+                </tr>
+                </#list>
+            </body>
+    	</table><br>
+
 	<h2>Course Feedback</h2><br>
 	<table>
 		<tr>
@@ -34,14 +51,15 @@
 			<th>Rating(1-10)</th>
 			<th>
 		</tr>
-		<#list feedbackList as feedback>
+		<#list feedback as f>
             <tr>
-                <td>${feedback.classCode}</td>
-                <td>${feedback.userEmail}</td>
-                <td>${feedback.feedback}</td>
+                <td>${f.classcode}</td>
+                <td>${f.userEmail}</td>
+                <td>${f.feedback}</td>
             </tr>
          </#list>
 	</table><br>
+
 	<h2>Professor Feedback</h2><br>
 	<table>
 		<tr>

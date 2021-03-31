@@ -558,7 +558,44 @@ public class UserManager{
         return "";
     }
 
-    //search for discussion groups 
+    public List<String> selectRatedClassesSQL(){
+        List<String> classCodes = new ArrayList<>();
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT DISTINCT classCode FROM classRating");
+            rs = preparedStatement.executeQuery();
+            while(rs.next()) {
+                String classCode = rs.getString(1);
+                System.out.println(classCode);
+                classCodes.add(classCode);
+            }
+
+        }catch(SQLException sqle){
+            System.out.println("\n\nSELECT FROM USER FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+        return classCodes;
+    }
+
+    public int selectClassAvgSQL(String classCode){
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT AVG(rating) FROM classRating WHERE classCode = ?");
+            preparedStatement.setString(1, classCode);
+            rs = preparedStatement.executeQuery();
+            if(rs.next()) {
+                int avg = rs.getInt(1);
+                System.out.println(avg);
+                return avg;
+            }
+        }catch(SQLException sqle){
+            System.out.println("\n\nSELECT FROM USER FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+        return 0;
+    }
+
+    //search for discussion groups
     public DiscussionGroup searchDiscussionGroup(String name) {
         DiscussionGroup result = new DiscussionGroup(" "," "," ");
         try {
