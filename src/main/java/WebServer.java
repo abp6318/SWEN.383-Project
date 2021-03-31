@@ -11,11 +11,9 @@ public class WebServer {
 
 
     // general TODOs
-    // TODO: Create discussion group object?
     // TODO: add redirect in POST to new discussion group page if something is added/updated
 
 
-    // TODO: some kind of search functionality???? on discussion groups??
 
     private static final Logger LOGGER = Logger.getLogger(WebServer.class.getName());
 

@@ -558,5 +558,25 @@ public class UserManager{
         return "";
     }
 
+    //search for discussion groups 
+    public DiscussionGroup searchDiscussionGroup(String name) {
+        DiscussionGroup result = new DiscussionGroup(" "," "," ");
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM discussionGroups WHERE groupName = ?");
+            preparedStatement.setString(1, name);
+            rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                result.setDiscussionID(rs.getString(1));
+                result.setGroupName(rs.getString(2));
+                result.setUserEmail(rs.getString(3));
+            }
+        } catch(SQLException sqle){
+            System.out.println("\n\nSELECT FROM USER FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+        return result;
+    }
+
 
 }
