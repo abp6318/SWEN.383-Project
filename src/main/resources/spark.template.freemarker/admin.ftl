@@ -312,6 +312,7 @@
 		mem.setAttribute('placeholder', 'Enter Member Email');
 		mem.className = "input-text";
         mem.name = "AddMemberEmail";
+        dForm.appendChild(mem);
 		var br = document.createElement("br");
 		aForm.appendChild(br);
 		var submit = document.createElement("input");
@@ -332,6 +333,7 @@
 		mem.setAttribute('placeholder', 'Enter Member Email');
 		mem.className = "input-text";
         mem.name = "DeleteMemberEmail";
+        dForm.appendChild(mem);
 		var br = document.createElement("br");
 		dForm.appendChild(br);
 		var submit = document.createElement("input");
