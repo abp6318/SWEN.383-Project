@@ -14,33 +14,63 @@
         th{
             text-align: left;
         }
+        .nav a:hover{
+                    background-color: #F8D7FD;
+                    color: black;
+                }
+                .nav a.active {
+                    background-color: #F8D7FD;
+                    color: black;
+                }
+        .nav a {
 
+          float: left;
+          display: block;
+          color: black;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+        }
+        h2 {
+          text-decoration: underline overline dotted black;
+        }
+
+        .nav {
+          overflow: hidden;
+        }
     </style>
 </head>
 <body>
+    <nav class="nav" id ="myNav">
+        <a href="#dashboard" class="active">Dashboard</a>
+        <a href="#discussion">Discussion Groups</a>
+        <a href="#feedback">Feedback Module</a>
+    </nav>
+    </br>
+
     <h1>Admin</h1>
     <h2>All Classes</h2>
     <p>Relevant course materials, and other functionality are stored within the class itself.</p>
+
     <!-- button allowing people to add class, if clicked 2 fields appear to be filled in -->
     <div id="addClass">
-    <form action="/admin" method="POST" id="AddClassForm">
         <input id="add" value="Add Class" type="button">
-        </form>
+        <form action="/admin" method="POST" id="AddClassForm"></form>
     </div>
 
     <!-- button allowing people to update class (with proper fields), if clicked 2+ fields appear to be filled in -->
     <div id="updateClass">
-        <form action="/admin" method="POST" id="UpdateClassForm">
         <input id="update" value="Update Class" type="button">
-        </form>
+        <form action="/admin" method="POST" id="UpdateClassForm"></form>
     </div>
 
     <!-- button allowing people to delete class via class code, if clicked 1 fields appear to be filled in -->
     <div id="deleteClass">
-    <form action="/admin" method="POST" id="DeleteClassForm">
         <input id="delete" value="Delete Class" type="button">
-        </form>
+        <form action="/admin" method="POST" id="DeleteClassForm"></form>
     </div>
+
     <table>
         <tr>
             <th>Number</th>
@@ -89,10 +119,10 @@
     </table>
 
 
-    <h2>Feedbdack Module</h2>
+    <h2>Feedback Module</h2>
     <form action="/feedback" method="GET" id="feedbackButtonForm">
-            <input id="feedbackButton" value="Feedback" type="submit">
-            </form>
+        <input id="feedbackButton" value="Feedback" type="submit">
+    </form>
 </body>
 <script>
     var aBtn = document.getElementById("add");
@@ -309,6 +339,9 @@
 	var aMem = document.getElementById("addMem");
 	var aForm = document.getElementById("AddMembersForm");
 	aMem.addEventListener("click", function() {
+	    while (aForm.firstChild) {
+            aForm.removeChild(aForm.firstChild);
+        }
 		//add email and submit
         var br1 = document.createElement("br");
 		aForm.appendChild(br1);
@@ -317,7 +350,7 @@
 		mem.setAttribute('placeholder', 'Enter Member Email');
 		mem.className = "input-text";
         mem.name = "AddMemberEmail";
-        dForm.appendChild(mem);
+        aForm.appendChild(mem);
 		var br = document.createElement("br");
 		aForm.appendChild(br);
 		var submit = document.createElement("input");
@@ -330,6 +363,9 @@
 	var dMem = document.getElementById("deleteMem");
 	var dForm = document.getElementById("DeleteMembersForm");
 	dMem.addEventListener("click", function() {
+	    while (dForm.firstChild) {
+            dForm.removeChild(dForm.firstChild);
+        }
 		//add email and submit
         var br1 = document.createElement("br");
 		dForm.appendChild(br1);
