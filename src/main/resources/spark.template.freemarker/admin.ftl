@@ -253,7 +253,7 @@
         var name = document.createElement("input");
         name.setAttribute('type','text');
         name.setAttribute('placeholder','Enter Class Name');
-        name.name = "UpdateClassID";
+        name.name = "UpdateClassName";
         uDiv.appendChild(name);
         var br2 = document.createElement("br");
 		uDiv.appendChild(br2);

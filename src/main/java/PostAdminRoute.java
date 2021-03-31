@@ -37,12 +37,18 @@ public class PostAdminRoute implements Route{
 
         // start updateClass functionality
         String updateClassID = request.queryParams("UpdateClassID");
+        String updateClassName = request.queryParams("UpdateClassName");
         String updateClassProfessor = request.queryParams("UpdateClassProfessor");
         String updateClassLearningObjective = request.queryParams("UpdateClassLearningObjective");
         String updateClassLearningOutcome = request.queryParams("UpdateClassLearningOutcome");
         String updateClassStartDate = request.queryParams("UpdateClassStartDate");
         String updateClassEndDate = request.queryParams("UpdateClassEndDate");
         String updatePreReqs = request.queryParams("UpdatePreReqs");
+
+        // update Class Name
+        if(updateClassName != null && !updateClassName.equals("")){
+            manager.updateClassNameSQL(updateClassName, updateClassID);
+        }
 
         // update professor email
         LOGGER.info("checking prof email");
