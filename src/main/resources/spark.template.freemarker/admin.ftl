@@ -73,6 +73,14 @@
          </#list>
     </table>
 
+    <!-- button adding members -->
+    <input id="addMem" value="Add Members" type="button">
+    <form action="/admin" method="POST" id="AddMembersForm"></form>
+	
+    <!-- button deleting members -->
+    <input id="deleteMem" value="Delete Members" type="button">
+    <form action="/admin" method="POST" id="DeleteMembersForm"></form>
+
     <h2>Feedbdack Module</h2>
     <p><a href="rating.ftl">View Feedback Module</a></p>
 </body>
@@ -221,6 +229,46 @@
         dDiv.appendChild(submit);
         //do smthng w the info 
     })
+
+    //add discussion group members 
+	var aMem = document.getElementById("addMem");
+	var aForm = document.getElementById("AddMembersForm");
+	aMem.addEventListener("click", function() {
+		//add email and submit
+        var br1 = document.createElement("br");
+		aForm.appendChild(br1);
+        var mem = document.createElement("input");
+		mem.setAttribute('type', 'text');
+		mem.setAttribute('placeholder', 'Enter Member Email');
+		mem.className = "input-text";
+        mem.name = "AddMemberEmail";
+		var br = document.createElement("br");
+		aForm.appendChild(br);
+		var submit = document.createElement("input");
+		submit.setAttribute('type','submit');
+		submit.className = "input-submit";
+        aForm.appendChild(submit);
+	})
+	
+	//delete discussion group members
+	var dMem = document.getElementById("deleteMem");
+	var dForm = document.getElementById("DeleteMembersForm");
+	dMem.addEventListener("click", function() {
+		//add email and submit
+        var br1 = document.createElement("br");
+		dForm.appendChild(br1);
+        var mem = document.createElement("input");
+		mem.setAttribute('type', 'text');
+		mem.setAttribute('placeholder', 'Enter Member Email');
+		mem.className = "input-text";
+        mem.name = "DeleteMemberEmail";
+		var br = document.createElement("br");
+		dForm.appendChild(br);
+		var submit = document.createElement("input");
+		submit.setAttribute('type','submit');
+		submit.className = "input-submit";
+        dForm.appendChild(submit);
+	})
     
 </script>
 </html>
