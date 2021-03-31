@@ -86,23 +86,6 @@
     </table>
 
 
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Owner</th>
-            <th>Link</th> <!-- Users can click on the link to view the discussion page, and either join or request for access -->
-        </tr>
-        <#list discussionGroups as discussionGroup>
-            <tr>
-                <td>${discussionGroup.discussionID}</th>
-                <td>${discussionGroup.groupName}</th>
-                <td>${discussionGroup.userEmail}</th>
-                <td><a href="#">Link</a></th>
-            </tr>
-         </#list>
-    </table>
-
     <h2>Feedbdack Module</h2>
     <p><a href="rating.ftl">View Feedback Module</a></p>
 </body>
