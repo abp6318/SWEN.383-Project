@@ -27,9 +27,9 @@ public class UserManager{
      */
     public boolean connect() {
         conn = null;
-        String userName = "be068263fb79ee";
-        String password = "a082b918";
-        String url = "jdbc:mysql://us-cdbr-east-03.cleardb.com/heroku_6cdec71a68a6b18";
+        String userName = "b4c3c11a08a12d";
+        String password = "36983285";
+        String url = "jdbc:mysql://us-cdbr-east-03.cleardb.com/heroku_3a5f011235c10c7?reconnect=true";
 
         try {
             Class.forName(DEFAULT_DRIVER);
