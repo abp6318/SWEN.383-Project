@@ -421,6 +421,22 @@ public class UserManager{
         }//end of catch
     }
 
+    public String getDiscussionIdSQL(String groupName) {
+        String id = "";
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT discussionID FROM discussionGroups WHERE groupName = ?");
+            preparedStatement.setString(1, groupName);
+            rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                id = rs.getString(1);
+            }
+        }catch (SQLException sqle) {
+            System.out.println("Error while trying to get a discussion group id.");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }//end of catch
+        return id;
+    }
+
     /**
      * Deletes a discussion group
      @param    groupName    The name of the group to be deleted
