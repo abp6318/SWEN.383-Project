@@ -438,6 +438,37 @@ public class UserManager {
         } // end of catch
     }// end of function
 
+    public void addDiscussionGroupMembersSQL(String groupName, String email) {
+        try {
+            PreparedStatement stmt;
+            stmt = conn.prepareStatement("INSERT INTO discussionGroupsMembers(groupName, email) VALUES (?,?)");
+            stmt.setString(1, groupName);
+            stmt.setString(2, email);
+            stmt.executeUpdate();
+        } // end of try
+        catch (Exception e) {
+            System.out.println("Error while trying to add discussion group member.");
+            System.out.println("ERROR MESSAGE --> " + e);
+        } // end of catch
+    }
+
+    public String getDiscussionIdSQL(String groupName) {
+        String id = "";
+        try {
+            PreparedStatement preparedStatement = conn
+                    .prepareStatement("SELECT discussionID FROM discussionGroups WHERE groupName = ?");
+            preparedStatement.setString(1, groupName);
+            rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                id = rs.getString(1);
+            }
+        } catch (SQLException sqle) {
+            System.out.println("Error while trying to get a discussion group id.");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        } // end of catch
+        return id;
+    }
+
     /**
      * Deletes a discussion group
      * 
@@ -655,8 +686,9 @@ public class UserManager {
     }
 
     // search for discussion groups
-    public DiscussionGroup searchDiscussionGroup(String name) {
-        DiscussionGroup result = new DiscussionGroup(" ", " ", " ");
+    public List<DiscussionGroup> searchDiscussionGroup(String name) {
+        List<DiscussionGroup> results = new ArrayList<DiscussionGroup>();
+        DiscussionGroup result = new DiscussionGroup("", "", "");
         try {
             PreparedStatement preparedStatement = conn
                     .prepareStatement("SELECT * FROM discussionGroups WHERE groupName = ?");
@@ -666,13 +698,14 @@ public class UserManager {
                 result.setDiscussionID(rs.getString(1));
                 result.setGroupName(rs.getString(2));
                 result.setUserEmail(rs.getString(3));
+                results.add(result);
             }
         } catch (SQLException sqle) {
             System.out.println("\n\nSELECT FROM USER FAILED!!!!");
             System.out.println("ERROR MESSAGE IS -> " + sqle);
             sqle.printStackTrace();
         }
-        return result;
+        return results;
     }
 
 }

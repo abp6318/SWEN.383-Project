@@ -5,9 +5,13 @@ import spark.Response;
 import spark.Route;
 
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
+
 
 
 public class GetDiscussionRoute implements Route{
@@ -28,6 +32,18 @@ public class GetDiscussionRoute implements Route{
         try {
             Map<String, Object> viewModel = new HashMap<>(); // mapping dynamic variables for ftl files (freemarker template)
 
+            List<DiscussionGroup> discussionGroupsList = request.session().attribute("Search Results");
+            if (discussionGroupsList!=null) {
+                Collection discussionGroups = new ArrayList();
+                for (int index = 0; index<discussionGroupsList.size(); index++) {
+                    HashMap<String, String> discussionGroup = discussionGroupsList.get(index).getHash();
+                    ((ArrayList) discussionGroups).add(discussionGroup);
+                }
+                viewModel.put("discussionGroups", discussionGroups.iterator());
+            }
+            
+            
+            
             Template template = conf.getTemplate("discussion.ftl");
             StringWriter writer = new StringWriter();
             template.process(viewModel, writer);
