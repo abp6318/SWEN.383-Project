@@ -245,6 +245,7 @@
 		id.setAttribute('type', 'text');
 		id.setAttribute('placeholder', 'Enter Class Code');
         id.name = "UpdateClassID";
+        id.required = true;
         uDiv.appendChild(id);
 		var br = document.createElement("br");
 		uDiv.appendChild(br);
