@@ -149,9 +149,9 @@ CREATE TABLE discussionMessages (
 ) ;
 
 CREATE TABLE discussionGroupsMembers (
-  discussionID INT NOT NULL, -- FK ID
+  groupName VARCHAR(25) NOT NULL, -- FK ID
   userEmail VARCHAR(100) NOT NULL, -- FK user
   PRIMARY KEY (discussionID, userEmail),
-  CONSTRAINT discussionIDdiscussionGroupMembers FOREIGN KEY (discussionID) REFERENCES discussionGroups(discussionID) ON DELETE CASCADE,
+  CONSTRAINT discussionIDdiscussionGroupMembers FOREIGN KEY (groupName) REFERENCES discussionGroups(groupName) ON DELETE CASCADE,
   CONSTRAINT userEmaildiscussionGroupMembers FOREIGN KEY (userEmail) REFERENCES user(userEmail) ON DELETE CASCADE
 ) ;

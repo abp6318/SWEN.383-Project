@@ -407,6 +407,20 @@ public class UserManager{
         }//end of catch
     }//end of function
 
+    public void addDiscussionGroupMembersSQL(String groupName, String email) {
+        try {
+            PreparedStatement stmt;
+            stmt = conn.prepareStatement("INSERT INTO discussionGroupsMembers(groupName, email) VALUES (?,?)");
+            stmt.setString(1, groupName);
+            stmt.setString(2, email);
+            stmt.executeUpdate();
+        }//end of try
+        catch (Exception e) {
+            System.out.println("Error while trying to add discussion group member.");
+            System.out.println("ERROR MESSAGE --> " + e);
+        }//end of catch
+    }
+
     /**
      * Deletes a discussion group
      @param    groupName    The name of the group to be deleted
