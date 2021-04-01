@@ -64,9 +64,11 @@
     <form id="dis" action="/discussion" method="POST">
         <input id="search" type="text" placeholder="Search.." name="searchBar">
         <button id="searchButton" type="submit"><i class="fa fa-search"></i></button><br>
-        <input class="input-text" placeholder="Group Name" name="groupname" type="text"><br>
+        <input id="add" value="Add Discussion Group">
+        <input id="delete" value="Delete Discussion Group">
+       <!-- <input class="input-text" placeholder="Group Name" name="groupname" type="text"><br>
         <input class="input-text" placeholder="Email" name="email" type="text"><br>
-        <input class="input-submit" value="Create Discussion Group" type="submit">
+        <input class="input-submit" value="Create Discussion Group" type="submit"> -->
     </form>
     <#if discussionGroups??>
         <table>
@@ -82,7 +84,7 @@
                     <td>${discussionGroup.groupName}</th>
                     <td>${discussionGroup.userEmail}</th>
                     <td><a href="#">Link</a></th>
-                </tr>
+                 </tr>
             </#list>
         </table>
     </#if>
@@ -90,10 +92,56 @@
     </div>
 </body>
 <script>
-    var sBtn = document.getElementById("searchButton");
-    var searchBar = document.getElementById("search");
-    sBtn.addActionListener("click", function() {
-        searchBar.name="searchBar";
+    var aBtn = document.getElementById("add");
+    var dBtn = document.getElementById("delete");
+    var form = document.getElementById("dis");
+    aBtn.addActionListener("click", function() {
+        var groupName = document.createElement("input");
+		groupName.setAttribute('type', 'text');
+		groupName.setAttribute('placeholder', 'Enter Group Name');
+        groupName.name = "addDiscussionName";
+        form.appendChild(groupName);
+
+        var br = document.createElement("br");
+		form.appendChild(br);
+
+        var email = document.createElement("input");
+		email.setAttribute('type', 'text');
+		email.setAttribute('placeholder', 'Enter Email');
+        email.name = "addDiscussionEmail";
+        form.appendChild(email);
+
+        var br1 = document.createElement("br");
+		form.appendChild(br1);
+
+        var submit = document.createElement("input");
+		submit.setAttribute('type','submit');
+		submit.className = "input-submit";
+        form.appendChild(submit);
+    })
+    dBtn.addActionListener("click", function() {
+        var groupName = document.createElement("input");
+		groupName.setAttribute('type', 'text');
+		groupName.setAttribute('placeholder', 'Enter Group Name');
+        groupName.name = "DeleteDiscussionName";
+        form.appendChild(groupName);
+
+        var br = document.createElement("br");
+		form.appendChild(br);
+
+        var email = document.createElement("input");
+		email.setAttribute('type', 'text');
+		email.setAttribute('placeholder', 'Enter Email');
+        email.name = "deleteDiscussionEmail";
+        form.appendChild(email);
+
+        var br1 = document.createElement("br");
+		form.appendChild(br1);
+
+        var submit = document.createElement("input");
+		submit.setAttribute('type','submit');
+		submit.className = "input-submit";
+        form.appendChild(submit);
     })
 </script>
 </html>
