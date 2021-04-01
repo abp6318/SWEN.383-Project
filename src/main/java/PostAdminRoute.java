@@ -6,19 +6,17 @@ import spark.TemplateEngine;
 import java.net.HttpURLConnection;
 import java.util.logging.Logger;
 
+public class PostAdminRoute implements Route {
 
-public class PostAdminRoute implements Route{
-
-
-    // TODO: create post version of this class so that admin can interact with and redirects back to this class (will then rebuild admin class table with this new info)
-
-
+    // TODO: create post version of this class so that admin can interact with and
+    // redirects back to this class (will then rebuild admin class table with this
+    // new info)
 
     private static final Logger LOGGER = Logger.getLogger(PostAdminRoute.class.getName());
 
     private UserManager manager;
 
-    public PostAdminRoute(UserManager manager, TemplateEngine engine){
+    public PostAdminRoute(UserManager manager, TemplateEngine engine) {
         this.manager = manager;
         LOGGER.config("PostAdminRoute Created");
     }
@@ -31,9 +29,11 @@ public class PostAdminRoute implements Route{
         String email = request.queryParams("email");
         String password = request.queryParams("password");
 
-        // TODO: add methods to create class, update class, and delete class in the handle method here and handle logic accordingly
-            // fill in ratings dynamically? - needs to be done in separate DB call I think?
-        // TODO: add method to add a professor to a course in the handle method here and handle logic accordingly
+        // TODO: add methods to create class, update class, and delete class in the
+        // handle method here and handle logic accordingly
+        // fill in ratings dynamically? - needs to be done in separate DB call I think?
+        // TODO: add method to add a professor to a course in the handle method here and
+        // handle logic accordingly
 
         // start updateClass functionality
         String updateClassID = request.queryParams("UpdateClassID");
@@ -47,15 +47,15 @@ public class PostAdminRoute implements Route{
         String deletePreReq = request.queryParams("DeletePreReq");
 
         // update Class Name
-        if(updateClassName != null && !updateClassName.equals("")){
+        if (updateClassName != null && !updateClassName.equals("")) {
             manager.updateClassNameSQL(updateClassName, updateClassID);
         }
 
         // update professor email
         LOGGER.info("checking prof email");
-        if(updateClassProfessor != null && !updateClassProfessor.equals("")){
+        if (updateClassProfessor != null && !updateClassProfessor.equals("")) {
             LOGGER.info("prof email exists");
-            if(updateClassProfessor.contains("@")){
+            if (updateClassProfessor.contains("@")) {
                 LOGGER.info("Email validated");
                 manager.updateClassProfessorEmailSQL(updateClassProfessor, updateClassID);
                 LOGGER.info("updated");
@@ -64,32 +64,32 @@ public class PostAdminRoute implements Route{
         }
 
         // update learning objective
-        if(updateClassLearningObjective != null && !updateClassLearningObjective.equals("")){
+        if (updateClassLearningObjective != null && !updateClassLearningObjective.equals("")) {
             manager.updateClassLearningObjectiveSQL(updateClassLearningObjective, updateClassID);
         }
 
         // update learning outcome
-        if(updateClassLearningOutcome != null && !updateClassLearningOutcome.equals("")){
+        if (updateClassLearningOutcome != null && !updateClassLearningOutcome.equals("")) {
             manager.updateClassLearningOutcomeSQL(updateClassLearningOutcome, updateClassID);
         }
 
         // update start date
-        if(updateClassStartDate != null && !updateClassStartDate.equals("")){
+        if (updateClassStartDate != null && !updateClassStartDate.equals("")) {
             manager.updateClassBeginDateSQL(updateClassStartDate, updateClassID);
         }
 
         // update end date
-        if(updateClassEndDate != null && !updateClassEndDate.equals("")){
+        if (updateClassEndDate != null && !updateClassEndDate.equals("")) {
             manager.updateClassEndDateSQL(updateClassEndDate, updateClassID);
         }
 
         // add pre-req
-        if(addPreReq != null && !addPreReq.equals("")){
+        if (addPreReq != null && !addPreReq.equals("")) {
             manager.insertClassPrerequisiteSQL(updateClassID, addPreReq);
         }
 
         // delete pre-req
-        if(deletePreReq != null && !deletePreReq.equals("")){
+        if (deletePreReq != null && !deletePreReq.equals("")) {
             manager.deletePrerequisiteSQL(updateClassID, deletePreReq);
         }
 
@@ -98,21 +98,47 @@ public class PostAdminRoute implements Route{
         // start delete class
         String deleteClassCode = request.queryParams("DeleteClassCode");
 
-        if(deleteClassCode != null && !deleteClassCode.equals("")){
+        if (deleteClassCode != null && !deleteClassCode.equals("")) {
             // call delete method
             manager.deleteClassSQL(deleteClassCode);
         }
         // end delete class
 
         // start add class
-            // get all queryParam necessary
-            // check if they are null
-            // check if they are empty strings
-            // manager.function(...)
+        String addClassID = request.queryParams("AddClassID");
+        String addClassCreatorEmail = request.queryParams("AddClassCreatorEmail");
+        String addClassProfessor = request.queryParams("AddClassProfessor");
+        String addClassName = request.queryParams("AddClassName");
+        String addClassLearningObjective = request.queryParams("AddClassLearningObjective");
+        String addClassStartDate = request.queryParams("AddClassStartDate");
+        String addClassEndDate = request.queryParams("AddClassEndDate");
+
+        if (addClassID != null && !addClassID.equals("")) {
+            if (addClassCreatorEmail != null && !addClassCreatorEmail.equals("")) {
+                if (addClassProfessor != null && !addClassProfessor.equals("")) {
+                    if (addClassName != null && !addClassName.equals("")) {
+                        if (addClassLearningObjective != null && !addClassLearningObjective.equals("")) {
+                            if (addClassStartDate != null && !addClassStartDate.equals("")) {
+                                if (addClassEndDate != null && !addClassEndDate.equals("")) {
+
+                                    manager.insertClassSQL(addClassID, addClassCreatorEmail, addClassProfessor,
+                                            addClassName, addClassLearningObjective, addClassStartDate,
+                                            addClassEndDate);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // get all queryParam necessary
+        // check if they are null
+        // check if they are empty strings
+        // manager.function(...)
         // end add class
 
         response.redirect(WebServer.ADMIN, HttpURLConnection.HTTP_MOVED_PERM);
-
 
         return null;
     }

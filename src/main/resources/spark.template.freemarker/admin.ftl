@@ -160,8 +160,8 @@
         //class name input
         var name = document.createElement("input");
         name.setAttribute('type','text');
-        name.setAttribute('placeholder','Enter Class Name');
-        name.name = "AddClassName";
+        name.setAttribute('placeholder','Enter Class Creator Email');
+        name.name = "AddClassCreatorEmail";
         aDiv.appendChild(name);
         var br2 = document.createElement("br");
 		aDiv.appendChild(br2);
