@@ -384,6 +384,15 @@
         aForm.appendChild(mem);
 		var br = document.createElement("br");
 		aForm.appendChild(br);
+		var groupName = document.createElement("input");
+        groupName.setAttribute('type', 'text');
+        groupName.setAttribute('placeholder', 'Enter Group ID');
+        groupName.name = "DeleteDiscussionID";
+        f.appendChild(groupName);
+        var br8 = document.createElement("br");
+        aForm.appendChild(br8);
+
+
 		var submit = document.createElement("input");
 		submit.setAttribute('type','submit');
 		submit.className = "input-submit";

@@ -420,11 +420,11 @@ public class UserManager {
         } // end of catch
     }// end of function
 
-    public void addDiscussionGroupMembersSQL(String groupName, String email) {
+    public void addDiscussionGroupMembersSQL(String id, String email) {
         try {
             PreparedStatement stmt;
             stmt = conn.prepareStatement("INSERT INTO discussionGroupsMembers(discussionID, userEmail) VALUES (?,?)");
-            stmt.setString(1, groupName);
+            stmt.setString(1, id);
             stmt.setString(2, email);
             stmt.executeUpdate();
         } // end of try

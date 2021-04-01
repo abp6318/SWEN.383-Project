@@ -45,6 +45,9 @@ public class PostAdminRoute implements Route {
         String updateClassEndDate = request.queryParams("UpdateClassEndDate");
         String addPreReq = request.queryParams("AddPreReq");
         String deletePreReq = request.queryParams("DeletePreReq");
+        String addMemberEmail = request.queryParams("AddMemberEmail");
+        String deleteMemberEmail = request.queryParams("DeleteMemberEmail");
+
 
         // update Class Name
         if (updateClassName != null && !updateClassName.equals("")) {
@@ -132,11 +135,10 @@ public class PostAdminRoute implements Route {
             }
         }
 
-        // get all queryParam necessary
-        // check if they are null
-        // check if they are empty strings
-        // manager.function(...)
-        // end add class
+        // add group member
+        if (addMemberEmail != null && !addMemberEmail.equals("")) {
+            //manager.addDiscussionGroupMembersSQL();
+        }
 
         response.redirect(WebServer.ADMIN, HttpURLConnection.HTTP_MOVED_PERM);
 
