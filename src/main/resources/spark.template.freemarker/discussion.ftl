@@ -66,9 +66,6 @@
         <button id="searchButton" type="submit"><i class="fa fa-search"></i></button><br>
         <input id="add" value="Add Discussion Group" type="button">
         <input id="delete" value="Delete Discussion Group" type="button"><br>
-       <!-- <input class="input-text" placeholder="Group Name" name="groupname" type="text"><br>
-        <input class="input-text" placeholder="Email" name="email" type="text"><br>
-        <input class="input-submit" value="Create Discussion Group" type="submit"> -->
     </form>
     <#if discussionGroups??>
     <h2>Discussion Groups Search Results</h2>

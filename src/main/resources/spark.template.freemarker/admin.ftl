@@ -387,8 +387,8 @@
 		var groupName = document.createElement("input");
         groupName.setAttribute('type', 'text');
         groupName.setAttribute('placeholder', 'Enter Group ID');
-        groupName.name = "DeleteDiscussionID";
-        f.appendChild(groupName);
+        groupName.name = "AddDiscussionID";
+        aForm.appendChild(groupName);
         var br8 = document.createElement("br");
         aForm.appendChild(br8);
 
@@ -417,6 +417,14 @@
         dForm.appendChild(mem);
 		var br = document.createElement("br");
 		dForm.appendChild(br);
+		var groupName = document.createElement("input");
+        groupName.setAttribute('type', 'text');
+        groupName.setAttribute('placeholder', 'Enter Group ID');
+        groupName.name = "DeleteDiscussionID";
+        dForm.appendChild(groupName);
+        var br8 = document.createElement("br");
+        dForm.appendChild(br8);
+
 		var submit = document.createElement("input");
 		submit.setAttribute('type','submit');
 		submit.className = "input-submit";

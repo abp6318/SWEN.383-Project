@@ -47,6 +47,9 @@ public class PostAdminRoute implements Route {
         String deletePreReq = request.queryParams("DeletePreReq");
         String addMemberEmail = request.queryParams("AddMemberEmail");
         String deleteMemberEmail = request.queryParams("DeleteMemberEmail");
+        String addDiscussionID = request.queryParams("AddDiscussionID");
+        String deleteDiscussionID = request.queryParams("DeleteDiscussionID");
+
 
 
         // update Class Name
@@ -136,8 +139,13 @@ public class PostAdminRoute implements Route {
         }
 
         // add group member
-        if (addMemberEmail != null && !addMemberEmail.equals("")) {
-            //manager.addDiscussionGroupMembersSQL();
+        if (addMemberEmail != null && !addMemberEmail.equals("") && addDiscussionID != null && !addDiscussionID.equals("")) {
+            manager.addDiscussionGroupMembersSQL(addDiscussionID, addMemberEmail);
+        }
+
+        // add group member
+        if (deleteMemberEmail != null && !deleteMemberEmail.equals("") && deleteDiscussionID != null && !deleteDiscussionID.equals("")) {
+            manager.deleteDiscussionGroupMembersSQL(deleteDiscussionID, deleteMemberEmail);
         }
 
         response.redirect(WebServer.ADMIN, HttpURLConnection.HTTP_MOVED_PERM);
