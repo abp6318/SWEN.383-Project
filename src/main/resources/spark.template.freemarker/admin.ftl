@@ -49,6 +49,11 @@
         body {
             background-color: #F8D7FD;
         }
+        .flexbox {
+            display: flex;
+            justify-content: space-evenly;
+            padding: 10px;
+        }
     </style>
 </head>
 <body>
@@ -59,7 +64,7 @@
         <a href="/feedback">Feedback Module</a>
     </nav>
 
-    <h1>Admin</h1>
+    <h1>Admin Dashboard</h1>
     <h2>All Classes</h2>
     <p>Relevant course materials, and other functionality are stored within the class itself.</p>
 
@@ -81,21 +86,23 @@
     </table>
 
     <!-- button allowing people to add class, if clicked 2 fields appear to be filled in -->
-    <div id="addClass">
-        <input id="add" value="Add Class" type="button">
-        <form action="/admin" method="POST" id="AddClassForm"></form>
-    </div>
+    <div class="flexbox">
+        <div id="addClass">
+            <input id="add" value="Add Class" type="button">
+            <form action="/admin" method="POST" id="AddClassForm"></form>
+        </div>
 
-    <!-- button allowing people to update class (with proper fields), if clicked 2+ fields appear to be filled in -->
-    <div id="updateClass">
-        <input id="update" value="Update Class" type="button">
-        <form action="/admin" method="POST" id="UpdateClassForm"></form>
-    </div>
+        <!-- button allowing people to update class (with proper fields), if clicked 2+ fields appear to be filled in -->
+        <div id="updateClass">
+            <input id="update" value="Update Class" type="button">
+            <form action="/admin" method="POST" id="UpdateClassForm"></form>
+        </div>
 
-    <!-- button allowing people to delete class via class code, if clicked 1 fields appear to be filled in -->
-    <div id="deleteClass">
-        <input id="delete" value="Delete Class" type="button">
-        <form action="/admin" method="POST" id="DeleteClassForm"></form>
+        <!-- button allowing people to delete class via class code, if clicked 1 fields appear to be filled in -->
+        <div id="deleteClass">
+            <input id="delete" value="Delete Class" type="button">
+            <form action="/admin" method="POST" id="DeleteClassForm"></form>
+        </div>
     </div>
 
     <h2>Discussions</h2>
@@ -116,26 +123,35 @@
                 </tr>
          </#list>
     </table>
-
-    <form action="/discussion" method="GET">
-        <input class="input-submit" value="Discussion" type="submit">
-    </form>
+    <div class="flexbox">
+        <div class="discussion">
+            <form action="/discussion" method="GET">
+                <input class="input-submit" value="Discussion" type="submit">
+            </form>
+        </div>
 	
     <!-- button adding members -->
-    <input id="addMem" value="Add Members" type="button">
-    <form action="/admin" method="POST" id="AddMembersForm"></form>
-	
-    <!-- button deleting members -->
-    <input id="deleteMem" value="Delete Members" type="button">
-    <form action="/admin" method="POST" id="DeleteMembersForm"></form>
+        <div class="addMembers">
+            <input id="addMem" value="Add Members" type="button">
+            <form action="/admin" method="POST" id="AddMembersForm"></form>
+        </div>
+        <div class="deleteMembers">
+            
+            <!-- button deleting members -->
+            <input id="deleteMem" value="Delete Members" type="button">
+            <form action="/admin" method="POST" id="DeleteMembersForm"></form>
+        </div>
+    </div>
 	
 
 
     <h2>Feedback Module</h2>
+    <p>View feedback for courses and professors as well as average course ratings.
     <form action="/feedback" method="GET" id="feedbackButtonForm">
         <input id="feedbackButton" value="Feedback" type="submit">
     </form>
     </div>
+    
 </body>
 <script>
     var aBtn = document.getElementById("add");

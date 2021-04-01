@@ -57,6 +57,12 @@
         body {
             background-color: #F8D7FD;
         }
+		.flex {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
 	</style>
 </head>
 <body>
@@ -66,8 +72,9 @@
         <a href="/discussion" >Discussion Groups</a>
         <a href="/feedback" class="active">Feedback Module</a>
     </nav>
-	<h1>Ratings</h1>
-	<h2>Course Averages</h2><br>
+	<div class="flex">
+		<h1>Feedback Module</h1>
+		<h2>Course Averages</h2><br>
     	<table>
     		<tr>
     			<th>Course Code</th>
@@ -126,5 +133,6 @@
 		</tr>
 	</table>
 	</div>
+</div>
 </body>
 </html>

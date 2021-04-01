@@ -62,7 +62,7 @@
     <h1>Create a Discussion Group</h1>
 
     <form id="dis" action="/discussion" method="POST">
-        <input id="search" type="text" placeholder="Search.." name="searchBar">
+        <input id="search" type="text" placeholder="Search..." name="searchBar">
         <button id="searchButton" type="submit"><i class="fa fa-search"></i></button><br>
         <input id="add" value="Add Discussion Group" type="button">
         <input id="delete" value="Delete Discussion Group" type="button"><br>
