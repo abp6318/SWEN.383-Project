@@ -24,7 +24,7 @@ public class UserManager {
 
     /**
      * Establishes a connection to the database
-     * 
+     *
      * @return True if connection is established
      */
     public boolean connect() {
@@ -66,22 +66,10 @@ public class UserManager {
         } // end of catch
     }// end of method close
 
-    /*
-     * *****************************************************************************
-     * ***********
-     */
-    /*
-     * *****************************************************************************
-     * ***********
-     */
-    /*
-     * *****************************************************************************
-     * ***********
-     */
 
     /**
      * Inserts a user into the user table
-     * 
+     *
      * @param email               A user's email
      * @param fname               A user's first name
      * @param lname               A user's last name
@@ -113,7 +101,7 @@ public class UserManager {
 
     /**
      * Changes the user with the parameter email to be verified.
-     * 
+     *
      * @param email A user's email
      */
     public void updateUserVerification(String email) {
@@ -133,12 +121,10 @@ public class UserManager {
     }
 
     /**
-     * Confirms whether users have a verified account and should be allowed to log
-     * in
-     * 
-     * @param email               The user's input email
-     * @param passwordUnencrypted The user's input password
-     * @return True if the user is permitted, false otherwise
+     * Confirms whether users have a verified account and should be allowed to log in
+     * @param email                 The user's input email
+     * @param passwordUnencrypted   The user's input password
+     * @return                      True if the user is permitted, false otherwise
      */
     public User userLogin(String email, String passwordUnencrypted) {
         String passwordEncrypted = this.encryptPassword(passwordUnencrypted);
@@ -171,10 +157,9 @@ public class UserManager {
     }
 
     /**
-     * Encrypts a password using SHA1
-     * 
-     * @param secret The user's password
-     * @return The user's passsword now encrypted
+     Encrypts a password using SHA1
+     @param   secret   The user's password
+     @return           The user's passsword now encrypted
      */
     public String encryptPassword(String secret) {
 
@@ -221,9 +206,8 @@ public class UserManager {
 
     public void updateClassBeginDateSQL(String beginDate, String classCode) {
         int rows = 0;
-        try {
-            PreparedStatement preparedStatement = conn
-                    .prepareStatement("UPDATE `class` SET beginDate = ? WHERE `classCode` = ?");
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE `class` SET beginDate = ? WHERE `classCode` = ?");
             preparedStatement.setString(1, beginDate);
             preparedStatement.setString(2, classCode);
 
@@ -311,9 +295,8 @@ public class UserManager {
 
     public void updateClassProfessorEmailSQL(String professorEmail, String classCode) {
         int rows = 0;
-        try {
-            PreparedStatement preparedStatement = conn
-                    .prepareStatement("UPDATE class SET professorEmail = ? WHERE classCode = ?");
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE class SET professorEmail = ? WHERE classCode = ?");
             System.out.println(preparedStatement);
             preparedStatement.setString(1, professorEmail);
             preparedStatement.setString(2, classCode);
@@ -420,14 +403,13 @@ public class UserManager {
 
     /**
      * Creates a discussion group
-     * 
-     * @param groupName The name of the discussion group
-     * @param email     The creator's email
+     @param    groupName    The name of the discussion group
+     @param    email        The creator's email
      */
     public void addDiscussionGroupSQL(String groupName, String email) {
         try {
             PreparedStatement stmt;
-            stmt = conn.prepareStatement("INSERT INTO discussionGroups(groupName, email) VALUES (?,?)");
+            stmt = conn.prepareStatement("INSERT INTO discussionGroups(groupName, userEmail) VALUES (?,?)");
             stmt.setString(1, groupName);
             stmt.setString(2, email);
             stmt.executeUpdate();
@@ -441,7 +423,7 @@ public class UserManager {
     public void addDiscussionGroupMembersSQL(String groupName, String email) {
         try {
             PreparedStatement stmt;
-            stmt = conn.prepareStatement("INSERT INTO discussionGroupsMembers(groupName, email) VALUES (?,?)");
+            stmt = conn.prepareStatement("INSERT INTO discussionGroupsMembers(discussionID, userEmail) VALUES (?,?)");
             stmt.setString(1, groupName);
             stmt.setString(2, email);
             stmt.executeUpdate();
@@ -455,8 +437,7 @@ public class UserManager {
     public String getDiscussionIdSQL(String groupName) {
         String id = "";
         try {
-            PreparedStatement preparedStatement = conn
-                    .prepareStatement("SELECT discussionID FROM discussionGroups WHERE groupName = ?");
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT discussionID FROM discussionGroups WHERE groupName = ?");
             preparedStatement.setString(1, groupName);
             rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -471,20 +452,19 @@ public class UserManager {
 
     /**
      * Deletes a discussion group
-     * 
-     * @param groupName The name of the group to be deleted
+     @param    id    The name of the group to be deleted
      */
-    public void deleteDiscussionGroupSQL(String groupName) {
+    public void deleteDiscussionGroupSQL(String id) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("DELETE FROM discussionGroups WHERE groupName=?");
-            stmt.setString(1, groupName);
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM discussionGroups WHERE discussionID=?");
+            stmt.setString(1, id);
             stmt.executeUpdate();
-        } // end of try
+        }//end of try
         catch (SQLException sqle) {
             System.out.println("Error while trying to delete a discussion group.");
             System.out.println("ERROR MESSAGE --> " + sqle);
-        } // end of catch
-    }// end of function
+        }//end of catch
+    }//end of function
 
     public List<DiscussionGroup> selectDiscussionGroupsSQL(String email) {
         String discussionIDReturned = "";

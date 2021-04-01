@@ -23,6 +23,7 @@ public class GetDiscussionRoute implements Route{
 
     public GetDiscussionRoute(UserManager manager, Configuration conf){
         this.conf = conf;
+        this.manager = manager;
         LOGGER.config("GetDiscussionRoute Created");
     }
 
@@ -41,9 +42,19 @@ public class GetDiscussionRoute implements Route{
                 }
                 viewModel.put("discussionGroups", discussionGroups.iterator());
             }
-            
-            
-            
+
+            User user = request.session().attribute("User");
+            List<DiscussionGroup> discussionGroups = manager.selectDiscussionGroupsSQL(user.getEmail());
+
+            Collection allGroups = new ArrayList();
+            for (int index = 0; index<discussionGroups.size(); index++) {
+                HashMap<String, String> discussionGroup = discussionGroups.get(index).getHash();
+                ((ArrayList) allGroups).add(discussionGroup);
+            }
+
+            viewModel.put("allGroups", allGroups.iterator());
+
+
             Template template = conf.getTemplate("discussion.ftl");
             StringWriter writer = new StringWriter();
             template.process(viewModel, writer);

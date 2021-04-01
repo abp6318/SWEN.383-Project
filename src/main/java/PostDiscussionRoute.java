@@ -25,22 +25,38 @@ public class PostDiscussionRoute implements Route{
     public Object handle(Request request, Response response) {
         LOGGER.info("POST /discussion");
 
-        String groupName = request.queryParams("groupname");
-        String email = request.queryParams("email");
+        String addGroupName = request.queryParams("addDiscussionName");
+        String addDiscussionEmail = request.queryParams("addDiscussionEmail");
+
+        String deleteGroupID = request.queryParams("DeleteDiscussionID");
+
         String search = request.queryParams("searchBar");
 
-        // Aaron: this is where some discission actions can be taken
-            // add new discussion data to db with email and groupName info
-        System.out.println("Outside of the if");
+
         // will need to figure out searching somewhere here too probably
         if(!search.equals("")){
-            System.out.println("Inside of the if");
             List<DiscussionGroup> temp = manager.searchDiscussionGroup(search);
-            System.out.println("Second part");
             request.session().attribute("Search Results", temp);
-            System.out.println(temp);
         }
-        System.out.println("After the if");
+
+        // creating discussion group
+        if(addGroupName!= null && !addGroupName.equals("") && addDiscussionEmail!=null && !addDiscussionEmail.equals("")){
+            manager.addDiscussionGroupSQL(addGroupName, addDiscussionEmail);
+
+            String id = manager.getDiscussionIdSQL(addGroupName);
+
+            System.out.println(id);
+
+            manager.addDiscussionGroupMembersSQL(id, addDiscussionEmail);
+
+        }
+
+        // delete discussion group
+        if(deleteGroupID!= null && !deleteGroupID.equals("")){
+            manager.deleteDiscussionGroupSQL(deleteGroupID);
+
+        }
+
 
 
         response.redirect(WebServer.DISCUSSION, HttpURLConnection.HTTP_MOVED_PERM);
