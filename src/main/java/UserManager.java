@@ -179,6 +179,16 @@ public class UserManager {
         return sha1;
     }// end of function
 
+    /**
+     *  Inserts a class into the database 
+     * @param classCode the class code 
+     * @param creatorEmail the admin's email 
+     * @param professorEmail the email of the professor of the class
+     * @param className the name of the class 
+     * @param learningObj the learning objective of the class
+     * @param beginDate the date the class starts
+     * @param endDate the date the class ends 
+     */
     public void insertClassSQL(String classCode, String creatorEmail, String professorEmail, String className,
             String learningObj, String beginDate, String endDate) {
         int rows = 0;
@@ -204,6 +214,11 @@ public class UserManager {
         }
     }
 
+    /**
+     * Updates the beginDate of a class that is already in the database
+     * @param beginDate the start date of the class
+     * @param classCode the class to be updated
+     */
     public void updateClassBeginDateSQL(String beginDate, String classCode) {
         int rows = 0;
         try{
@@ -221,6 +236,11 @@ public class UserManager {
         }
     }
 
+    /**
+     * updateds the end date of a class aready in the database
+     * @param endDate the end date of the class
+     * @param classCode the class to be updated
+     */
     public void updateClassEndDateSQL(String endDate, String classCode) {
         int rows = 0;
         try {
@@ -257,6 +277,11 @@ public class UserManager {
         }
     }
 
+    /**
+     * Updates the learning outcome of a class already in the database
+     * @param learningOutcome the learning outcome to be changed
+     * @param classCode the class to be updated
+     */
     public void updateClassLearningOutcomeSQL(String learningOutcome, String classCode) {
         int rows = 0;
         try {
@@ -275,6 +300,11 @@ public class UserManager {
         }
     }
 
+    /**
+     * Updates the class name
+     * @param className the new class name
+     * @param classCode the class to be updated 
+     */
     public void updateClassNameSQL(String className, String classCode) {
         int rows = 0;
         try {
@@ -293,6 +323,11 @@ public class UserManager {
         }
     }
 
+    /**
+     * Updates the professor email of a class
+     * @param professorEmail the new professor email
+     * @param classCode the class that is being updated
+     */
     public void updateClassProfessorEmailSQL(String professorEmail, String classCode) {
         int rows = 0;
         try{
@@ -311,6 +346,10 @@ public class UserManager {
         }
     }
 
+    /**
+     * Deletes a class
+     * @param classCode the class to be deleted
+     */
     public void deleteClassSQL(String classCode) {
         int rows = 0;
         try {
@@ -327,6 +366,12 @@ public class UserManager {
         }
     }
 
+    /**
+     * Adds a class rating
+     * @param userEmail the user rating the class
+     * @param classCode the class that is getting rated
+     * @param rating the rating
+     */
     public void insertClassRatingSQL(String userEmail, String classCode, int rating) {
         int rows = 0;
         try {
@@ -346,6 +391,11 @@ public class UserManager {
         }
     }
 
+    /**
+     * Adds a class prereq
+     * @param classCode the class to be updated
+     * @param preReqClassCode the new prereq
+     */
     public void insertClassPrerequisiteSQL(String classCode, String preReqClassCode) {
         int rows = 0;
         try {
@@ -364,6 +414,12 @@ public class UserManager {
         }
     }
 
+    /**
+     * Changes a class prereq
+     * @param newPreReqClassCode the new prereq
+     * @param classCode the class that is getting updated
+     * @param oldPreReqClassCode the old prereq to be changed
+     */
     public void updateClassPrerequisiteSQL(String newPreReqClassCode, String classCode, String oldPreReqClassCode) {
         int rows = 0;
         try {
@@ -383,6 +439,11 @@ public class UserManager {
         }
     }
 
+    /**
+     * Deletes a prereq from a class
+     * @param classCode the class to be updated
+     * @param prereqClassCode the prereq to be deleted
+     */
     public void deletePrerequisiteSQL(String classCode, String prereqClassCode) {
         int rows = 0;
         try {
@@ -420,6 +481,11 @@ public class UserManager {
         } // end of catch
     }// end of function
 
+    /**
+     * Adds members to a discussion group
+     * @param id the group to add members to
+     * @param email the user to be added
+     */
     public void addDiscussionGroupMembersSQL(String id, String email) {
         try {
             PreparedStatement stmt;
@@ -434,6 +500,11 @@ public class UserManager {
         } // end of catch
     }
 
+    /**
+     * Removes a member from a discussion group
+     * @param id the group to delete the member from
+     * @param email the user to be removed
+     */
     public void deleteDiscussionGroupMembersSQL(String id, String email) {
         try {
             PreparedStatement stmt;
@@ -448,6 +519,11 @@ public class UserManager {
         } // end of catch
     }
 
+    /**
+     * Gets the id of a discussion group
+     * @param groupName the name of the group
+     * @return the id of the discussion group
+     */
     public String getDiscussionIdSQL(String groupName) {
         String id = "";
         try {
@@ -480,6 +556,11 @@ public class UserManager {
         }//end of catch
     }//end of function
 
+    /**
+     * Gets all discussion groups a user is in
+     * @param email the user 
+     * @return a list of discussion groups
+     */
     public List<DiscussionGroup> selectDiscussionGroupsSQL(String email) {
         String discussionIDReturned = "";
         String groupNameReturned = "";
@@ -508,6 +589,10 @@ public class UserManager {
         return null;
     }
 
+    /**
+     * Gets the discussion group messages
+     * @param discussionID the discussiom group
+     */
     public void selectDiscussionMessagesSQL(int discussionID) {
         int discussionIDReturned;
         String messagesReturned;
@@ -534,6 +619,10 @@ public class UserManager {
         }
     }
 
+    /**
+     * gets the class ratings 
+     * @return a list of all of the feedback
+     */
     public List<Feedback> selectRatingClassesSQL() {
         String userEmailReturned;
         String classCodeReturned;
@@ -560,6 +649,11 @@ public class UserManager {
         return feedback;
     }
 
+    /**
+     * Gets all of the classes that an admin creator
+     * @param creatorEmail the admin
+     * @return a list of all of the classes 
+     */
     public List<Course> selectAdminClassesSQL(String creatorEmail) {
         String classCodeReturned;
         String creatorEmailReturned;
@@ -603,6 +697,11 @@ public class UserManager {
         return courses;
     }
 
+    /**
+     * Updates the user verification
+     * @param email the user to be verified
+     * @param verifyCode the verification code
+     */
     public void updateUserVerificationSQL(String email, String verifyCode) {
         int rows = 0;
         try {
@@ -621,6 +720,11 @@ public class UserManager {
         }
     }
 
+    /**
+     * Gets the verification code to check it is corret
+     * @param email the user being verified
+     * @return the verification code
+     */
     public String selectVerifyCodeSQL(String email) {
         String verifyReturned;
         try {
@@ -641,6 +745,10 @@ public class UserManager {
         return "";
     }
 
+    /**
+     * Gets all of the classes that have ratings
+     * @return a list of all of the class codes that have ratings
+     */
     public List<String> selectRatedClassesSQL() {
         List<String> classCodes = new ArrayList<>();
         try {
@@ -660,6 +768,11 @@ public class UserManager {
         return classCodes;
     }
 
+    /**
+     * Gets the average class rating
+     * @param classCode the class
+     * @return the average rating
+     */
     public int selectClassAvgSQL(String classCode) {
         try {
             PreparedStatement preparedStatement = conn
@@ -679,7 +792,11 @@ public class UserManager {
         return 0;
     }
 
-    // search for discussion groups
+    /**
+     * Find a specific discussion group
+     * @param name the name of discussion group to be found
+     * @return a list of the search results
+     */
     public List<DiscussionGroup> searchDiscussionGroup(String name) {
         List<DiscussionGroup> results = new ArrayList<DiscussionGroup>();
         DiscussionGroup result = new DiscussionGroup("", "", "");
