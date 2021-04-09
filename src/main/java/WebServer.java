@@ -19,7 +19,6 @@ public class WebServer {
 
     private UserManager manager;
     private TemplateEngine engine;
-    private UserManagerTwo managerTwo;
 
     // Routes
     public static final String HOMEPAGE = "/";
