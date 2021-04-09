@@ -4,7 +4,10 @@ import spark.Route;
 import spark.TemplateEngine;
 
 import java.net.HttpURLConnection;
+import java.util.List;
 import java.util.logging.Logger;
+
+import javax.servlet.http.HttpSession;
 
 
 public class PostDiscussionRoute implements Route{
@@ -22,13 +25,38 @@ public class PostDiscussionRoute implements Route{
     public Object handle(Request request, Response response) {
         LOGGER.info("POST /discussion");
 
-        String groupName = request.queryParams("groupname");
-        String email = request.queryParams("email");
+        String addGroupName = request.queryParams("addDiscussionName");
+        String addDiscussionEmail = request.queryParams("addDiscussionEmail");
 
-        // Aaron: this is where some discission actions can be taken
-            // add new discussion data to db with email and groupName info
+        String deleteGroupID = request.queryParams("DeleteDiscussionID");
 
-        // will need to figure out inviting/searching somewhere here too probably
+        String search = request.queryParams("searchBar");
+
+
+        // will need to figure out searching somewhere here too probably
+        if(!search.equals("")){
+            List<DiscussionGroup> temp = manager.searchDiscussionGroup(search);
+            request.session().attribute("Search Results", temp);
+        }
+
+        // creating discussion group
+        if(addGroupName!= null && !addGroupName.equals("") && addDiscussionEmail!=null && !addDiscussionEmail.equals("")){
+            manager.addDiscussionGroupSQL(addGroupName, addDiscussionEmail);
+
+            String id = manager.getDiscussionIdSQL(addGroupName);
+
+            System.out.println(id);
+
+            manager.addDiscussionGroupMembersSQL(id, addDiscussionEmail);
+
+        }
+
+        // delete discussion group
+        if(deleteGroupID!= null && !deleteGroupID.equals("")){
+            manager.deleteDiscussionGroupSQL(deleteGroupID);
+
+        }
+
 
 
         response.redirect(WebServer.DISCUSSION, HttpURLConnection.HTTP_MOVED_PERM);

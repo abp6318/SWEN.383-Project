@@ -52,6 +52,9 @@ public class GetAdminRoute implements Route{
 
             // end of adding discussion groups to admin dashboard
 
+
+
+
             Template template = conf.getTemplate("admin.ftl");
             StringWriter writer = new StringWriter();
             template.process(viewModel, writer);

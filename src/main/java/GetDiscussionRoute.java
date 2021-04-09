@@ -5,9 +5,13 @@ import spark.Response;
 import spark.Route;
 
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
+
 
 
 public class GetDiscussionRoute implements Route{
@@ -19,6 +23,7 @@ public class GetDiscussionRoute implements Route{
 
     public GetDiscussionRoute(UserManager manager, Configuration conf){
         this.conf = conf;
+        this.manager = manager;
         LOGGER.config("GetDiscussionRoute Created");
     }
 
@@ -27,6 +32,28 @@ public class GetDiscussionRoute implements Route{
         LOGGER.info("GetDiscussion Called");
         try {
             Map<String, Object> viewModel = new HashMap<>(); // mapping dynamic variables for ftl files (freemarker template)
+
+            List<DiscussionGroup> discussionGroupsList = request.session().attribute("Search Results");
+            if (discussionGroupsList!=null) {
+                Collection discussionGroups = new ArrayList();
+                for (int index = 0; index<discussionGroupsList.size(); index++) {
+                    HashMap<String, String> discussionGroup = discussionGroupsList.get(index).getHash();
+                    ((ArrayList) discussionGroups).add(discussionGroup);
+                }
+                viewModel.put("discussionGroups", discussionGroups.iterator());
+            }
+
+            User user = request.session().attribute("User");
+            List<DiscussionGroup> discussionGroups = manager.selectDiscussionGroupsSQL(user.getEmail());
+
+            Collection allGroups = new ArrayList();
+            for (int index = 0; index<discussionGroups.size(); index++) {
+                HashMap<String, String> discussionGroup = discussionGroups.get(index).getHash();
+                ((ArrayList) allGroups).add(discussionGroup);
+            }
+
+            viewModel.put("allGroups", allGroups.iterator());
+
 
             Template template = conf.getTemplate("discussion.ftl");
             StringWriter writer = new StringWriter();
