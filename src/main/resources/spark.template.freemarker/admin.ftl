@@ -380,7 +380,7 @@
 		submit.setAttribute('type','submit');
 		submit.className = "input-submit";
         dDiv.appendChild(submit);
-        //do smthng w the info
+
     });
 	
 	//add discussion group members 
@@ -398,6 +398,7 @@
 		mem.setAttribute('placeholder', 'Enter Member Email');
 		mem.className = "input-text";
         mem.name = "AddMemberEmail";
+
         aForm.appendChild(mem);
 		var br = document.createElement("br");
 		aForm.appendChild(br);
@@ -420,6 +421,7 @@
 	var dMem = document.getElementById("deleteMem");
 	var dForm = document.getElementById("DeleteMembersForm");
 	dMem.addEventListener("click", function() {
+
 	    while (dForm.firstChild) {
             dForm.removeChild(dForm.firstChild);
         }
@@ -431,6 +433,7 @@
 		mem.setAttribute('placeholder', 'Enter Member Email');
 		mem.className = "input-text";
         mem.name = "DeleteMemberEmail";
+
         dForm.appendChild(mem);
 		var br = document.createElement("br");
 		dForm.appendChild(br);
