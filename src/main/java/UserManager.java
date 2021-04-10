@@ -819,4 +819,45 @@ public class UserManager {
         return results;
     }
 
+    /**
+     * Deletes a lesson
+     * @param lessonID the lesson to be deleted
+     */
+    public void deleteLessonSQL(String lessonID) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM lesson WHERE lessonID=?");
+            stmt.setString(1, lessonID);
+            stmt.executeUpdate();
+        }//end of try
+        catch (SQLException sqle) {
+            System.out.println("Error while trying to delete a lesson.");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }//end of catch
+    } 
+
+    /**
+     * Method that gets quiz questions 
+     * @param quizID the id of the quiz to return
+     * @return the quiz
+     */
+    public Quiz getQuizQuestionsSQL(String quizID) {
+        Quiz q = new Quiz();
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT questionContent, questionAnswer FROM quizQuestions WHERE quizID = ?");
+            stmt.setString(1, quizID);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                q.addQuizQuestion(rs.getString(1), rs.getString(2));
+            }//end while
+        }//end of try
+        catch (SQLException sqle) {
+            System.out.println("Error while trying to get quiz questions.");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }//end of catch
+        return q;
+    }
+
+    //TODO: Calculate Quiz Grade? and store it 
+        //new table??? 
+
 }
