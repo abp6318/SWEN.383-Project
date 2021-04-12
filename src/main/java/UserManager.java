@@ -857,6 +857,112 @@ public class UserManager {
         return q;
     }
 
+    //this might be wrong im not sure
+    /**
+     * Inserts the start time for a lesson
+     * @param lessonID the lesson 
+     * @param startTime the start time
+     */ 
+    public void insertLessonStartTimeSQL(String lessonID, String startTime) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO lesson(lessonID, startTme) VALUES (?,?) SELECT lessonID, startTime FROM lesson WHERE lessonID = ?");
+            stmt.setString(1, lessonID);
+            stmt.setString(2, startTime);
+            stmt.setString(3, lessonID);
+            stmt.executeUpdate();
+        }//end of try
+        catch (SQLException sqle) {
+            System.out.println("Error while trying to insert lesson start time.");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }//end catch
+    }
+
+    //also might be wrong
+    /**
+     * Inserts a lesson end time
+     * @param lessonID the lesson
+     * @param endTime the end time
+     */ 
+    public void insertLessonEndTimeSQL(String lessonID, String endTime) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO lesson(lessonID, endTime) VALUES (?,?) SELECT lessonID, endTime FROM lesson WHERE lessonID = ?");
+            stmt.setString(1, lessonID);
+            stmt.setString(2, endTime);
+            stmt.setString(3, lessonID);
+            stmt.executeUpdate();
+        }//end of try
+        catch (SQLException sqle) {
+            System.out.println("Error while trying to insert lesson end time.");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }//end catch
+    }
+
+    /**
+     * Updates the lesson start time
+     * @param lessonID the lesson to be updated
+     * @param startTime the new start time
+     */
+    public void updateLessonStartTimeSQL(String lessonID, String startTime) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE `lesson` SET `startTime` = ? WHERE `lessonID` = ?");
+            stmt.setString(1, startTime);
+            stmt.setString(2, lessonID);
+            stmt.executeUpdate();
+        }//end try
+        catch (SQLException sqle) {
+            System.out.println("Error while trying to update lesson start time.");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }//end catch
+    }
+
+    /**
+     * Updates the lesson end time
+     * @param lessonID the lesson to be updated
+     * @param endTime the new end time
+     */
+    public void updateLessonEndTimeSQL(String lessonID, String endTime) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE `lesson` SET `endTime` = ? WHERE `lessonID` = ?");
+            stmt.setString(1, endTime);
+            stmt.setString(2, lessonID);
+            stmt.executeUpdate();
+        }//end try
+        catch (SQLException sqle) {
+            System.out.println("Error while trying to update lesson end time.");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }//end catch
+    }
+
+    /**
+     * Deletes the lesson start time
+     * @param lessonID the lesson 
+     */
+    public void deleteLessonStartTimeSQL(String lessonID) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("DELETE startTime FROM lesson WHERE lessonID = ?");
+            stmt.setString(1, lessonID);
+            stmt.executeUpdate();
+        } catch (SQLException sqle) {
+            System.out.println("Error while trying to delete lesson start time.");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }
+    }
+
+    /**
+     * Deletes the lesson end time
+     * @param lessonID the lesson 
+     */
+    public void deleteLessonEndTimeSQL(String lessonID) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("DELETE endTime FROM lesson WHERE lessonID = ?");
+            stmt.setString(1, lessonID);
+            stmt.executeUpdate();
+        } catch (SQLException sqle) {
+            System.out.println("Error while trying to delete lesson end time.");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }
+    }
+
     //TODO: Calculate Quiz Grade? and store it 
         //new table??? 
 
