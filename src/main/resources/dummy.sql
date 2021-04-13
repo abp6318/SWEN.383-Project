@@ -67,28 +67,36 @@ INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (20, 
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (20, 'vms4138@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (20, 'da7238@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (20, 'dxm6029@rit.edu');
+INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (20, 'professor@rit.edu');
 
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (21, 'admin@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (21, 'abp6318@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (21, 'vms4138@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (21, 'da7238@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (21, 'dxm6029@rit.edu');
+INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (21, 'professor@rit.edu');
 
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (22, 'admin@rit.edu');
+INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (22, 'professor@rit.edu');
 
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (23, 'admin@rit.edu');
+INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (23, 'professor@rit.edu');
 
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (24, 'admin@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (24, 'abp6318@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (24, 'vms4138@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (24, 'da7238@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (24, 'dxm6029@rit.edu');
+INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (24, 'professor@rit.edu');
 
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (25, 'abp6318@rit.edu');
+INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (25, 'professor@rit.edu');
 
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (26, 'vms4138@rit.edu');
+INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (26, 'professor@rit.edu');
 
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (27, 'da7238@rit.edu');
+INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (27, 'professor@rit.edu');
 
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (28, 'dxm6029@rit.edu');
-
+INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (28, 'professor@rit.edu');
