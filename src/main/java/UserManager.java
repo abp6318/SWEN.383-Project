@@ -66,7 +66,6 @@ public class UserManager {
         } // end of catch
     }// end of method close
 
-
     /**
      * Inserts a user into the user table
      *
@@ -857,7 +856,6 @@ public class UserManager {
         return q;
     }
 
-    //this might be wrong im not sure
     /**
      * Inserts the start time for a lesson
      * @param lessonID the lesson 
@@ -865,10 +863,9 @@ public class UserManager {
      */ 
     public void insertLessonStartTimeSQL(String lessonID, String startTime) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO lesson(lessonID, startTme) VALUES (?,?) SELECT lessonID, startTime FROM lesson WHERE lessonID = ?");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO lesson(lessonID, startTme) VALUES (?,?)");
             stmt.setString(1, lessonID);
             stmt.setString(2, startTime);
-            stmt.setString(3, lessonID);
             stmt.executeUpdate();
         }//end of try
         catch (SQLException sqle) {
@@ -877,7 +874,6 @@ public class UserManager {
         }//end catch
     }
 
-    //also might be wrong
     /**
      * Inserts a lesson end time
      * @param lessonID the lesson
@@ -885,10 +881,9 @@ public class UserManager {
      */ 
     public void insertLessonEndTimeSQL(String lessonID, String endTime) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO lesson(lessonID, endTime) VALUES (?,?) SELECT lessonID, endTime FROM lesson WHERE lessonID = ?");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO lesson(lessonID, endTime) VALUES (?,?)");
             stmt.setString(1, lessonID);
             stmt.setString(2, endTime);
-            stmt.setString(3, lessonID);
             stmt.executeUpdate();
         }//end of try
         catch (SQLException sqle) {
@@ -939,7 +934,7 @@ public class UserManager {
      */
     public void deleteLessonStartTimeSQL(String lessonID) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("DELETE startTime FROM lesson WHERE lessonID = ?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE lesson SET startTime='null' WHERE lessonID = ?");
             stmt.setString(1, lessonID);
             stmt.executeUpdate();
         } catch (SQLException sqle) {
@@ -954,7 +949,7 @@ public class UserManager {
      */
     public void deleteLessonEndTimeSQL(String lessonID) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("DELETE endTime FROM lesson WHERE lessonID = ?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE lesson SET endTime='null' WHERE lessonID = ?");
             stmt.setString(1, lessonID);
             stmt.executeUpdate();
         } catch (SQLException sqle) {
@@ -964,6 +959,118 @@ public class UserManager {
     }
 
     //TODO: Calculate Quiz Grade? and store it 
-        //new table??? 
+        //new table???
+
+    /**
+     * Inserts a new class requirement (in the form of a lesson)
+     * @param classCode     The class' unique code
+     * @param lessonID      The lesson's unique code
+     */
+    public void insertLessonLookupSQL(String classCode, String lessonID){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO lessonLookup(classCode, lessonID) VALUES (?,?)");
+            stmt.setString(1, classCode);
+            stmt.setString(2, lessonID);
+            stmt.executeUpdate();
+        }//end of try
+        catch (SQLException sqle) {
+            System.out.println("\n\nERROR insertLessonLookupSQL FAILED!!!");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }//end catch
+    }
+
+    /**
+     * Deletes a class requirement (in the form of a lesson)
+     * @param classCode     The class' unique code
+     * @param lessonID      The lesson's unique ID
+     */
+    public void deleteLessonLookupSQL(String classCode, String lessonID){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM lessonLookup WHERE classCode=? AND lessonID=?");
+            stmt.setString(1, classCode);
+            stmt.setString(2, lessonID);
+            stmt.executeUpdate();
+        }//end of try
+        catch (SQLException sqle) {
+            System.out.println("\n\nERROR deleteLessonLookupSQL FAILED!!");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }//end of catch
+    }
+
+    /**
+     * Inserts a new lesson requirement (in the form of a lecture w/ media)
+     * @param multimedia    Multimedia (link, text, etc.)
+     * @param lessonID      A lesson's unique ID
+     */
+    public void insertLectureSQL(String multimedia, String lessonID){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO lectures(multimedia, lessonID) VALUES (?, ?)");
+            stmt.setString(1, multimedia);
+            stmt.setString(2, lessonID);
+            stmt.executeUpdate();
+        }//end of try
+        catch (SQLException sqle) {
+            System.out.println("\n\nERROR insertLectureSQL FAILED!!!");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }//end catch
+    }
+
+    /**
+     * Deletes a lecture using it's unique ID
+     * @param lectureID     A lecture's unique ID
+     */
+    public void deleteLectureSQL(String lectureID){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM lectures WHERE lectureID=?");
+            stmt.setString(1, lectureID);
+            stmt.executeUpdate();
+        }//end of try
+        catch (SQLException sqle) {
+            System.out.println("\n\nERROR deleteLectureSQL FAILED!!");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }//end of catch
+    }
+
+    /**
+     * Inserts a new lesson
+     * @param classCode     A class' unique code
+     * @param lessonName    A lesson's name
+     * @param startTime     A start time (ISO time)
+     * @param endTime       An end time (ISO time)
+     */
+    public void insertLessonSQL(String classCode, String lessonName, String startTime, String endTime){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO lesson(classCode, lessonName, startTime, endTime) VALUES (?, ?, ?, ?)");
+            stmt.setString(1, classCode);
+            stmt.setString(2, lessonName);
+            stmt.setString(3, startTime);
+            stmt.setString(4, endTime);
+            stmt.executeUpdate();
+        }//end of try
+        catch (SQLException sqle) {
+            System.out.println("\n\nERROR insertLessonSQL FAILED!!!");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }//end catch
+    }
+
+    /**
+     * Updates a lecture's multimedia
+     * @param lectureID     A lecture's unique ID
+     * @param multimedia    Multimedia (link, text, etc.)
+     */
+    public void updateMultimediaSQL(String lectureID, String multimedia){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE lectures SET multimedia=? WHERE lectureID=?");
+            stmt.setString(1, multimedia);
+            stmt.setString(2, lectureID);
+            stmt.executeUpdate();
+        }//end try
+        catch (SQLException sqle) {
+            System.out.println("\n\nERROR updateMultimediaSQL FAILED!!");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }//end catch
+    }
+
+    // TODO: Get Multimedia/Documents/Materials for lessons
 
 }
