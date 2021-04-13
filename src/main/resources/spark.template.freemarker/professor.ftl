@@ -14,35 +14,13 @@
         th{
             text-align: left;
         }
-        .nav a:hover{
-                    background-color: #F8D7FD;
-                    color: black;
-                }
-                .nav a.active {
-                    background-color: #F8D7FD;
-                    color: black;
-                }
-        .nav a {
-
-          float: left;
-          display: block;
-          color: black;
-          text-align: center;
-          padding: 14px 16px;
-          text-decoration: none;
-          font-size: 17px;
-        }
     </style>
 </head>
 <body>
-    <nav class="nav" id ="myNav">
-        <a href="/professor" class="active">Dashboard</a>
-        <a href="/lessons">Lessons</a>
-        <a href="/quizzes">Quizzes</a>
-    </nav>
     <h1>${fname} ${lname}</h1>
     <h2>All Classes</h2>
     <p>Relevant course materials, and other functionality are stored within the class itself.</p>
+
     <table>
         <tr>
             <th>Number</th>
@@ -50,71 +28,34 @@
             <th>Professor</th>
             <th>Link</th>
         </tr>
-        <tr>
-            <td>IGME.384.01</td>
-            <td>Introduction To Geographic Information Systems</td>
-            <td>Justin Cole</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>IGME.384.02</td>
-            <td>Introduction To Geographic Information Systems</td>
-            <td>Justin Cole</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>IGME.140.01</td>
-            <td>Introduction To Geographic Information Systems</td>
-            <td>Justin Cole</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>IGME.140.05</td>
-            <td>Introduction To Geographic Information Systems</td>
-            <td>Justin Cole</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>IGME.384.01</td>
-            <td>Introduction To Geographic Information Systems</td>
-            <td>Justin Cole</td>
-            <td><a href="#">Link</a></td>
-        </tr>
+        <#list classes as class>
+            <tr>
+                    <td>${class.classcode}</th>
+                    <td>${class.className}</th>
+                    <td>${class.profEmail}</th>
+                    <td><a href="#">Link</a></th>
+                </tr>
+         </#list>
     </table>
+
 
     <h2>Dicussions</h2>
     <p><a href="#">Create a new discussion</a></p>
     <table>
-        <tr>
-            <th>Access</th>
-            <th>Name</th>
-            <th>Owner</th>
-            <th>Link</th> <!-- Users can click on the link to view the discussion page, and either join or request for access -->
-        </tr>
-        <tr>
-            <td>Public</td>
-            <td>Community Channel</td>
-            <td>N/A</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>Private</td>
-            <td>Aaron's Channel</td>
-            <td>abp6318@rit.edu</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>Public</td>
-            <td>ISTE.384.02</td>
-            <td>jd4111@rit.edu</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-        <tr>
-            <td>Private</td>
-            <td>Goofing around!!! xDDDD</td>
-            <td>abp6318@rit.edu</td>
-            <td><a href="#">Link</a></td>
-        </tr>
-    </table>
+            <tr>
+                <th>Discussion Group ID</th>
+                <th>Name</th>
+                <th>Owner</th>
+                <th>Link</th> <!-- Users can click on the link to view the discussion page, and either join or request for access -->
+            </tr>
+            <#list discussionGroups as discussionGroup>
+                <tr>
+                        <td>${discussionGroup.discussionID}</th>
+                        <td>${discussionGroup.groupName}</th>
+                        <td>${discussionGroup.userEmail}</th>
+                        <td><a href="#">Link</a></th>
+                    </tr>
+             </#list>
+        </table>
 </body>
 </html>
