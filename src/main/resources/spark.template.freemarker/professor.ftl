@@ -14,9 +14,32 @@
         th{
             text-align: left;
         }
+        .nav a:hover{
+                    background-color: #F8D7FD;
+                    color: black;
+                }
+                .nav a.active {
+                    background-color: #F8D7FD;
+                    color: black;
+                }
+        .nav a {
+
+          float: left;
+          display: block;
+          color: black;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+        }
     </style>
 </head>
 <body>
+    <nav class="nav" id ="myNav">
+        <a href="/professor" class="active">Dashboard</a>
+        <a href="/lessons">Lessons</a>
+        <a href="/quizzes">Quizzes</a>
+    </nav>
     <h1>${fname} ${lname}</h1>
     <h2>All Classes</h2>
     <p>Relevant course materials, and other functionality are stored within the class itself.</p>
