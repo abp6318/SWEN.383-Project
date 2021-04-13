@@ -928,7 +928,6 @@ public class UserManager {
         }//end catch
     }
 
-    // unsure about this query as well
     /**
      * Deletes the lesson start time
      * @param lessonID the lesson 
@@ -944,7 +943,6 @@ public class UserManager {
         }
     }
 
-    // unsure about this query as well
     /**
      * Deletes the lesson end time
      * @param lessonID the lesson 
