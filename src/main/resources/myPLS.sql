@@ -141,6 +141,15 @@ PRIMARY KEY (quizID),
 CONSTRAINT quizIDquizQuestions  FOREIGN KEY (quizID) REFERENCES quiz(quizID) ON DELETE CASCADE
 ) ;
 
+CREATE TABLE quizGrades (
+  quizID INT, -- FK quiz
+  userEmail VARCHAR(100), -- FK user
+  grade INT,
+  PRIMARY KEY (quizID, userEmail),
+  CONSTRAINT quizGradesquizID FOREIGN KEY (quizID) REFERENCES quiz(quizID) ON DELETE CASCADE,
+  CONSTRAINT quizGradesuserID FOREIGN KEY (userEmail) REFERENCES user(userEmail) ON DELETE CASCADE
+) ;
+
 CREATE TABLE discussionGroups (
   discussionID INT AUTO_INCREMENT,
   groupName VARCHAR(25),
