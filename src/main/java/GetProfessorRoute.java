@@ -29,7 +29,7 @@ public class GetProfessorRoute implements Route{
             viewModel.put("fname", user.getFirstName());
             viewModel.put("lname", user.getLastName());
 
-            List<Course> courses = manager.selectAdminClassesSQL(user.getEmail());
+            List<Course> courses = manager.selectProfessorClassesSQL(user.getEmail());
             Collection classes = new ArrayList();
             for (int count = 0; count<courses.size(); count++) {
                 HashMap<String, String> course = courses.get(count).getHash();

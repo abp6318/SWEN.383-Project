@@ -25,14 +25,14 @@
         <tr>
             <th>Number</th>
             <th>Name</th>
-            <th>Professor</th>
+            <th>Creator</th>
             <th>Link</th>
         </tr>
         <#list classes as class>
             <tr>
                     <td>${class.classcode}</th>
                     <td>${class.className}</th>
-                    <td>${class.profEmail}</th>
+                    <td>${class.adminEmail}</th>
                     <td><a href="#">Link</a></th>
                 </tr>
          </#list>
