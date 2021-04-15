@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - ${fname} ${lname}</title>
+    <title>Lecture</title>
     <style>
         td{
             border:thin solid black;
@@ -41,7 +41,7 @@
             <a href="/lecture" class="active">Lectures</a>
             <a href="/multimedia">Multimedia</a>
             <a href="/quiz">Quizzes</a>
-            <a href="/messages">Discussion Messages</a>
+            <a href="/messagesDG">Discussion Messages</a>
         </nav>
         <h2>Lectures</h2>
 
