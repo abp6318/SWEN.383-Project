@@ -51,8 +51,14 @@
         <!-- Button to add quiz -->
         <div id="addQuiz"></div>
 
+        <!-- Button to add a quiz question-->
+        <div id="addQuizQuestion"></div>
+
         <!-- Button to delete quiz -->
         <div id="deleteQuiz"></div>
+
+        <!-- Button to delete a quiz question-->
+        <div id="deleteQuizQuestion"></div>
 
         <!-- Add quiz questions list here-->
         <div class="quizQuestions"></div>
