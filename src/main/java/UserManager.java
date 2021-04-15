@@ -958,8 +958,15 @@ public class UserManager {
         }
     }
 
-    //TODO: Calculate Quiz Grade? and store it 
-        //new table???
+    //TODO: Calculate Quiz Grade? quizUserScore
+    public void insertQuizScore (String userEmail, String score) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("");
+        }
+        catch (SQLException sqle) {
+            
+        }
+    }
 
     /**
      * Inserts a new class requirement (in the form of a lesson)
