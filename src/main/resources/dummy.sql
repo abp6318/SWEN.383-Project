@@ -1,16 +1,16 @@
-INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('abp6318@rit.edu', 'Aaron', 'Putterman', 'a', '0001', 1, 'userPassword');
-INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('da7238@rit.edu', 'Darlene', 'Ardila', 'a', '0002', '1', 'userPassword');
-INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('dxm6029@rit.edu', 'Dominique', 'Molee', 'a', '0003', 1, 'userPassword');
-INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('vms4138@rit.edu', 'Vicky', 'Soler', 'a', '0004', 1, 'userPassword');
-INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('admin@rit.edu', 'This is', 'the Admin', 'a', '0005', 1, 'userPassword');
-INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('professor@rit.edu', 'Abdul', 'the Professor', 'p', '0006', 1, 'userPassword');
-INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('antiprofessor@rit.edu', 'Evil Professor', 'Larry', 'p', '0007', 1, 'userPassword');
-INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('anotherprofessor@rit.edu', 'Albert', 'Bananaman', 'p', '0008', 1, 'userPassword');
-INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('student@rit.edu', 'Lazy Student', 'Leonard', 's', '0009', 1, 'userPassword');
-INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('nevil@rit.edu', 'Nevil', 'Longbottom', 's', '0010', 1, 'userPassword');
-INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('harry@rit.edu', 'Harry', 'Potter', 's', '0011', 1, 'userPassword');
-INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('hermoine@rit.edu', 'Hermoine', 'Grainger', 's', '0012', 1, 'userPassword');
-INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('ron@rit.edu', 'Ron', 'Weasly', 's', '0013', 1, 'userPassword');
+INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('abp6318@rit.edu', 'Aaron', 'Putterman', 'a', '0001', 1, '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8');
+INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('da7238@rit.edu', 'Darlene', 'Ardila', 'a', '0002', '1', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8');
+INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('dxm6029@rit.edu', 'Dominique', 'Molee', 'a', '0003', 1, '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8');
+INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('vms4138@rit.edu', 'Vicky', 'Soler', 'a', '0004', 1, '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8');
+INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('admin@rit.edu', 'This is', 'the Admin', 'a', '0005', 1, '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8');
+INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('professor@rit.edu', 'Abdul', 'the Professor', 'p', '0006', 1, '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8');
+INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('antiprofessor@rit.edu', 'Evil Professor', 'Larry', 'p', '0007', 1, '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8');
+INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('anotherprofessor@rit.edu', 'Albert', 'Bananaman', 'p', '0008', 1, '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8');
+INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('student@rit.edu', 'Lazy Student', 'Leonard', 's', '0009', 1, '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8');
+INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('nevil@rit.edu', 'Nevil', 'Longbottom', 's', '0010', 1, '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8');
+INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('harry@rit.edu', 'Harry', 'Potter', 's', '0011', 1, '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8');
+INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('hermoine@rit.edu', 'Hermoine', 'Grainger', 's', '0012', 1, '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8');
+INSERT INTO `user` (`userEmail`, `fName`, `lName`, `accountType`, `verificationCode`, `verified`, `userPassword`) VALUES ('ron@rit.edu', 'Ron', 'Weasly', 's', '0013', 1, '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8');
 
 INSERT INTO `class` (`classCode`, `creatorEmail`, `professorEmail`, `className`, `learningObj`, `learningOutcome`, `beginDate`, `endDate`) VALUES ('ISTE.140', 'admin@rit.edu', 'professor@rit.edu', 'Web 1', 'Learn the basics of web development', 'Students learned how to do HTML/CSS and some JavaScript', '2021-01-25', '2021-05-08');
 INSERT INTO `class` (`classCode`, `creatorEmail`, `professorEmail`, `className`, `learningObj`, `learningOutcome`, `beginDate`, `endDate`) VALUES ('ISTE.240', 'admin@rit.edu', 'professor@rit.edu', 'Web 2', 'Delve into the intermediate concepts of web development', 'Students learned more JavaScript, PHP, and phpMyAdmin', '2021-01-25', '2021-05-08');
@@ -67,28 +67,36 @@ INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (20, 
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (20, 'vms4138@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (20, 'da7238@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (20, 'dxm6029@rit.edu');
+INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (20, 'professor@rit.edu');
 
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (21, 'admin@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (21, 'abp6318@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (21, 'vms4138@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (21, 'da7238@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (21, 'dxm6029@rit.edu');
+INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (21, 'professor@rit.edu');
 
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (22, 'admin@rit.edu');
+INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (22, 'professor@rit.edu');
 
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (23, 'admin@rit.edu');
+INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (23, 'professor@rit.edu');
 
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (24, 'admin@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (24, 'abp6318@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (24, 'vms4138@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (24, 'da7238@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (24, 'dxm6029@rit.edu');
+INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (24, 'professor@rit.edu');
 
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (25, 'abp6318@rit.edu');
+INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (25, 'professor@rit.edu');
 
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (26, 'vms4138@rit.edu');
+INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (26, 'professor@rit.edu');
 
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (27, 'da7238@rit.edu');
+INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (27, 'professor@rit.edu');
 
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (28, 'dxm6029@rit.edu');
-
+INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (28, 'professor@rit.edu');

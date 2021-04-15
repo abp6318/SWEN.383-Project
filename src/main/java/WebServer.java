@@ -9,17 +9,14 @@ import spark.template.freemarker.FreeMarkerEngine;
 
 public class WebServer {
 
-
     // general TODOs
-    // TODO: add redirect in POST to new discussion group page if something is added/updated
-
-
+    // TODO: add redirect in POST to new discussion group page if something is
+    // added/updated
 
     private static final Logger LOGGER = Logger.getLogger(WebServer.class.getName());
 
     private UserManager manager;
     private TemplateEngine engine;
-    private UserManagerTwo managerTwo;
 
     // Routes
     public static final String HOMEPAGE = "/";
@@ -31,12 +28,17 @@ public class WebServer {
     public static final String FAILED = "/failed";
     public static final String DISCUSSION = "/discussion";
     public static final String FEEDBACK = "/feedback";
+    public static final String QUIZ = "/quiz";
+    public static final String MULTIMEDIA = "/multimedia";
+    public static final String MESSAGESDG = "/messagesDG";
+    public static final String LECTURE = "/lecture";
+
     private Configuration conf;
 
+    public WebServer() {
+    }
 
-    public WebServer(){ }
-
-    public void setRoutes(){
+    public void setRoutes() {
         // healthcheck
         get("/ping", (res, req) -> "pong");
 
@@ -50,14 +52,23 @@ public class WebServer {
         get(PROFESSOR, new GetProfessorRoute(manager, conf));
         get(LEARNER, new GetLearnerRoute(manager, conf));
         get(FAILED, new GetFailedRoute(manager, conf));
-        get(DISCUSSION, new GetDiscussionRoute(manager,conf));
+        get(DISCUSSION, new GetDiscussionRoute(manager, conf));
         post(DISCUSSION, new PostDiscussionRoute(manager, engine));
-        get(FEEDBACK, new GetFeedbackRoute(manager,conf));
+        get(FEEDBACK, new GetFeedbackRoute(manager, conf));
         post(FEEDBACK, new PostFeedbackRoute(manager, engine));
         post(ADMIN, new PostAdminRoute(manager, engine));
+        get(QUIZ, new GetQuizRoute(manager, conf));
+        post(QUIZ, new PostQuizRoute(manager, engine));
+        get(MESSAGESDG, new GetMessagesRoute(manager, conf));
+        post(MESSAGESDG, new PostMessagesRoute(manager, engine));
+        get(LECTURE, new GetLectureRoute(manager, conf));
+        post(LECTURE, new PostLectureRoute(manager, engine));
+        get(MULTIMEDIA, new GetMultimediaRoute(manager, conf));
+        post(MULTIMEDIA, new PostMultimediaRoute(manager, engine));
+
     }
 
-    public void initialize(){
+    public void initialize() {
         this.manager = new UserManager();
         manager.connect();
         Configuration conf = new Configuration(new Version(2, 3, 23));

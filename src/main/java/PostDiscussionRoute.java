@@ -9,14 +9,13 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpSession;
 
-
-public class PostDiscussionRoute implements Route{
+public class PostDiscussionRoute implements Route {
 
     private static final Logger LOGGER = Logger.getLogger(PostDiscussionRoute.class.getName());
 
     private UserManager manager;
 
-    public PostDiscussionRoute(UserManager manager, TemplateEngine engine){
+    public PostDiscussionRoute(UserManager manager, TemplateEngine engine) {
         this.manager = manager;
         LOGGER.config("PostDiscussionRoute Created");
     }
@@ -32,15 +31,15 @@ public class PostDiscussionRoute implements Route{
 
         String search = request.queryParams("searchBar");
 
-
         // will need to figure out searching somewhere here too probably
-        if(!search.equals("")){
+        if (!search.equals("")) {
             List<DiscussionGroup> temp = manager.searchDiscussionGroup(search);
             request.session().attribute("Search Results", temp);
         }
 
         // creating discussion group
-        if(addGroupName!= null && !addGroupName.equals("") && addDiscussionEmail!=null && !addDiscussionEmail.equals("")){
+        if (addGroupName != null && !addGroupName.equals("") && addDiscussionEmail != null
+                && !addDiscussionEmail.equals("")) {
             manager.addDiscussionGroupSQL(addGroupName, addDiscussionEmail);
 
             String id = manager.getDiscussionIdSQL(addGroupName);
@@ -52,15 +51,12 @@ public class PostDiscussionRoute implements Route{
         }
 
         // delete discussion group
-        if(deleteGroupID!= null && !deleteGroupID.equals("")){
+        if (deleteGroupID != null && !deleteGroupID.equals("")) {
             manager.deleteDiscussionGroupSQL(deleteGroupID);
 
         }
 
-
-
         response.redirect(WebServer.DISCUSSION, HttpURLConnection.HTTP_MOVED_PERM);
-
 
         return null;
     }

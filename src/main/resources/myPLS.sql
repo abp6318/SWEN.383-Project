@@ -54,31 +54,43 @@ CONSTRAINT fk_userEmailclassListLookup FOREIGN KEY (userEmail) REFERENCES user (
 CONSTRAINT fk_classCodeclassListLookup FOREIGN KEY (classCode) REFERENCES class (classCode) ON DELETE CASCADE
 ) ;
 
-CREATE TABLE lectures (
-lectureID INT,
-multimediaID INT NOT NULL,
-PRIMARY KEY (lectureID, multimediaID)
+CREATE TABLE lesson (
+  lessonID INT AUTO_INCREMENT, -- PK
+  classCode VARCHAR(20), -- FK class
+  lessonName VARCHAR(50),
+  startTime DATETIME,
+  endTime DATETIME,
+  PRIMARY KEY(lessonID),
+  CONSTRAINT lessonclassCode FOREIGN KEY (classCode) REFERENCES class(classCode) ON DELETE CASCADE
 ) ;
 
-CREATE TABLE lectureLookup (
+CREATE TABLE lectures (
+lectureID INT AUTO_INCREMENT,
+multimedia TEXT,
+lessonID INT, -- FK
+PRIMARY KEY (lectureID),
+CONSTRAINT lectueslessonID FOREIGN KEY (lessonID) REFERENCES lesson(lessonID) ON DELETE CASCADE
+) ;
+
+CREATE TABLE lessonLookup (
 classCode VARCHAR(20), -- FK class
-lectureID INT, -- FK lectures
-PRIMARY KEY (classCode, lectureID),
+lessonID INT, -- FK lectures
+PRIMARY KEY (classCode, lessonID),
 -- classCodereferences the classCodein the class table
 CONSTRAINT fk_classCodelectureLookup FOREIGN KEY (classCode) REFERENCES class (classCode) ON DELETE CASCADE,
 -- lectureID references the lectureID in the lectures table
-CONSTRAINT fk_lectureIDlectureLookup FOREIGN KEY (lectureID) REFERENCES lectures (lectureID) ON DELETE CASCADE
+CONSTRAINT fk_lectureIDlectureLookup FOREIGN KEY (lessonID) REFERENCES lesson (lessonID) ON DELETE CASCADE
 ) ;
 
-CREATE TABLE lectureRating (
+CREATE TABLE lessonRating (
 userEmail VARCHAR (100), -- FK users
-lectureID INT,  -- FK lectures
+lessonID INT,  -- FK lectures
 rating INT,
-PRIMARY KEY (userEmail, lectureID),
+PRIMARY KEY (userEmail, lessonID),
 -- userEmail references the userEmail in the user table
 CONSTRAINT userEmaillectureRating FOREIGN KEY (userEmail) REFERENCES user (userEmail) ON DELETE CASCADE,
 -- lectureID references the lectureID in the lectures table
-CONSTRAINT lectureIDlectureRating FOREIGN KEY (lectureID) REFERENCES lectures (lectureID) ON DELETE CASCADE
+CONSTRAINT lessonIDlectureRating FOREIGN KEY (lessonID) REFERENCES lesson (lessonID) ON DELETE CASCADE
 ) ;
 
 CREATE TABLE prerequisitesLookup (
@@ -152,6 +164,6 @@ CREATE TABLE discussionGroupsMembers (
   discussionID INT NOT NULL, -- FK ID
   userEmail VARCHAR(100) NOT NULL, -- FK user
   PRIMARY KEY (discussionID, userEmail),
-  CONSTRAINT discussionIDdiscussionGroupMembers FOREIGN KEY (groupName) REFERENCES discussionGroups(groupName) ON DELETE CASCADE,
+  CONSTRAINT discussionIDdiscussionGroupMembers FOREIGN KEY (discussionID) REFERENCES discussionGroups(discussionID) ON DELETE CASCADE,
   CONSTRAINT userEmaildiscussionGroupMembers FOREIGN KEY (userEmail) REFERENCES user(userEmail) ON DELETE CASCADE
 ) ;
