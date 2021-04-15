@@ -697,6 +697,54 @@ public class UserManager {
     }
 
     /**
+     * Gets all of the classes that an admin creator
+     * @param professorEmail the admin
+     * @return a list of all of the classes
+     */
+    public List<Course> selectProfessorClassesSQL(String professorEmail) {
+        String classCodeReturned;
+        String creatorEmailReturned;
+        String professorEmailReturned;
+        String classNameReturned;
+        String learningObjReturned;
+        String learningOutcomeReturned;
+        String beginDateReturned;
+        String endDateReturned;
+        List<Course> courses = new ArrayList<Course>();
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(
+                    "SELECT classCode, creatorEmail, professorEmail, className, learningObj, learningOutcome, beginDate, endDate FROM class WHERE professorEmail = ?");
+            preparedStatement.setString(1, professorEmail);
+            rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                classCodeReturned = rs.getString(1);
+                creatorEmailReturned = rs.getString(2);
+                professorEmailReturned = rs.getString(3);
+                classNameReturned = rs.getString(4);
+                learningObjReturned = rs.getString(5);
+                learningOutcomeReturned = rs.getString(6);
+                beginDateReturned = rs.getString(7);
+                endDateReturned = rs.getString(8);
+
+                System.out.println(classCodeReturned + " " + creatorEmailReturned + " " + professorEmailReturned + " "
+                        + classNameReturned + " " + learningObjReturned + " " + learningOutcomeReturned + " "
+                        + beginDateReturned + " " + endDateReturned);
+                Course courseTemp = new Course(classCodeReturned, creatorEmailReturned, professorEmailReturned,
+                        classNameReturned, learningObjReturned, learningOutcomeReturned, beginDateReturned,
+                        endDateReturned);
+                courses.add(courseTemp);
+            }
+            return courses;
+
+        } catch (SQLException sqle) {
+            System.out.println("\n\nSELECT PROFESSOR CLASSES FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+        return courses;
+    }
+
+    /**
      * Updates the user verification
      * @param email the user to be verified
      * @param verifyCode the verification code

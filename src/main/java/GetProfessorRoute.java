@@ -3,8 +3,7 @@ import freemarker.template.Template;
 import spark.*;
 
 import java.io.StringWriter;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Logger;
 
 
@@ -30,12 +29,35 @@ public class GetProfessorRoute implements Route{
             viewModel.put("fname", user.getFirstName());
             viewModel.put("lname", user.getLastName());
 
+            List<Course> courses = manager.selectProfessorClassesSQL(user.getEmail());
+            Collection classes = new ArrayList();
+            for (int count = 0; count<courses.size(); count++) {
+                HashMap<String, String> course = courses.get(count).getHash();
+                ((ArrayList) classes).add(course);
+            }
+            viewModel.put("classes", classes.iterator());
+
+            // start of adding discussion groups to admin dashboard
+
+            List<DiscussionGroup> discussionGroupsList = manager.selectDiscussionGroupsSQL(user.getEmail());
+
+            Collection discussionGroups = new ArrayList();
+            for (int index = 0; index<discussionGroupsList.size(); index++) {
+                HashMap<String, String> discussionGroup = discussionGroupsList.get(index).getHash();
+                ((ArrayList) discussionGroups).add(discussionGroup);
+            }
+
+            viewModel.put("discussionGroups", discussionGroups.iterator());
+
+            // end of adding discussion groups to admin dashboard
+
             Template template = conf.getTemplate("professor.ftl");
             StringWriter writer = new StringWriter();
             template.process(viewModel, writer);
 
+
             return writer;
-        } catch (Exception e){
+        } catch (Exception e) {
             LOGGER.warning(e.getMessage());
             Spark.halt(500);
         }

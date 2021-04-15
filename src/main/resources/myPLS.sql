@@ -56,7 +56,7 @@ CONSTRAINT fk_classCodeclassListLookup FOREIGN KEY (classCode) REFERENCES class 
 
 CREATE TABLE lesson (
   lessonID INT AUTO_INCREMENT, -- PK
-  classCode VARCHAR(20) -- FK class
+  classCode VARCHAR(20), -- FK class
   lessonName VARCHAR(50),
   startTime DATETIME,
   endTime DATETIME,
@@ -86,7 +86,7 @@ CREATE TABLE lessonRating (
 userEmail VARCHAR (100), -- FK users
 lessonID INT,  -- FK lectures
 rating INT,
-PRIMARY KEY (userEmail, lectureID),
+PRIMARY KEY (userEmail, lessonID),
 -- userEmail references the userEmail in the user table
 CONSTRAINT userEmaillectureRating FOREIGN KEY (userEmail) REFERENCES user (userEmail) ON DELETE CASCADE,
 -- lectureID references the lectureID in the lectures table
@@ -164,6 +164,6 @@ CREATE TABLE discussionGroupsMembers (
   discussionID INT NOT NULL, -- FK ID
   userEmail VARCHAR(100) NOT NULL, -- FK user
   PRIMARY KEY (discussionID, userEmail),
-  CONSTRAINT discussionIDdiscussionGroupMembers FOREIGN KEY (groupName) REFERENCES discussionGroups(groupName) ON DELETE CASCADE,
+  CONSTRAINT discussionIDdiscussionGroupMembers FOREIGN KEY (discussionID) REFERENCES discussionGroups(discussionID) ON DELETE CASCADE,
   CONSTRAINT userEmaildiscussionGroupMembers FOREIGN KEY (userEmail) REFERENCES user(userEmail) ON DELETE CASCADE
 ) ;
