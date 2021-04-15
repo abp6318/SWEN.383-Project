@@ -1006,8 +1006,25 @@ public class UserManager {
         }
     }
 
-    //TODO: Calculate Quiz Grade? and store it 
-        //new table???
+    /**
+     * Insert quiz score
+     * @param quizID the quiz
+     * @param userEmail the user who took the quiz
+     * @param score the score to be inserted
+     */
+    public void insertQuizScore (String quizID, String userEmail, String score) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO quizUserScore(quizID,userEmail,score) VALUES(?,?,?)");
+            stmt.setString(1, quizID);
+            stmt.setString(2, userEmail);
+            stmt.setString(3, score);
+            stmt.executeUpdate();
+        }
+        catch (SQLException sqle) {
+            System.out.println("Error while trying to insert quiz grade.");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }
+    }
 
     /**
      * Inserts a new class requirement (in the form of a lesson)
