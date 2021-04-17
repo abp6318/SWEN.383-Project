@@ -904,6 +904,31 @@ public class UserManager {
         return q;
     }
 
+    //should i get all of the questions for each quiz or just store values???? 
+    public List<Quiz> getUserQuizzes(String email) {
+        List<Quiz> quizzes = new ArrayList<Quiz>();
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT quizID FROM quiz WHERE creatorEmail = ?");
+            stmt.setString(1, email);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Quiz q = new Quiz();
+                stmt = conn.prepareStatement("SELECT questionContent, questionAnswer FROM quizQuestions WHERE quizID = ?");
+                stmt.setString(1, rs.getString(1));
+                ResultSet rs2 = stmt.executeQuery();
+                while (rs2.next()) {
+                    q.addQuizQuestion(rs2.getString(1),rs2.getString(2));
+                }
+                quizzes.add(q);
+            }
+        }
+        catch (SQLException sqle) {
+            System.out.println("Error while trying to get user quizzes.");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }
+        return quizzes;
+    }
+
     /**
      * Inserts the start time for a lesson
      * @param lessonID the lesson 

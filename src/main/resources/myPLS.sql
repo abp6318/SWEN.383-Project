@@ -106,6 +106,7 @@ CONSTRAINT preReqIDprerequisitesLookup FOREIGN KEY (preReqClassCode) REFERENCES 
 CREATE TABLE quiz (
 quizID INT AUTO_INCREMENT,
 timeLimit DOUBLE,
+creatorEmail VARCHAR(100),
 PRIMARY KEY (quizID)
 ) ;
 

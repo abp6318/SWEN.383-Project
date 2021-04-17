@@ -23,7 +23,10 @@ public class Quiz {
         }
     }
 
-    //TODO: display quiz html? or print??? 
+    
+    public HashMap<String, ArrayList<String>> getHash() {
+        return questions;
+    }
     
     //student view
 

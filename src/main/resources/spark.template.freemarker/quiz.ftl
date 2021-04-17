@@ -61,7 +61,11 @@
         <div id="deleteQuizQuestion"></div>
 
         <!-- Add quiz questions list here-->
-        <div class="quizQuestions"></div>
+        <div class="quizQuestions">
+        <#list quizzes as quiz>
+            <p>${quiz.quizID}</p>
+        </#list>
+        </div>
 
     </div>
 </body>
