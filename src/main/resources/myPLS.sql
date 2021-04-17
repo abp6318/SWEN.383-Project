@@ -46,7 +46,6 @@ CONSTRAINT fk_classCodeclassGrade FOREIGN KEY (classCode) REFERENCES class (clas
 CREATE TABLE classListLookup (
 userEmail VARCHAR(100), -- FK user
 classCode VARCHAR(20), -- FK class
-lectureID INT NOT NULL,
 PRIMARY KEY (userEmail, classCode),
 -- userEmail references the userEmail in the user table
 CONSTRAINT fk_userEmailclassListLookup FOREIGN KEY (userEmail) REFERENCES user (userEmail) ON DELETE CASCADE,
@@ -105,9 +104,15 @@ CONSTRAINT preReqIDprerequisitesLookup FOREIGN KEY (preReqClassCode) REFERENCES 
 
 CREATE TABLE quiz (
 quizID INT AUTO_INCREMENT,
+name varchar(100),
 timeLimit DOUBLE,
 creatorEmail VARCHAR(100),
-PRIMARY KEY (quizID)
+classCode VARCHAR(20),
+PRIMARY KEY (quizID),
+-- creatorEmail references userEmail in the user email
+CONSTRAINT creatorEmailQuiz FOREIGN KEY (creatorEmail) REFERENCES user (userEmail) ON DELETE CASCADE,
+-- classCodereferences classCodein the class table
+CONSTRAINT classCodeQuiz FOREIGN KEY (classCode) REFERENCES class (classCode) ON DELETE CASCADE
 ) ;
 
 CREATE TABLE quizUserScore (
@@ -137,10 +142,24 @@ quizID INT, -- FK quiz
 questionNum INT,
 questionContent TEXT,
 questionAnswer TEXT,
-PRIMARY KEY (quizID),
+PRIMARY KEY (quizID, questionNum),
 -- quizID references the quizID in the quiz table
 CONSTRAINT quizIDquizQuestions  FOREIGN KEY (quizID) REFERENCES quiz(quizID) ON DELETE CASCADE
 ) ;
+
+CREATE TABLE studentAnswers(
+	quizID INT, -- FK quiz
+	questionNum INT, -- FK quizQuestions
+    studentEmail varchar(100), -- FK user
+    studentAnswer TEXT,
+    PRIMARY KEY (quizID, questionNum, studentEmail),
+    -- quizID references the quizID in the quiz table
+	CONSTRAINT quizIDstudentAnswers  FOREIGN KEY (quizID) REFERENCES quiz(quizID) ON DELETE CASCADE,
+    -- questionNum references the questionNum in the quizQuestions table
+	-- CONSTRAINT questionNumstudentAnswers  FOREIGN KEY (questionNum) REFERENCES quizQuestions(questionNum) ON DELETE CASCADE
+    -- studentEmail references the userEmail in the user table
+	CONSTRAINT studentEmailstudentAnswers  FOREIGN KEY (studentEmail) REFERENCES user(userEmail) ON DELETE CASCADE
+);
 
 CREATE TABLE discussionGroups (
   discussionID INT AUTO_INCREMENT,
