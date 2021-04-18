@@ -48,7 +48,6 @@ public class GetProfessorRoute implements Route{
             }
 
             viewModel.put("discussionGroups", discussionGroups.iterator());
-
             // end of adding discussion groups to admin dashboard
 
             Template template = conf.getTemplate("professor.ftl");

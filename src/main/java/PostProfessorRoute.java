@@ -25,14 +25,15 @@ public class PostProfessorRoute implements Route {
     public Object handle(Request request, Response response) {
         LOGGER.info("POST /professor");
 
+        String classCode = request.queryParams("classButton");
+
+        request.session().attribute("classCode", classCode);
+        LOGGER.info("classCode: " + classCode);
+
+        response.redirect(WebServer.LECTURE, HttpURLConnection.HTTP_MOVED_PERM);
 
 
-        // pull all needed values from ftl here
-        // Example: String updateClassID = request.queryParams("UpdateClassID");
 
-
-
-        response.redirect(WebServer.ADMIN, HttpURLConnection.HTTP_MOVED_PERM);
 
         return null;
     }

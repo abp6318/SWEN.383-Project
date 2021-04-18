@@ -65,6 +65,7 @@ public class WebServer {
         post(LECTURE, new PostLectureRoute(manager, engine));
         get(MULTIMEDIA, new GetMultimediaRoute(manager, conf));
         post(MULTIMEDIA, new PostMultimediaRoute(manager, engine));
+        post(PROFESSOR, new PostProfessorRoute(manager,engine));
 
     }
 

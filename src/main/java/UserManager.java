@@ -1136,6 +1136,43 @@ public class UserManager {
         }//end catch
     }
 
+    /**
+     * Gets all discussion groups a user is in
+     * @param classCode the class code
+     * @return a list of lessons
+     */
+    public List<Lesson> selectLessonsSQL(String classCode) {
+        String lessonIDReturned = "";
+        String lessonNameReturned = "";
+        String startDateReturned = "";
+        String endDateReturned = "";
+
+        List<Lesson> lessonList = new ArrayList<Lesson>();
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(
+                    "SELECT lessonID, lessonName, startTime, endTime FROM lesson WHERE classCode=?");
+            preparedStatement.setString(1, classCode);
+            rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                lessonIDReturned = rs.getString(1);
+                lessonNameReturned = rs.getString(2);
+                startDateReturned = rs.getString(3);
+                endDateReturned = rs.getString(4);
+                System.out.println(lessonIDReturned + " " + lessonNameReturned + " " + startDateReturned + " " + endDateReturned);
+                Lesson l = new Lesson(lessonIDReturned, classCode, lessonNameReturned, startDateReturned, endDateReturned);
+                lessonList.add(l);
+            }
+            return lessonList;
+
+        } catch (SQLException sqle) {
+            System.out.println("\n\nSELECT FROM LESSONS FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+        return null;
+    }
+
+
     // TODO: Get Multimedia/Documents/Materials for lessons
 
 }

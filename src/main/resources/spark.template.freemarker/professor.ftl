@@ -59,7 +59,9 @@
                         <td>${class.classcode}</th>
                         <td>${class.className}</th>
                         <td>${class.profEmail}</th>
-                        <td><a href="#">Link</a></th>
+                        <td><form id="dis" action="/professor" method="POST">
+                            <button id="toLesson" type="submit" value=${class.classcode} name="classButton">Lessons</button><br>
+                        </form></td>
                     </tr>
             </#list>
         </table>
