@@ -62,9 +62,25 @@
 
         <!-- Add quiz questions list here-->
         <div class="quizQuestions">
-        <#list quizzes as quiz>
-            <p>${quiz.quizID}</p>
-        </#list>
+        <table>
+            <tr>
+                <th>Quiz ID</th>
+                <th>Quiz Name</th>
+                <th>Time Limit</th>
+                <th>Class Code</th>
+            </tr>
+             <#list quizzes as quiz>
+                <tr>
+                    <td>${quiz.quizID}</td>
+                    <td>${quiz.quizName}</td>
+                    <td>${quiz.timeLimit}</td>
+                    <td>${quiz.classCode}</td>
+                </tr>
+                
+            </#list>
+            
+        </table>
+       
         </div>
 
     </div>

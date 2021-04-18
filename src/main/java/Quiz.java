@@ -3,6 +3,17 @@ import java.util.*;
 public class Quiz {
     //Attributes
     HashMap<String, ArrayList<String>> questions = new HashMap<String, ArrayList<String>>(); 
+    String quizID = "";
+    String quizName = "";
+    String timeLimit = "";
+    String classCode = "";
+
+    public Quiz(String id, String name, String time, String inClass) {
+        quizID = id;
+        quizName = name;
+        timeLimit = time;
+        classCode = inClass;
+    }
 
     /**
      * adds quiz question to quix
@@ -24,8 +35,13 @@ public class Quiz {
     }
 
     
-    public HashMap<String, ArrayList<String>> getHash() {
-        return questions;
+    public HashMap<String, String> getHash() {
+        HashMap<String, String> qMap = new HashMap<>();
+        qMap.put("quizID",quizID);
+        qMap.put("quizName", quizName);
+        qMap.put("timeLimit", timeLimit);
+        qMap.put("classCode", classCode);
+        return qMap;
     }
     
     //student view

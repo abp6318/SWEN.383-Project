@@ -38,7 +38,7 @@ public class GetQuizRoute implements Route {
             //very much not done here
             Collection quizzes = new ArrayList();
             for (int index = 0; index<quizzesList.size(); index++) {
-                HashMap<String, ArrayList<String>> quiz = quizzesList.get(index).getHash();
+                HashMap<String, String> quiz = quizzesList.get(index).getHash();
                 ((ArrayList) quizzes).add(quiz);
             }
             viewModel.put("quizzes", quizzes.iterator());
