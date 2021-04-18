@@ -1197,6 +1197,40 @@ public class UserManager {
         return null;
     }
 
+    /**
+     * Gets all discussion groups a user is in
+     * @param lessonID the lesson ID
+     * @return a list of lectures
+     */
+    public List<Lecture> selectLecturesSQL(String lessonID) {
+        String multimediaReturned = "";
+        String lectureID = "";
+        String lectureName = "";
+
+        List<Lecture> lectureList = new ArrayList<Lecture>();
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(
+                    "SELECT lectureID, lectureName, multimedia FROM lectures WHERE lessonID=?");
+            preparedStatement.setString(1, lessonID);
+            rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                lectureID = rs.getString(1);
+                lectureName = rs.getString(2);
+                multimediaReturned = rs.getString(3);
+                System.out.println(lessonID + " " + lectureID + " " + lectureName + " " + multimediaReturned);
+                Lecture l = new Lecture(lessonID, multimediaReturned, lectureID, lectureName);
+                lectureList.add(l);
+            }
+            return lectureList;
+
+        } catch (SQLException sqle) {
+            System.out.println("\n\nSELECT FROM LECTURE FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+        return null;
+    }
+
 
     // TODO: Get Multimedia/Documents/Materials for lessons
 

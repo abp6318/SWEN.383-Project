@@ -33,6 +33,8 @@ public class GetLectureRoute implements Route {
             Map<String, Object> viewModel = new HashMap<>(); // mapping dynamic variables for ftl files (freemarker template)
 
             String classCode = request.session().attribute("classCode");
+            String lessonID = request.session().attribute("lessonID");
+            String multimediaLink = request.session().attribute("multimediaLink");
 
             List<Lesson> lessons = manager.selectLessonsSQL(classCode);
 
@@ -42,8 +44,23 @@ public class GetLectureRoute implements Route {
                 ((ArrayList) allLessons).add(lesson);
             }
 
+            if(lessonID != null && !lessonID.equals("")){
+                LOGGER.info("Seeing LessonID has value from session storage: " + lessonID);
+                // create lecture list for display
+                List<Lecture> lectures = manager.selectLecturesSQL(lessonID);
+                Collection allLectures = new ArrayList();
+                for (int index = 0; index<lectures.size(); index++) {
+                    HashMap<String, String> lecture = lectures.get(index).getHash();
+                    ((ArrayList) allLectures).add(lecture);
+                }
+                LOGGER.info("putting allLectures into view model");
+                viewModel.put("allLectures", allLectures);
+            }
+
             viewModel.put("allLessons", allLessons.iterator());
             viewModel.put("classCode", classCode);
+            LOGGER.info("adding multimediaLink to ftl access: " + multimediaLink);
+            viewModel.put("multimediaLink", multimediaLink);
 
             Template template = conf.getTemplate("lecture.ftl");
             StringWriter writer = new StringWriter();

@@ -46,6 +46,22 @@ public class PostLectureRoute implements Route {
         String deleteTimeLessonID = request.queryParams("deleteTimeLessonID");
         String deleteTime = request.queryParams("deleteTime");
 
+        // getting lessonID so can display lectures associated with lessons
+        String lessonID = request.queryParams("classButton");
+
+        // getting multimedia link so can display lecture content
+        String multimediaLink = request.queryParams("lectButton");
+
+        if(lessonID != null && !lessonID.equals("")){
+            request.session().attribute("lessonID", lessonID);
+            LOGGER.info("adding lessonID to session storage: " + lessonID);
+        }
+
+        if(multimediaLink != null && !multimediaLink.equals("")){
+            request.session().attribute("multimediaLink", multimediaLink);
+            LOGGER.info("adding multimediaLink to session storage: " + multimediaLink);
+        }
+
         if(lessonName != null && !lessonName.equals("")){
             if(lessonStart.equals("")){
                 lessonStart = null;

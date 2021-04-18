@@ -43,7 +43,7 @@
             <a href="/quiz">Quizzes</a>
             <a href="/messagesDG">Discussion Messages</a>
         </nav>
-        <h2>Lessons</h2>
+        <h2><#if classCode??>${classCode}</#if> Lessons</h2>
 
         <!-- List of lectures that professor has access to -->
         <div class="lectureList">
@@ -61,11 +61,14 @@
                             <td>${lesson.lessonName}</td>
                             <td><#if lesson.startDate??>${lesson.startDate}</#if></td>
                             <td><#if lesson.endDate??>${lesson.endDate}</#if></td>
-                            <td><button id="toLesson" type="submit" value="lesson.ID" name="classButton">Materials</button><br></th>
+                            <td><form id="dis" action="/lecture" method="POST">
+                                 <button id="toLesson" type="submit" value="${lesson.lessonID}" name="classButton">Materials</button><br>
+                            </form><br></td>
                         </tr>
                  </#list>
             </table>
             </div>
+
 
         <form id="dis" action="/lecture" method="POST">
                 <input id="addLesson" value="Add Lesson" type="button">
@@ -74,6 +77,35 @@
                 <input id="addLessonTime" value="Add Lesson Time" type="button">
                 <input id="deleteLessonTime" value="Delete Lesson Time" type="button"><br>
          </form>
+
+        <#if allLectures??>
+             <h2>Lectures</h2>
+                 <table>
+                     <tr>
+                         <th>Lecture ID</th>
+                         <th>Lecture Name</th>
+                         <th>Mulimedia Link</th>
+                         <th>LessonID</th>
+                     </tr>
+                     <#list allLectures as lecture>
+                         <tr>
+                             <td>${lecture.lectureID}</td>
+                             <td>${lecture.lectureName}</td>
+                             <td> <form id="lect" action="/lecture" method="POST">
+                                   <button id="toLecture" type="submit" value="${lecture.multimedia}" name="lectButton">Link</button><br>
+                             </form><br></td>
+                             <td>${lecture.lessonID}</td>
+                          </tr>
+                     </#list>
+                 </table>
+             </#if>
+
+
+             <#if multimediaLink??>
+                 <h2>Content</h2>
+                 <iframe src="${multimediaLink}"" title="Lesson Multimedia"></iframe>
+             </#if>
+
 
     </div>
     <script>
