@@ -46,19 +46,34 @@
         <h2>Quizzes</h2>
 
         <!-- Button to edit quiz -->
-        <div id="editQuiz"></div>
+        <div id="editQuiz">
+            <input id="edit" value="Edit Quiz" type="button">
+            <form action="/quiz" method="POST" id="EditQuizForm"></form>
+        </div>
 
         <!-- Button to add quiz -->
-        <div id="addQuiz"></div>
+        <div id="addQuiz">
+            <input id="add" value="Add Quiz" type="button">
+            <form action="/quiz" method="POST" id="AddQuizForm"></form>
+        </div>
 
         <!-- Button to add a quiz question-->
-        <div id="addQuizQuestion"></div>
+        <div id="addQuizQuestion">
+            <input id="addQuestion" value="Add Quiz Question" type="button">
+            <form action="/quiz" method="POST" id="AddQuizQuestionForm"></form>
+        </div>
 
         <!-- Button to delete quiz -->
-        <div id="deleteQuiz"></div>
+        <div id="deleteQuiz">
+            <input id="delete" value="Delete Quiz" type="button">
+            <form action="/quiz" method="POST" id="DeleteQuizForm"></form>
+        </div>
 
         <!-- Button to delete a quiz question-->
-        <div id="deleteQuizQuestion"></div>
+        <div id="deleteQuizQuestion">
+            <input id="deleteQuestion" value="Delete Quiz Question" type="button">
+            <form action="/quiz" method="POST" id="DeleteQuizQuestionForm"></form>
+        </div>
 
         <!-- Add quiz questions list here-->
         <div class="quizQuestions">
@@ -75,14 +90,10 @@
                     <td>${quiz.quizName}</td>
                     <td>${quiz.timeLimit}</td>
                     <td>${quiz.classCode}</td>
-                </tr>
-                
+                </tr>     
             </#list>
-            
         </table>
-       
         </div>
-
     </div>
 </body>
 </html>
