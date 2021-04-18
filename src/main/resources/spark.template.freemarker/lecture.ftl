@@ -59,8 +59,8 @@
                     <tr>
                             <td>${lesson.lessonID}</td>
                             <td>${lesson.lessonName}</td>
-                            <td>${lesson.startDate}</td>
-                            <td>${lesson.endDate}</td>
+                            <td><#if lesson.startDate??>${lesson.startDate}</#if></td>
+                            <td><#if lesson.endDate??>${lesson.endDate}</#if></td>
                             <td><button id="toLesson" type="submit" value="lesson.ID" name="classButton">Materials</button><br></th>
                         </tr>
                  </#list>
@@ -69,13 +69,19 @@
 
         <form id="dis" action="/lecture" method="POST">
                 <input id="addLesson" value="Add Lesson" type="button">
-                <input id="deleteLesson" value="Delete Lesson" type="button"><br>
+                <input id="deleteLesson" value="Delete Lesson" type="button">
+                <input id="updateLessonTime" value="Update Lesson Time" type="button">
+                <input id="addLessonTime" value="Add Lesson Time" type="button">
+                <input id="deleteLessonTime" value="Delete Lesson Time" type="button"><br>
          </form>
 
     </div>
     <script>
         var aBtn = document.getElementById("addLesson");
         var dBtn = document.getElementById("deleteLesson");
+        var uBtn = document.getElementById("updateLessonTime");
+        var atBtn = document.getElementById("addLessonTime");
+        var dtBtn = document.getElementById("deleteLessonTime");
         var f = document.getElementById("dis");
         aBtn.addEventListener("click", function() {
 
@@ -83,6 +89,7 @@
     		lessonName.setAttribute('type', 'text');
     		lessonName.setAttribute('placeholder', 'Enter Lesson Name');
             lessonName.name = "addLessonName";
+            lessonName.required = true;
             f.appendChild(lessonName);
 
             var br = document.createElement("br");
@@ -116,6 +123,7 @@
             lessonID.setAttribute('type', 'text');
             lessonID.setAttribute('placeholder', 'Enter Lesson ID');
             lessonID.name = "deleteLessonID";
+            lessonID.required = true;
             f.appendChild(lessonID);
 
             var br = document.createElement("br");
@@ -127,6 +135,66 @@
             f.appendChild(submit);
         });
 
+        uBtn.addEventListener("click", function() {
+            var lessonID = document.createElement("input");
+            lessonID.setAttribute('type', 'text');
+            lessonID.setAttribute('placeholder', 'Enter Lesson ID');
+            lessonID.name = "updateTimeLessonID";
+            lessonID.required = true;
+            f.appendChild(lessonID);
+
+            var br = document.createElement("br");
+            f.appendChild(br);
+
+            var start = document.createElement("input");
+            start.setAttribute('type', 'date');
+            start.setAttribute('placeholder', 'Enter New Start Time');
+            start.name = "updatedStartTime";
+            f.appendChild(start);
+
+            var br1 = document.createElement("br");
+            f.appendChild(br1);
+
+            var end = document.createElement("input");
+            end.setAttribute('type', 'date');
+            end.setAttribute('placeholder', 'Enter New End Time');
+            end.name = "updatedEndTime";
+            f.appendChild(end);
+
+            var br2 = document.createElement("br");
+            f.appendChild(br2);
+
+            var submit = document.createElement("input");
+            submit.setAttribute('type','submit');
+            submit.className = "input-submit";
+            f.appendChild(submit);
+        });
+
+        dtBtn.addEventListener("click", function() {
+           var lessonID = document.createElement("input");
+           lessonID.setAttribute('type', 'text');
+           lessonID.setAttribute('placeholder', 'Enter Lesson ID');
+           lessonID.name = "deleteTimeLessonID";
+           lessonID.required = true;
+           f.appendChild(lessonID);
+
+           var br = document.createElement("br");
+           f.appendChild(br);
+
+           var start = document.createElement("input");
+           start.setAttribute('type', 'date');
+           start.setAttribute('placeholder', 'Enter \'Start\' or \'End\'');
+           start.name = "deleteTime";
+           f.appendChild(start);
+
+           var br1 = document.createElement("br");
+           f.appendChild(br1);
+
+           var submit = document.createElement("input");
+           submit.setAttribute('type','submit');
+           submit.className = "input-submit";
+           f.appendChild(submit);
+       });
 
     </script>
 </body>

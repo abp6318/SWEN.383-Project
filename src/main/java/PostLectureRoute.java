@@ -29,19 +29,52 @@ public class PostLectureRoute implements Route {
         String classCode = request.session().attribute("classCode");
         LOGGER.info("here is the class code: " + classCode);
 
+        // create lesson
         String lessonName = request.queryParams("addLessonName");
         String lessonStart = request.queryParams("addLessonStartTime");
         String lessonEnd = request.queryParams("addLessonEndTime");
+
+        // delete lesson
         String deleteLessonID = request.queryParams("deleteLessonID");
 
+        // update start and end time
+        String updateTimeLessonID = request.queryParams("updateTimeLessonID");
+        String updatedStartTime = request.queryParams("updatedStartTime");
+        String updatedEndTime = request.queryParams("updatedEndTime");
 
+        // delete start and end time
+        String deleteTimeLessonID = request.queryParams("deleteTimeLessonID");
+        String deleteTime = request.queryParams("deleteTime");
 
-        if(lessonName != null && !lessonName.equals("") && lessonStart != null && !lessonStart.equals("") && lessonEnd != null && !lessonEnd.equals("")){
+        if(lessonName != null && !lessonName.equals("")){
+            if(lessonStart.equals("")){
+                lessonStart = null;
+            }
+            if(lessonEnd.equals("")){
+                lessonEnd = null;
+            }
             manager.insertLessonSQL(classCode, lessonName, lessonStart, lessonEnd);
         }
 
         if(deleteLessonID != null && !deleteLessonID.equals("")){
             manager.deleteLessonSQL(deleteLessonID);
+        }
+
+        if(updateTimeLessonID!= null && !updateTimeLessonID.equals("")){
+            if(updatedStartTime != null && !updatedStartTime.equals("")){
+                manager.updateLessonStartTimeSQL(updateTimeLessonID, updatedStartTime);
+            }
+            if(updatedEndTime != null && !updatedEndTime.equals("")){
+                manager.updateLessonEndTimeSQL(updateTimeLessonID, updatedEndTime);
+            }
+        }
+        if(deleteTimeLessonID != null && !deleteTimeLessonID.equals("")){
+            if(deleteTime.trim().toLowerCase().equals("start")){
+                manager.deleteLessonStartTimeSQL(deleteTimeLessonID);
+            }
+            else if(deleteTime.trim().toLowerCase().equals("end")){
+                manager.deleteLessonEndTimeSQL(deleteTimeLessonID);
+            }
         }
 
         response.redirect(WebServer.LECTURE, HttpURLConnection.HTTP_MOVED_PERM);

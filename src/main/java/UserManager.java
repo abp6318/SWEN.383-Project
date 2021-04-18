@@ -911,7 +911,7 @@ public class UserManager {
      */ 
     public void insertLessonStartTimeSQL(String lessonID, String startTime) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO lesson(lessonID, startTme) VALUES (?,?)");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO lesson(lessonID, startTime) VALUES (?,?)");
             stmt.setString(1, lessonID);
             stmt.setString(2, startTime);
             stmt.executeUpdate();
@@ -982,7 +982,7 @@ public class UserManager {
      */
     public void deleteLessonStartTimeSQL(String lessonID) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE lesson SET startTime='null' WHERE lessonID = ?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE lesson SET startTime=NULL WHERE lessonID = ?");
             stmt.setString(1, lessonID);
             stmt.executeUpdate();
         } catch (SQLException sqle) {
@@ -997,7 +997,7 @@ public class UserManager {
      */
     public void deleteLessonEndTimeSQL(String lessonID) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE lesson SET endTime='null' WHERE lessonID = ?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE lesson SET endTime=NULL WHERE lessonID = ?");
             stmt.setString(1, lessonID);
             stmt.executeUpdate();
         } catch (SQLException sqle) {
