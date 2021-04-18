@@ -887,8 +887,8 @@ public class UserManager {
      * @param quizID the id of the quiz to return
      * @return the quiz
      */
-    public Quiz getQuizQuestionsSQL(String quizID) {
-        Quiz q = new Quiz();
+    public Quiz getQuizQuestionsSQL(String quizID,String quizName,String timeLimit, String classCode) {
+        Quiz q = new Quiz(quizID,quizName,timeLimit,classCode);
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT questionContent, questionAnswer FROM quizQuestions WHERE quizID = ?");
             stmt.setString(1, quizID);
@@ -902,6 +902,31 @@ public class UserManager {
             System.out.println("ERROR MESSAGE --> " + sqle);
         }//end of catch
         return q;
+    }
+
+    //should i get all of the questions for each quiz or just store values???? 
+    public List<Quiz> getUserQuizzes(String email) {
+        List<Quiz> quizzes = new ArrayList<Quiz>();
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT quizID, name, timeLimit, classCode FROM quiz WHERE creatorEmail = ?");
+            stmt.setString(1, email);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Quiz q = new Quiz(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+                stmt = conn.prepareStatement("SELECT questionContent, questionAnswer FROM quizQuestions WHERE quizID = ?");
+                stmt.setString(1, rs.getString(1));
+                ResultSet rs2 = stmt.executeQuery();
+                while (rs2.next()) {
+                    q.addQuizQuestion(rs2.getString(1),rs2.getString(2));
+                }
+                quizzes.add(q);
+            }
+        }
+        catch (SQLException sqle) {
+            System.out.println("Error while trying to get user quizzes.");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }
+        return quizzes;
     }
 
     /**

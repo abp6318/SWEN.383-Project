@@ -19,25 +19,13 @@ INSERT INTO `class` (`classCode`, `creatorEmail`, `professorEmail`, `className`,
 INSERT INTO `class` (`classCode`, `creatorEmail`, `professorEmail`, `className`, `learningObj`, `learningOutcome`, `beginDate`, `endDate`) VALUES ('ISTE.252', 'admin@rit.edu', 'anotherprofessor@rit.edu', 'Foundations of Mobile Design', 'Learn how to design and develop for mobile', 'Students are now trained in prototyping and developing mobile applications (web, native, and hybrid)', '2021-01-25', '2021-05-08');
 INSERT INTO `class` (`classCode`, `creatorEmail`, `professorEmail`, `className`, `learningObj`, `learningOutcome`, `beginDate`, `endDate`) VALUES ('SWEN.383', 'admin@rit.edu', 'anotherprofessor@rit.edu', 'Software Design Principles and Patterns', 'Learn how to work in teams and about SDLCs', 'Students implemented what they learned in a semester long project', '2021-01-25', '2021-05-08');
 
--- INSERT INTO `classGrade`
-
--- INSERT INTO `classListLookup` (`userEmail`, `classCode`, `lectureID`) VALUES ('userEmail', 'classCode', 'lectureID');
-
--- INSERT INTO `lectures`
-
--- INSERT INTO `lectureLookup`
-
--- INSERT INTO `lectureRating`
-
+-- prereq
 INSERT INTO `prerequisitesLookup` (`classCode`, `preReqClassCode`) VALUES ('ISTE.240', 'ISTE.140');
 INSERT INTO `prerequisitesLookup` (`classCode`, `preReqClassCode`) VALUES ('ISTE.340', 'ISTE.240');
 INSERT INTO `prerequisitesLookup` (`classCode`, `preReqClassCode`) VALUES ('ISTE.252', 'ISTE.260');
 INSERT INTO `prerequisitesLookup` (`classCode`, `preReqClassCode`) VALUES ('SWEN.383', 'ISTE.240');
 
--- INSERT INTO `quiz`
-
--- INSERT INTO `quizUserScore`
-
+-- classRating
 INSERT INTO `classRating` (`userEmail`, `classCode`, `rating`) VALUES ('student@rit.edu', 'ISTE.340', 6);
 INSERT INTO `classRating` (`userEmail`, `classCode`, `rating`) VALUES ('student@rit.edu', 'SWEN.383', 8);
 INSERT INTO `classRating` (`userEmail`, `classCode`, `rating`) VALUES ('student@rit.edu', 'ISTE.252', 8);
@@ -48,8 +36,7 @@ INSERT INTO `classRating` (`userEmail`, `classCode`, `rating`) VALUES ('harry@ri
 INSERT INTO `classRating` (`userEmail`, `classCode`, `rating`) VALUES ('harry@rit.edu', 'SWEN.383', 3);
 INSERT INTO `classRating` (`userEmail`, `classCode`, `rating`) VALUES ('harry@rit.edu', 'ISTE.252', 1);
 
--- INSERT INTO `quizQuestions`
-
+-- discussion groups
 INSERT INTO `discussionGroups` (`discussionID`, `groupName`, `userEmail`) VALUES (20, 'SWEN DREAM TEAM', 'admin@rit.edu');
 INSERT INTO `discussionGroups` (`discussionID`, `groupName`, `userEmail`) VALUES (21, 'The evil team', 'admin@rit.edu');
 INSERT INTO `discussionGroups` (`discussionID`, `groupName`, `userEmail`) VALUES (22, 'UX Club', 'admin@rit.edu');
@@ -60,8 +47,7 @@ INSERT INTO `discussionGroups` (`discussionID`, `groupName`, `userEmail`) VALUES
 INSERT INTO `discussionGroups` (`discussionID`, `groupName`, `userEmail`) VALUES (27, 'Outlander Fan Club', 'da7238@rit.edu');
 INSERT INTO `discussionGroups` (`discussionID`, `groupName`, `userEmail`) VALUES (28, 'Spark Geniuses', 'dxm6029@rit.edu');
 
--- INSERT INTO `discussionMessages`
-
+-- discussion group members
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (20, 'admin@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (20, 'abp6318@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (20, 'vms4138@rit.edu');
@@ -100,3 +86,106 @@ INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (27, 
 
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (28, 'dxm6029@rit.edu');
 INSERT INTO `discussionGroupsMembers` (`discussionID`, `userEmail`) VALUES (28, 'professor@rit.edu');
+
+-- lessons
+INSERT INTO lesson (classCode, lessonName, startTime, endTime) VALUES ('ISTE.140', 'Patterns Lesson', '2021-03-21 08:00:00', '2021-04-15 09:15:00');
+INSERT INTO lesson (classCode, lessonName, startTime, endTime) VALUES ('ISTE.140', 'Eating Lesson', '2021-03-21 08:01:00', '2021-04-15 09:16:00');
+INSERT INTO lesson (classCode, lessonName, startTime, endTime) VALUES ('ISTE.140', 'Running Lesson', '2021-03-21 08:02:00', '2021-04-15 09:17:00');
+INSERT INTO lesson (classCode, lessonName, startTime, endTime) VALUES ('ISTE.140', 'Skiing Lesson', '2021-03-21 08:03:00', '2021-04-15 09:18:00');
+INSERT INTO lesson (classCode, lessonName, startTime, endTime) VALUES ('ISTE.140', 'Milkshake Lesson', '2021-03-21 08:04:00', '2021-04-15 09:19:00');
+
+-- lectures
+INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 1', '4');
+INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 2', '4');
+INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 3', '4');
+INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 4', '4');
+INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 5', '4');
+INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 6', '4');
+
+INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 11', '14');
+INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 21', '14');
+INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 31', '14');
+INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 41', '14');
+INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 51', '14');
+INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 61', '14');
+
+INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 12', '24');
+INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 22', '24');
+INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 32', '24');
+INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 42', '24');
+INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 52', '24');
+INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 62', '24');
+
+-- lesson rating (these are all admin accounts, but whatever)
+INSERT INTO lessonrating (userEmail, lessonID, rating) VALUES ('abp6318@rit.edu', '4', '5');
+INSERT INTO lessonrating (userEmail, lessonID, rating) VALUES ('da7238@rit.edu', '4', '6');
+INSERT INTO lessonrating (userEmail, lessonID, rating) VALUES ('dxm6029@rit.edu', '4', '7');
+INSERT INTO lessonrating (userEmail, lessonID, rating) VALUES ('vms4138@rit.edu', '4', '8');
+
+INSERT INTO lessonrating (userEmail, lessonID, rating) VALUES ('abp6318@rit.edu', '14', '4');
+INSERT INTO lessonrating (userEmail, lessonID, rating) VALUES ('da7238@rit.edu', '14', '5');
+INSERT INTO lessonrating (userEmail, lessonID, rating) VALUES ('dxm6029@rit.edu', '14', '6');
+INSERT INTO lessonrating (userEmail, lessonID, rating) VALUES ('vms4138@rit.edu', '14', '7');
+
+INSERT INTO lessonrating (userEmail, lessonID, rating) VALUES ('abp6318@rit.edu', '24', '3');
+INSERT INTO lessonrating (userEmail, lessonID, rating) VALUES ('da7238@rit.edu', '24', '4');
+INSERT INTO lessonrating (userEmail, lessonID, rating) VALUES ('dxm6029@rit.edu', '24', '5');
+INSERT INTO lessonrating (userEmail, lessonID, rating) VALUES ('vms4138@rit.edu', '24', '6');
+
+-- discussion messages
+INSERT INTO discussionmessages (discussionID, messages, userEmail, datePosted) VALUES ('20', 'Wow cool discussion', 'abp6318@rit.edu', '2021-04-15');
+INSERT INTO discussionmessages (discussionID, messages, userEmail, datePosted) VALUES ('20', 'Yeah nice job xD', 'da7238@rit.edu', '2021-04-15');
+INSERT INTO discussionmessages (discussionID, messages, userEmail, datePosted) VALUES ('20', 'LOL WHAT', 'dxm6029@rit.edu', '2021-04-15');
+INSERT INTO discussionmessages (discussionID, messages, userEmail, datePosted) VALUES ('20', 'SHEEEEEESH', 'vms4138@rit.edu', '2021-04-15');
+
+-- classListLookup
+INSERT INTO classListLookup (userEmail, classCode) VALUES ('harry@rit.edu', 'ISTE.140');
+INSERT INTO classListLookup (userEmail, classCode) VALUES ('hermoine@rit.edu', 'ISTE.140');
+INSERT INTO classListLookup (userEmail, classCode) VALUES ('ron@rit.edu', 'ISTE.140');
+
+-- quiz
+INSERT INTO quiz (name, timeLimit, classCode, creatorEmail) VALUES ('Quiz #1', '60', 'ISTE.140', 'professor@rit.edu');
+INSERT INTO quiz (name, timeLimit, classCode, creatorEmail) VALUES ('Quiz #2', '120', 'ISTE.140', 'professor@rit.edu');
+INSERT INTO quiz (name, timeLimit, classCode, creatorEmail) VALUES ('Quiz #3', '180', 'ISTE.140', 'professor@rit.edu');
+
+-- quizquestions
+INSERT INTO quizquestions (quizID, questionNum, questionContent, questionAnswer) VALUES ('4', '1', 'What is my favorite color?', 'green');
+INSERT INTO quizquestions (quizID, questionNum, questionContent, questionAnswer) VALUES ('4', '2', 'What is my favorite candy?', 'kitkat bars');
+INSERT INTO quizquestions (quizID, questionNum, questionContent, questionAnswer) VALUES ('4', '3', "What is my cat's name?", 'copland');
+
+INSERT INTO quizquestions (quizID, questionNum, questionContent, questionAnswer) VALUES ('14', '1', "What is my favorite string instrument?", 'electric bass');
+INSERT INTO quizquestions (quizID, questionNum, questionContent, questionAnswer) VALUES ('14', '2', "When is my birthday?", '04-01-2001');
+INSERT INTO quizquestions (quizID, questionNum, questionContent, questionAnswer) VALUES ('14', '3', "What is my middle name?", 'bergon');
+
+INSERT INTO quizquestions (quizID, questionNum, questionContent, questionAnswer) VALUES ('24', '1', "What is my favorite type of weather?", 'rainy');
+INSERT INTO quizquestions (quizID, questionNum, questionContent, questionAnswer) VALUES ('24', '2', "What is my favorite season?", 'spring');
+INSERT INTO quizquestions (quizID, questionNum, questionContent, questionAnswer) VALUES ('24', '3', "Why?", 'because');
+
+-- the answers students gave table that Vicky or I will make at some point
+INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','1', 'harry@rit.edu', 'green');
+INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','2', 'harry@rit.edu', 'm&ms');
+INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','3', 'harry@rit.edu', 'jerry');
+
+INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','1', 'hermoine@rit.edu', 'yellow');
+INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','2', 'hermoine@rit.edu', 'kitkat bars');
+INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','3', 'hermoine@rit.edu', 'copland');
+
+INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','1', 'ron@rit.edu', 'green');
+INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','2', 'ron@rit.edu', 'kitkat bars');
+INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','3', 'ron@rit.edu', 'copland');
+
+-- quizuserscore
+INSERT INTO quizUserScore (quizID, userEmail, score) VALUES ('4', 'harry@rit.edu', '33.33');
+INSERT INTO quizUserScore (quizID, userEmail, score) VALUES ('4', 'hermoine@rit.edu', '66.67');
+INSERT INTO quizUserScore (quizID, userEmail, score) VALUES ('4', 'ron@rit.edu', '100.00');
+
+
+
+
+
+
+
+
+
+
+
