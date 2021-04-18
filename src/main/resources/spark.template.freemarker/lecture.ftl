@@ -74,7 +74,6 @@
                 <input id="addLesson" value="Add Lesson" type="button">
                 <input id="deleteLesson" value="Delete Lesson" type="button">
                 <input id="updateLessonTime" value="Update Lesson Time" type="button">
-                <input id="addLessonTime" value="Add Lesson Time" type="button">
                 <input id="deleteLessonTime" value="Delete Lesson Time" type="button"><br>
          </form>
 
@@ -112,7 +111,6 @@
         var aBtn = document.getElementById("addLesson");
         var dBtn = document.getElementById("deleteLesson");
         var uBtn = document.getElementById("updateLessonTime");
-        var atBtn = document.getElementById("addLessonTime");
         var dtBtn = document.getElementById("deleteLessonTime");
         var f = document.getElementById("dis");
         aBtn.addEventListener("click", function() {
