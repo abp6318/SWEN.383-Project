@@ -61,13 +61,13 @@
                             <td>${lesson.lessonName}</td>
                             <td><#if lesson.startDate??>${lesson.startDate}</#if></td>
                             <td><#if lesson.endDate??>${lesson.endDate}</#if></td>
-                            <td><form id="dis" action="/lecture" method="POST">
+                            <td><form id="dis1" action="/lecture" method="POST">
                                  <button id="toLesson" type="submit" value="${lesson.lessonID}" name="classButton">Materials</button><br>
                             </form><br></td>
                         </tr>
                  </#list>
             </table>
-            </div>
+            </div><br>
 
 
         <form id="dis" action="/lecture" method="POST">
@@ -102,7 +102,7 @@
 
              <#if multimediaLink??>
                  <h2>Content</h2>
-                 <iframe src="${multimediaLink}"" title="Lesson Multimedia"></iframe>
+                 <iframe src="${multimediaLink}" width="800" height="300" title="Lesson Multimedia"></iframe>
              </#if>
 
 
@@ -212,7 +212,7 @@
            f.appendChild(br);
 
            var start = document.createElement("input");
-           start.setAttribute('type', 'date');
+           start.setAttribute('type', 'text');
            start.setAttribute('placeholder', 'Enter \'Start\' or \'End\'');
            start.name = "deleteTime";
            f.appendChild(start);
