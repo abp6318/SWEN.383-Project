@@ -25,7 +25,6 @@ public class PostQuizRoute implements Route {
 
         response.redirect(WebServer.QUIZ, HttpURLConnection.HTTP_MOVED_PERM);
 
-        // TODO: Display Quiz functionality
 
         // Add Quiz functionality
         String addQuizName = request.queryParams("AddQuizName");

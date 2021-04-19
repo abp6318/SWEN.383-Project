@@ -55,7 +55,7 @@
             <!-- Button to display quiz -->
             <div id="displayQuiz">
                 <input id="display" value="Display Quiz" type="button">
-                <form action="/quiz" method="POST" id="DisplayQuizForm"></form>
+                <form action="/quizDisplay" method="GET" id="DisplayQuizForm"></form>
             </div>
 
             <!-- Button to add quiz -->
@@ -112,6 +112,28 @@
 
     <script>
         // displayQuiz section
+        var displayButtonElement = document.getElementById("display");
+        var displayQuizFormElement = document.getElementById("DisplayQuizForm");
+        displayButtonElement.addEventListener("click", function(){
+            while (displayQuizFormElement.firstChild) {
+                displayQuizFormElement.removeChild(displayQuizFormElement.firstChild);
+            }
+            displayQuizFormElement.appendChild(document.createElement("br"));
+
+            // quizID input
+            var id = document.createElement("input");
+            id.setAttribute('type', 'text');
+            id.setAttribute('placeholder', 'Enter Quiz ID');
+            id.name = "DisplayQuizID";
+            displayQuizFormElement.appendChild(id);
+            displayQuizFormElement.appendChild(document.createElement("br"));
+
+            //submit btn
+            var submit = document.createElement("input");
+            submit.setAttribute('type','submit');
+            submit.className = "input-submit";
+            displayQuizFormElement.appendChild(submit);
+        });
 
         // addQuiz section
         var addButtonElement = document.getElementById("add");

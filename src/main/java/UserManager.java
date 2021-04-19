@@ -964,7 +964,8 @@ public class UserManager {
         return q;
     }
 
-    //should i get all of the questions for each quiz or just store values???? 
+    //should i get all of the questions for each quiz or just store values????
+    // message from Aaron - I added a selectQuizQuestions method below that accounts for options!
     public List<Quiz> getUserQuizzes(String email) {
         List<Quiz> quizzes = new ArrayList<Quiz>();
         try {
@@ -1221,6 +1222,32 @@ public class UserManager {
         }//end catch
     }
 
-    // TODO: Get Multimedia/Documents/Materials for lessons
+    public List<QuizQuestion> selectQuizQuestionsSQL(String quizID){
+        List<QuizQuestion> quizQuestions = new ArrayList<>();
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT quizID, questionNum, questionContent, optionA, optionB, optionC, optionD, questionAnswer FROM quizQuestions WHERE quizID=? ORDER BY questionNum");
+            stmt.setString(1, quizID);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                String outQuizID = rs.getString(1);
+                String questionNum = rs.getString(2);
+                String questionContent = rs.getString(3);
+                String optionA = rs.getString(4);
+                String optionB = rs.getString(5);
+                String optionC = rs.getString(6);
+                String optionD = rs.getString(7);
+                String questionAnswer = rs.getString(8);
+
+                QuizQuestion qq = new QuizQuestion(outQuizID, questionNum, questionContent, optionA, optionB, optionC, optionD, questionAnswer);
+                quizQuestions.add(qq);
+            }
+
+        } catch (SQLException sqle) {
+            System.out.println("\n\nERROR IN >>selectQuizQuestionsSQL<< !!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+        return quizQuestions;
+    }
 
 }
