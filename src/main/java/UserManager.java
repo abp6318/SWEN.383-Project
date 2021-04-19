@@ -1092,11 +1092,16 @@ public class UserManager {
      * @param multimedia    Multimedia (link, text, etc.)
      * @param lessonID      A lesson's unique ID
      */
-    public void insertLectureSQL(String multimedia, String lessonID){
+    public void insertLectureSQL(String multimedia, String lessonID, String name){
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO lectures(multimedia, lessonID) VALUES (?, ?)");
-            stmt.setString(1, multimedia);
-            stmt.setString(2, lessonID);
+            System.out.println(multimedia);
+            System.out.println(lessonID);
+            System.out.println(name);
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO lectures(lectureName, multimedia, lessonID) VALUES (?, ?, ?)");
+            stmt.setString(1, name);
+            stmt.setString(2, multimedia);
+            stmt.setString(3, lessonID);
+            System.out.println(stmt);
             stmt.executeUpdate();
         }//end of try
         catch (SQLException sqle) {
@@ -1157,6 +1162,24 @@ public class UserManager {
         }//end try
         catch (SQLException sqle) {
             System.out.println("\n\nERROR updateMultimediaSQL FAILED!!");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }//end catch
+    }
+
+    /**
+     * Updates a lecture's name
+     * @param lectureID     A lecture's unique ID
+     * @param name          A lecture's name
+     */
+    public void updateLectureNameSQL(String lectureID, String name){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE lectures SET lectureName=? WHERE lectureID=?");
+            stmt.setString(1, name);
+            stmt.setString(2, lectureID);
+            stmt.executeUpdate();
+        }//end try
+        catch (SQLException sqle) {
+            System.out.println("\n\nERROR updateLectureNameSQL FAILED!!");
             System.out.println("ERROR MESSAGE --> " + sqle);
         }//end catch
     }

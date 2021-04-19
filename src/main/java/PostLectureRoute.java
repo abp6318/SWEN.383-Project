@@ -52,6 +52,19 @@ public class PostLectureRoute implements Route {
         // getting multimedia link so can display lecture content
         String multimediaLink = request.queryParams("lectButton");
 
+        // adding a lecture to a lesson (can assume that lessonID is set i think, but that may be a bold assumption)
+        String addLectureName = request.queryParams("addLectureName");
+        String addMultimedia = request.queryParams("addMultimedia");
+        String addLessonID = request.queryParams("addLessonID");
+
+        // updating a lecture
+        String updateLectureID = request.queryParams("updateLectureID");
+        String updateLectureName = request.queryParams("updateLectureName");
+        String updateMultimedia = request.queryParams("updateMultimedia");
+
+        // delete a lecture
+        String deleteLectureID = request.queryParams("deleteLectureID");
+
         if(lessonID != null && !lessonID.equals("")){
             request.session().attribute("lessonID", lessonID);
             LOGGER.info("adding lessonID to session storage: " + lessonID);
@@ -91,6 +104,25 @@ public class PostLectureRoute implements Route {
             else if(deleteTime.trim().toLowerCase().equals("end")){
                 manager.deleteLessonEndTimeSQL(deleteTimeLessonID);
             }
+        }
+
+        if(addLectureName != null && !addLectureName.equals("") && addMultimedia != null & !addMultimedia.equals("") && addLessonID != null && !addLessonID.equals("")){
+            LOGGER.info("ADDING LECTURE WITH NAME " + addLectureName + " with mutimedia " + addMultimedia + ": " + addLessonID);
+
+            manager.insertLectureSQL(addMultimedia, addLessonID, addLectureName);
+        }
+
+        if(updateLectureID != null && !updateLectureID.equals("")) {
+            if (updateLectureName != null && !updateLectureName.equals("")) {
+                manager.updateLectureNameSQL(updateLectureID, updateLectureName);
+            }
+            if (updateMultimedia != null && !updateMultimedia.equals("")) {
+                manager.updateMultimediaSQL(updateLectureID, updateMultimedia);
+            }
+        }
+
+        if(deleteLectureID!= null && !deleteLectureID.equals("")){
+            manager.deleteLectureSQL(deleteLectureID);
         }
 
         response.redirect(WebServer.LECTURE, HttpURLConnection.HTTP_MOVED_PERM);

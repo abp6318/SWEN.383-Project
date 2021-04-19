@@ -59,7 +59,6 @@ public class GetLectureRoute implements Route {
 
             viewModel.put("allLessons", allLessons.iterator());
             viewModel.put("classCode", classCode);
-            LOGGER.info("adding multimediaLink to ftl access: " + multimediaLink);
             viewModel.put("multimediaLink", multimediaLink);
 
             Template template = conf.getTemplate("lecture.ftl");
