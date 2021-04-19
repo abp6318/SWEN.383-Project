@@ -65,6 +65,7 @@ CREATE TABLE lesson (
 
 CREATE TABLE lectures (
 lectureID INT AUTO_INCREMENT,
+lectureName varchar(100),
 multimedia TEXT,
 lessonID INT, -- FK
 PRIMARY KEY (lectureID),

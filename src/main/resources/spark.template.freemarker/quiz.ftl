@@ -32,6 +32,12 @@
           text-decoration: none;
           font-size: 17px;
         }
+
+        .flexbox {
+            display: flex;
+            justify-content: space-evenly;
+            padding: 10px;
+        }
     </style>
 </head>
 <body>
@@ -41,38 +47,46 @@
             <a href="/lecture">Lectures</a>
             <a href="/multimedia">Multimedia</a>
             <a href="/quiz" class="active">Quizzes</a>
-            <a href="/messagesDG">Discussion Messages</a>
+            <a href="/discussion">Discussion Groups</a>
         </nav>
         <h2>Quizzes</h2>
 
-        <!-- Button to edit quiz -->
-        <div id="editQuiz">
-            <input id="edit" value="Edit Quiz" type="button">
-            <form action="/quiz" method="POST" id="EditQuizForm"></form>
-        </div>
+        <div class="flexbox">
+            <!-- Button to display quiz -->
+            <div id="displayQuiz">
+                <input id="display" value="Display Quiz" type="button">
+                <form action="/quiz" method="POST" id="DisplayQuizForm"></form>
+            </div>
 
-        <!-- Button to add quiz -->
-        <div id="addQuiz">
-            <input id="add" value="Add Quiz" type="button">
-            <form action="/quiz" method="POST" id="AddQuizForm"></form>
-        </div>
+            <!-- Button to add quiz -->
+            <div id="addQuiz">
+                <input id="add" value="Add Quiz" type="button">
+                <form action="/quiz" method="POST" id="AddQuizForm"></form>
+            </div>
 
-        <!-- Button to add a quiz question-->
-        <div id="addQuizQuestion">
-            <input id="addQuestion" value="Add Quiz Question" type="button">
-            <form action="/quiz" method="POST" id="AddQuizQuestionForm"></form>
-        </div>
+            <!-- Button to add a quiz question -->
+            <div id="addQuizQuestion">
+                <input id="addQuestion" value="Add Quiz Question" type="button">
+                <form action="/quiz" method="POST" id="AddQuizQuestionForm"></form>
+            </div>
 
-        <!-- Button to delete quiz -->
-        <div id="deleteQuiz">
-            <input id="delete" value="Delete Quiz" type="button">
-            <form action="/quiz" method="POST" id="DeleteQuizForm"></form>
-        </div>
+            <!-- Button to delete quiz -->
+            <div id="deleteQuiz">
+                <input id="delete" value="Delete Quiz" type="button">
+                <form action="/quiz" method="POST" id="DeleteQuizForm"></form>
+            </div>
 
-        <!-- Button to delete a quiz question-->
-        <div id="deleteQuizQuestion">
-            <input id="deleteQuestion" value="Delete Quiz Question" type="button">
-            <form action="/quiz" method="POST" id="DeleteQuizQuestionForm"></form>
+            <!-- Button to delete a quiz question -->
+            <div id="deleteQuizQuestion">
+                <input id="deleteQuestion" value="Delete Quiz Question" type="button">
+                <form action="/quiz" method="POST" id="DeleteQuizQuestionForm"></form>
+            </div>
+
+            <!-- Button to add a quiz grade -->
+            <div id="addQuizGrade">
+                <input id="addGrade" value="Add Quiz Grade" type="button">
+                <form action="/quiz" method="POST" id="AddQuizGradeForm"></form>
+            </div>
         </div>
 
         <!-- Add quiz questions list here-->
@@ -95,5 +109,200 @@
         </table>
         </div>
     </div>
+
+    <script>
+        // displayQuiz section
+
+        // addQuiz section
+        var addButtonElement = document.getElementById("add");
+        var addQuizFormElement = document.getElementById("AddQuizForm");
+        addButtonElement.addEventListener("click", function(){
+            while (addQuizFormElement.firstChild) {
+                addQuizFormElement.removeChild(addQuizFormElement.firstChild);
+            }
+            addQuizFormElement.appendChild(document.createElement("br"));
+
+            // quiz name input
+            var id = document.createElement("input");
+            id.setAttribute('type', 'text');
+            id.setAttribute('placeholder', 'Enter Quiz Name');
+            id.name = "AddQuizName";
+            addQuizFormElement.appendChild(id);
+            addQuizFormElement.appendChild(document.createElement("br"));
+
+            // quiz time limit input
+            var id = document.createElement("input");
+            id.setAttribute('type', 'text');
+            id.setAttribute('placeholder', 'Enter Quiz Time Limit (Minutes)');
+            id.name = "AddQuizTimeLimit";
+            addQuizFormElement.appendChild(id);
+            addQuizFormElement.appendChild(document.createElement("br"));
+
+            // creator email / the user entering this quiz's email is retrieved from session (request.session().attribute("User"))
+
+            // quiz classCode input
+            var id = document.createElement("input");
+            id.setAttribute('type', 'text');
+            id.setAttribute('placeholder', 'Enter Class Code');
+            id.name = "AddQuizClassCode";
+            addQuizFormElement.appendChild(id);
+            addQuizFormElement.appendChild(document.createElement("br"));
+
+            //submit btn
+            var submit = document.createElement("input");
+            submit.setAttribute('type','submit');
+            submit.className = "input-submit";
+            addQuizFormElement.appendChild(submit);
+        });
+
+        // addQuizQuestion section
+        var addQuestionButtonElement = document.getElementById("addQuestion");
+        var addQuizQuestionFormElement = document.getElementById("AddQuizQuestionForm");
+        addQuestionButtonElement.addEventListener("click", function(){
+            while (addQuizQuestionFormElement.firstChild) {
+                addQuizQuestionFormElement.removeChild(addQuizQuestionFormElement.firstChild);
+            }
+            addQuizQuestionFormElement.appendChild(document.createElement("br"));
+
+            // quizID input
+            var id = document.createElement("input");
+            id.setAttribute('type', 'text');
+            id.setAttribute('placeholder', 'Enter Quiz ID');
+            id.name = "AddQuizQuestionQuizID";
+            addQuizQuestionFormElement.appendChild(id);
+            addQuizQuestionFormElement.appendChild(document.createElement("br"));
+
+            // questionNum input
+            var id = document.createElement("input");
+            id.setAttribute('type', 'text');
+            id.setAttribute('placeholder', 'Enter Question Number (unique)');
+            id.name = "AddQuizQuestionQuestionNum";
+            addQuizQuestionFormElement.appendChild(id);
+            addQuizQuestionFormElement.appendChild(document.createElement("br"));
+
+            // questionContent input
+            var id = document.createElement("input");
+            id.setAttribute('type', 'text');
+            id.setAttribute('placeholder', 'Enter Question Content');
+            id.name = "AddQuizQuestionQuestionContent";
+            addQuizQuestionFormElement.appendChild(id);
+            addQuizQuestionFormElement.appendChild(document.createElement("br"));
+
+            // questionAnswer input
+            var id = document.createElement("input");
+            id.setAttribute('type', 'text');
+            id.setAttribute('placeholder', 'Enter Question Answer');
+            id.name = "AddQuizQuestionQuestionAnswer";
+            addQuizQuestionFormElement.appendChild(id);
+            addQuizQuestionFormElement.appendChild(document.createElement("br"));
+
+            //submit btn
+            var submit = document.createElement("input");
+            submit.setAttribute('type','submit');
+            submit.className = "input-submit";
+            addQuizQuestionFormElement.appendChild(submit);
+        });
+
+        // deleteQuiz section
+        var deleteButtonElement = document.getElementById("delete");
+        var deleteQuizFormElement = document.getElementById("DeleteQuizForm");
+        deleteButtonElement.addEventListener("click", function(){
+            while (deleteQuizFormElement.firstChild) {
+                deleteQuizFormElement.removeChild(deleteQuizFormElement.firstChild);
+            }
+            deleteQuizFormElement.appendChild(document.createElement("br"));
+
+            // quizID input
+            var id = document.createElement("input");
+            id.setAttribute('type', 'text');
+            id.setAttribute('placeholder', 'Enter Quiz ID');
+            id.name = "DeleteQuizQuizID";
+            deleteQuizFormElement.appendChild(id);
+            deleteQuizFormElement.appendChild(document.createElement("br"));
+
+            // professor email checked in PostQuizRoute with session email
+
+            //submit btn
+            var submit = document.createElement("input");
+            submit.setAttribute('type','submit');
+            submit.className = "input-submit";
+            deleteQuizFormElement.appendChild(submit);
+        });
+
+        // deleteQuizQuestion section
+        var deleteQuestionButtonElement = document.getElementById("deleteQuestion");
+        var deleteQuizQuestionFormElement = document.getElementById("DeleteQuizQuestionForm");
+        deleteQuestionButtonElement.addEventListener("click", function(){
+            while (deleteQuizQuestionFormElement.firstChild) {
+                deleteQuizQuestionFormElement.removeChild(deleteQuizQuestionFormElement.firstChild);
+            }
+            deleteQuizQuestionFormElement.appendChild(document.createElement("br"));
+
+            // quizID input
+            var id = document.createElement("input");
+            id.setAttribute('type', 'text');
+            id.setAttribute('placeholder', 'Enter Quiz ID');
+            id.name = "DeleteQuizQuestionQuizID";
+            deleteQuizQuestionFormElement.appendChild(id);
+            deleteQuizQuestionFormElement.appendChild(document.createElement("br"));
+
+            // questionNum input
+            var id = document.createElement("input");
+            id.setAttribute('type', 'text');
+            id.setAttribute('placeholder', 'Enter Question Number');
+            id.name = "DeleteQuizQuestionQuestionNum";
+            deleteQuizQuestionFormElement.appendChild(id);
+            deleteQuizQuestionFormElement.appendChild(document.createElement("br"));
+
+            //submit btn
+            var submit = document.createElement("input");
+            submit.setAttribute('type','submit');
+            submit.className = "input-submit";
+            deleteQuizQuestionFormElement.appendChild(submit);
+        });
+
+        // addQuizGrade section
+        var addGradeButtonElement = document.getElementById("addGrade");
+        var addQuizGradeFormElement = document.getElementById("AddQuizGradeForm");
+        addGradeButtonElement.addEventListener("click", function(){
+            while (addQuizGradeFormElement.firstChild) {
+                addQuizGradeFormElement.removeChild(addQuizGradeFormElement.firstChild);
+            }
+            addQuizGradeFormElement.appendChild(document.createElement("br"));
+
+            // quizID input
+            var id = document.createElement("input");
+            id.setAttribute('type', 'text');
+            id.setAttribute('placeholder', 'Enter Quiz ID');
+            id.name = "AddQuizGradeQuizID";
+            addQuizGradeFormElement.appendChild(id);
+            addQuizGradeFormElement.appendChild(document.createElement("br"));
+
+            // userEmail input
+            var id = document.createElement("input");
+            id.setAttribute('type', 'text');
+            id.setAttribute('placeholder', 'Enter Learner Email');
+            id.name = "AddQuizGradeLearnerEmail";
+            addQuizGradeFormElement.appendChild(id);
+            addQuizGradeFormElement.appendChild(document.createElement("br"));
+            
+            // score input
+            var id = document.createElement("input");
+            id.setAttribute('type', 'text');
+            id.setAttribute('placeholder', 'Enter Score (double)');
+            id.name = "AddQuizGradeScore";
+            addQuizGradeFormElement.appendChild(id);
+            addQuizGradeFormElement.appendChild(document.createElement("br"));
+
+            //submit btn
+            var submit = document.createElement("input");
+            submit.setAttribute('type','submit');
+            submit.className = "input-submit";
+            addQuizGradeFormElement.appendChild(submit);
+        });
+
+
+
+    </script>
 </body>
 </html>

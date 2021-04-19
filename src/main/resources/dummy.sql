@@ -95,26 +95,26 @@ INSERT INTO lesson (classCode, lessonName, startTime, endTime) VALUES ('ISTE.140
 INSERT INTO lesson (classCode, lessonName, startTime, endTime) VALUES ('ISTE.140', 'Milkshake Lesson', '2021-03-21 08:04:00', '2021-04-15 09:19:00');
 
 -- lectures
-INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 1', '4');
-INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 2', '4');
-INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 3', '4');
-INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 4', '4');
-INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 5', '4');
-INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 6', '4');
+INSERT INTO lectures (lectureName, multimedia, lessonID) VALUES ('Multimedia example 1', 'https://docs.google.com/document/d/1zZRII4WU4gzglWI7ne860p9pE5GiAGckVaDP-q2aai4/edit?usp=sharing', '4');
+INSERT INTO lectures (lectureName, multimedia, lessonID) VALUES ('Multimedia example 2', 'https://docs.google.com/document/d/1zZRII4WU4gzglWI7ne860p9pE5GiAGckVaDP-q2aai4/edit?usp=sharing', '4');
+INSERT INTO lectures (lectureName, multimedia, lessonID) VALUES ('Multimedia example 3', 'https://docs.google.com/document/d/1zZRII4WU4gzglWI7ne860p9pE5GiAGckVaDP-q2aai4/edit?usp=sharing', '4');
+INSERT INTO lectures (lectureName, multimedia, lessonID) VALUES ('Multimedia example 4', 'https://docs.google.com/document/d/1zZRII4WU4gzglWI7ne860p9pE5GiAGckVaDP-q2aai4/edit?usp=sharing', '4');
+INSERT INTO lectures (lectureName, multimedia, lessonID) VALUES ('Multimedia example 5', 'https://docs.google.com/document/d/1zZRII4WU4gzglWI7ne860p9pE5GiAGckVaDP-q2aai4/edit?usp=sharing', '4');
+INSERT INTO lectures (lectureName, multimedia, lessonID) VALUES ('Multimedia example 6', 'https://docs.google.com/document/d/1zZRII4WU4gzglWI7ne860p9pE5GiAGckVaDP-q2aai4/edit?usp=sharing', '4');
 
-INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 11', '14');
-INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 21', '14');
-INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 31', '14');
-INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 41', '14');
-INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 51', '14');
-INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 61', '14');
+INSERT INTO lectures (lectureName, multimedia, lessonID) VALUES ('Multimedia example 11', 'https://docs.google.com/document/d/1zZRII4WU4gzglWI7ne860p9pE5GiAGckVaDP-q2aai4/edit?usp=sharing', '14');
+INSERT INTO lectures (lectureName, multimedia, lessonID) VALUES ('Multimedia example 21', 'https://docs.google.com/document/d/1zZRII4WU4gzglWI7ne860p9pE5GiAGckVaDP-q2aai4/edit?usp=sharing', '14');
+INSERT INTO lectures (lectureName, multimedia, lessonID) VALUES ('Multimedia example 31', 'https://docs.google.com/document/d/1zZRII4WU4gzglWI7ne860p9pE5GiAGckVaDP-q2aai4/edit?usp=sharing', '14');
+INSERT INTO lectures (lectureName, multimedia, lessonID) VALUES ('Multimedia example 41', 'https://docs.google.com/document/d/1zZRII4WU4gzglWI7ne860p9pE5GiAGckVaDP-q2aai4/edit?usp=sharing', '14');
+INSERT INTO lectures (lectureName, multimedia, lessonID) VALUES ('Multimedia example 51', 'https://docs.google.com/document/d/1zZRII4WU4gzglWI7ne860p9pE5GiAGckVaDP-q2aai4/edit?usp=sharing', '14');
+INSERT INTO lectures (lectureName, multimedia, lessonID) VALUES ('Multimedia example 61', 'https://docs.google.com/document/d/1zZRII4WU4gzglWI7ne860p9pE5GiAGckVaDP-q2aai4/edit?usp=sharing', '14');
 
-INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 12', '24');
-INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 22', '24');
-INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 32', '24');
-INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 42', '24');
-INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 52', '24');
-INSERT INTO lectures (multimedia, lessonID) VALUES ('Multimedia example 62', '24');
+INSERT INTO lectures (lectureName, multimedia, lessonID) VALUES ('Multimedia example 12', 'https://docs.google.com/document/d/1zZRII4WU4gzglWI7ne860p9pE5GiAGckVaDP-q2aai4/edit?usp=sharing', '24');
+INSERT INTO lectures (lectureName, multimedia, lessonID) VALUES ('Multimedia example 22', 'https://docs.google.com/document/d/1zZRII4WU4gzglWI7ne860p9pE5GiAGckVaDP-q2aai4/edit?usp=sharing', '24');
+INSERT INTO lectures (lectureName, multimedia, lessonID) VALUES ('Multimedia example 32', 'https://docs.google.com/document/d/1zZRII4WU4gzglWI7ne860p9pE5GiAGckVaDP-q2aai4/edit?usp=sharing', '24');
+INSERT INTO lectures (lectureName, multimedia, lessonID) VALUES ('Multimedia example 42', 'https://docs.google.com/document/d/1zZRII4WU4gzglWI7ne860p9pE5GiAGckVaDP-q2aai4/edit?usp=sharing', '24');
+INSERT INTO lectures (lectureName, multimedia, lessonID) VALUES ('Multimedia example 52', 'https://docs.google.com/document/d/1zZRII4WU4gzglWI7ne860p9pE5GiAGckVaDP-q2aai4/edit?usp=sharing', '24');
+INSERT INTO lectures (lectureName, multimedia, lessonID) VALUES ('Multimedia example 62', 'https://docs.google.com/document/d/1zZRII4WU4gzglWI7ne860p9pE5GiAGckVaDP-q2aai4/edit?usp=sharing', '24');
 
 -- lesson rating (these are all admin accounts, but whatever)
 INSERT INTO lessonrating (userEmail, lessonID, rating) VALUES ('abp6318@rit.edu', '4', '5');
