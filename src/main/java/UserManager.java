@@ -36,7 +36,7 @@ public class UserManager {
         try {
             Class.forName(DEFAULT_DRIVER);
             conn = DriverManager.getConnection(url, userName, password);
-            System.out.println("\nCreated Connection!\n");
+            System.out.println("\nCreated Connection!\nhttp://localhost:4567/login \n");
         } catch (ClassNotFoundException cnfe) {
             System.out.println("ERROR, CAN NOT CONNECT!!");
             System.out.println("Class");
@@ -897,13 +897,17 @@ public class UserManager {
         }//end catch
     }
 
-    public void insertQuizQuestionSQL(String quizID, String questionNum, String questionContent, String questionAnswer){
+    public void insertQuizQuestionSQL(String quizID, String questionNum, String questionContent, String optionA, String optionB, String optionC, String optionD, String questionAnswer){
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO quizquestions(quizID, questionNum, questionContent, questionAnswer) VALUES (?, ?, ?, ?)");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO quizquestions(quizID, questionNum, questionContent, optionA, optionB, optionC, optionD, questionAnswer) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             stmt.setString(1, quizID);
             stmt.setString(2, questionNum);
             stmt.setString(3, questionContent);
-            stmt.setString(4, questionAnswer);
+            stmt.setString(4, optionA);
+            stmt.setString(5, optionB);
+            stmt.setString(6, optionC);
+            stmt.setString(7, optionD);
+            stmt.setString(8, questionAnswer);
             stmt.executeUpdate();
         }//end of try
         catch (SQLException sqle) {

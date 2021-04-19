@@ -188,13 +188,77 @@
             addQuizQuestionFormElement.appendChild(id);
             addQuizQuestionFormElement.appendChild(document.createElement("br"));
 
-            // questionAnswer input
+            // optionA input
             var id = document.createElement("input");
             id.setAttribute('type', 'text');
-            id.setAttribute('placeholder', 'Enter Question Answer');
-            id.name = "AddQuizQuestionQuestionAnswer";
+            id.setAttribute('placeholder', 'Enter Option A');
+            id.name = "AddQuizQuestionOptionA";
+            id.required = true;
             addQuizQuestionFormElement.appendChild(id);
             addQuizQuestionFormElement.appendChild(document.createElement("br"));
+
+            // optionB input
+            var id = document.createElement("input");
+            id.setAttribute('type', 'text');
+            id.setAttribute('placeholder', 'Enter Option B');
+            id.name = "AddQuizQuestionOptionB";
+            addQuizQuestionFormElement.appendChild(id);
+            addQuizQuestionFormElement.appendChild(document.createElement("br"));
+
+            // optionC input
+            var id = document.createElement("input");
+            id.setAttribute('type', 'text');
+            id.setAttribute('placeholder', 'Enter Option C');
+            id.name = "AddQuizQuestionOptionC";
+            addQuizQuestionFormElement.appendChild(id);
+            addQuizQuestionFormElement.appendChild(document.createElement("br"));
+
+            // optionD input
+            var id = document.createElement("input");
+            id.setAttribute('type', 'text');
+            id.setAttribute('placeholder', 'Enter Option D');
+            id.name = "AddQuizQuestionOptionD";
+            addQuizQuestionFormElement.appendChild(id);
+            addQuizQuestionFormElement.appendChild(document.createElement("br"));
+
+
+
+            // Creates the select list element
+            var selectList = document.createElement('select');
+            selectList.name = "AddQuizQuestionQuestionAnswer";
+            selectList.required = true;
+            addQuizQuestionFormElement.appendChild(selectList);
+
+            // Creates null Select option
+            var nullOption = document.createElement('option');
+            nullOption.text = "Select an Option";
+            nullOption.selected = this;
+            nullOption.disabled = true;
+            selectList.appendChild(nullOption);                
+
+            // Creates optionA
+            var newOption1 = document.createElement('option');
+            newOption1.value = "a";
+            newOption1.text = "A";
+            selectList.appendChild(newOption1);
+
+            // Creates optionB
+            var newOption2 = document.createElement('option');
+            newOption2.value = "b";
+            newOption2.text = "B";
+            selectList.appendChild(newOption2);
+
+            // Creates optionC
+            var newOption3 = document.createElement('option');
+            newOption3.value = "c";
+            newOption3.text = "C";
+            selectList.appendChild(newOption3);
+
+            // Creates optionD
+            var newOption4 = document.createElement('option');
+            newOption4.value = "d";
+            newOption4.text = "D";
+            selectList.appendChild(newOption4);
 
             //submit btn
             var submit = document.createElement("input");
