@@ -41,7 +41,7 @@
             <a href="/lecture" class="active">Lectures</a>
             <a href="/multimedia">Multimedia</a>
             <a href="/quiz">Quizzes</a>
-            <a href="/messagesDG">Discussion Messages</a>
+            <a href="/discussionP">Discussion Groups</a>
         </nav>
         <h2><#if classCode??>${classCode}</#if> Lessons</h2>
 

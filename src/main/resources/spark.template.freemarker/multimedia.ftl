@@ -37,11 +37,11 @@
 <body>
     <div class="content">
         <nav class="nav" id ="myNav">
-            <a href="/professor">Dashboard</a>
+            <a href="/learner">Dashboard</a>
             <a href="/lecture">Lectures</a>
             <a href="/multimedia" class="active">Multimedia</a>
             <a href="/quiz">Quizzes</a>
-            <a href="/messagesDG">Discussion Messages</a>
+            <a href="/discussionL">Discussion Groups</a>
         </nav>
         <h2>Multimedia</h2>
 
