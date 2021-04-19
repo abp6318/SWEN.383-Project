@@ -41,7 +41,7 @@
             <a href="/lecture">Lectures</a>
             <a href="/multimedia">Multimedia</a>
             <a href="/quiz">Quizzes</a>
-            <a href="/discussion">Discussion Groups</a>
+            <a href="/discussionP">Discussion Groups</a>
         </nav>
         <h1>${fname} ${lname}</h1>
         <h2>All Courses</h2>
@@ -59,7 +59,9 @@
                         <td>${class.classcode}</th>
                         <td>${class.className}</th>
                         <td>${class.profEmail}</th>
-                        <td><a href="#">Link</a></th>
+                        <td><form id="dis" action="/professor" method="POST">
+                            <button id="toLesson" type="submit" value=${class.classcode} name="classButton">Lessons</button><br>
+                        </form></td>
                     </tr>
             </#list>
         </table>

@@ -55,8 +55,8 @@
 <body>
 <div class="content">
     <nav class="nav" id ="myNav">
-        <a href="/admin">Dashboard</a>
-        <a href="/discussion" class="active">Discussion Groups</a>
+        <a href="/professor">Dashboard</a>
+        <a href="/discussionP" class="active">Discussion Groups</a>
         <a href="/feedback">Feedback Module</a>
     </nav>
     <h1>Create a Discussion Group</h1>

@@ -992,7 +992,7 @@ public class UserManager {
      */ 
     public void insertLessonStartTimeSQL(String lessonID, String startTime) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO lesson(lessonID, startTme) VALUES (?,?)");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO lesson(lessonID, startTime) VALUES (?,?)");
             stmt.setString(1, lessonID);
             stmt.setString(2, startTime);
             stmt.executeUpdate();
@@ -1063,7 +1063,7 @@ public class UserManager {
      */
     public void deleteLessonStartTimeSQL(String lessonID) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE lesson SET startTime='null' WHERE lessonID = ?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE lesson SET startTime=NULL WHERE lessonID = ?");
             stmt.setString(1, lessonID);
             stmt.executeUpdate();
         } catch (SQLException sqle) {
@@ -1078,7 +1078,7 @@ public class UserManager {
      */
     public void deleteLessonEndTimeSQL(String lessonID) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE lesson SET endTime='null' WHERE lessonID = ?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE lesson SET endTime=NULL WHERE lessonID = ?");
             stmt.setString(1, lessonID);
             stmt.executeUpdate();
         } catch (SQLException sqle) {
@@ -1148,11 +1148,16 @@ public class UserManager {
      * @param multimedia    Multimedia (link, text, etc.)
      * @param lessonID      A lesson's unique ID
      */
-    public void insertLectureSQL(String multimedia, String lessonID){
+    public void insertLectureSQL(String multimedia, String lessonID, String name){
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO lectures(multimedia, lessonID) VALUES (?, ?)");
-            stmt.setString(1, multimedia);
-            stmt.setString(2, lessonID);
+            System.out.println(multimedia);
+            System.out.println(lessonID);
+            System.out.println(name);
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO lectures(lectureName, multimedia, lessonID) VALUES (?, ?, ?)");
+            stmt.setString(1, name);
+            stmt.setString(2, multimedia);
+            stmt.setString(3, lessonID);
+            System.out.println(stmt);
             stmt.executeUpdate();
         }//end of try
         catch (SQLException sqle) {
@@ -1216,6 +1221,95 @@ public class UserManager {
             System.out.println("ERROR MESSAGE --> " + sqle);
         }//end catch
     }
+
+    /**
+     * Updates a lecture's name
+     * @param lectureID     A lecture's unique ID
+     * @param name          A lecture's name
+     */
+    public void updateLectureNameSQL(String lectureID, String name){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE lectures SET lectureName=? WHERE lectureID=?");
+            stmt.setString(1, name);
+            stmt.setString(2, lectureID);
+            stmt.executeUpdate();
+        }//end try
+        catch (SQLException sqle) {
+            System.out.println("\n\nERROR updateLectureNameSQL FAILED!!");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }//end catch
+    }
+
+    /**
+     * Gets all discussion groups a user is in
+     * @param classCode the class code
+     * @return a list of lessons
+     */
+    public List<Lesson> selectLessonsSQL(String classCode) {
+        String lessonIDReturned = "";
+        String lessonNameReturned = "";
+        String startDateReturned = "";
+        String endDateReturned = "";
+
+        List<Lesson> lessonList = new ArrayList<Lesson>();
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(
+                    "SELECT lessonID, lessonName, startTime, endTime FROM lesson WHERE classCode=?");
+            preparedStatement.setString(1, classCode);
+            rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                lessonIDReturned = rs.getString(1);
+                lessonNameReturned = rs.getString(2);
+                startDateReturned = rs.getString(3);
+                endDateReturned = rs.getString(4);
+                System.out.println(lessonIDReturned + " " + lessonNameReturned + " " + startDateReturned + " " + endDateReturned);
+                Lesson l = new Lesson(lessonIDReturned, classCode, lessonNameReturned, startDateReturned, endDateReturned);
+                lessonList.add(l);
+            }
+            return lessonList;
+
+        } catch (SQLException sqle) {
+            System.out.println("\n\nSELECT FROM LESSONS FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * Gets all discussion groups a user is in
+     * @param lessonID the lesson ID
+     * @return a list of lectures
+     */
+    public List<Lecture> selectLecturesSQL(String lessonID) {
+        String multimediaReturned = "";
+        String lectureID = "";
+        String lectureName = "";
+
+        List<Lecture> lectureList = new ArrayList<Lecture>();
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(
+                    "SELECT lectureID, lectureName, multimedia FROM lectures WHERE lessonID=?");
+            preparedStatement.setString(1, lessonID);
+            rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                lectureID = rs.getString(1);
+                lectureName = rs.getString(2);
+                multimediaReturned = rs.getString(3);
+                System.out.println(lessonID + " " + lectureID + " " + lectureName + " " + multimediaReturned);
+                Lecture l = new Lecture(lessonID, multimediaReturned, lectureID, lectureName);
+                lectureList.add(l);
+            }
+            return lectureList;
+
+        } catch (SQLException sqle) {
+            System.out.println("\n\nSELECT FROM LECTURE FAILED!!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+        return null;
+    }
+
 
     // TODO: Get Multimedia/Documents/Materials for lessons
 
