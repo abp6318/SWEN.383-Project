@@ -69,7 +69,7 @@
 <div class="content">
 	<nav class="nav" id ="myNav">
         <a href="/admin">Dashboard</a>
-        <a href="/discussion" >Discussion Groups</a>
+        <a href="/discussionA" >Discussion Groups</a>
         <a href="/feedback" class="active">Feedback Module</a>
     </nav>
 	<div class="flex">

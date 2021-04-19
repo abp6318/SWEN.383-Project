@@ -55,10 +55,11 @@
 <body>
 <div class="content">
     <nav class="nav" id ="myNav">
-        <a href="/professor">Dashboard</a>
-        <a href="/discussionP" class="active">Discussion Groups</a>
-        <a href="/feedback">Feedback Module</a>
-    </nav>
+            <a href="/professor">Dashboard</a>
+            <a href="/lecture">Lectures</a>
+            <a href="/quiz">Quizzes</a>
+            <a href="/discussionP" class="active">Discussion Groups</a>
+        </nav>
     <h1>Create a Discussion Group</h1>
 
     <form id="dis" action="/discussion" method="POST">

@@ -32,6 +32,28 @@
           text-decoration: none;
           font-size: 17px;
         }
+        h2 {
+          text-decoration: underline overline dotted black;
+        }
+
+        .nav {
+          overflow: hidden;
+        }
+        .content {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 10px;
+            height: 100%;
+        }
+        body {
+            background-color: #F8D7FD;
+        }
+        .flexbox {
+            display: flex;
+            justify-content: space-evenly;
+            padding: 10px;
+        }
     </style>
 </head>
 <body>
@@ -39,7 +61,6 @@
         <nav class="nav" id ="myNav">
             <a href="/professor" class="active">Dashboard</a>
             <a href="/lecture">Lectures</a>
-            <a href="/multimedia">Multimedia</a>
             <a href="/quiz">Quizzes</a>
             <a href="/discussionP">Discussion Groups</a>
         </nav>
