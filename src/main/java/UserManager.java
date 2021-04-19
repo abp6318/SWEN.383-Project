@@ -882,6 +882,62 @@ public class UserManager {
         }//end of catch
     } 
 
+    public void insertQuizSQL(String name, String timeLimit, String creatorEmail, String classCode){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO quiz(name, timeLimit, creatorEmail, classCode) VALUES (?, ?, ?, ?)");
+            stmt.setString(1, name);
+            stmt.setString(2, timeLimit);
+            stmt.setString(3, creatorEmail);
+            stmt.setString(4, classCode);
+            stmt.executeUpdate();
+        }//end of try
+        catch (SQLException sqle) {
+            System.out.println("ERROR IN >>insertQuizSQL<< !!!!!");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }//end catch
+    }
+
+    public void insertQuizQuestionSQL(String quizID, String questionNum, String questionContent, String questionAnswer){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO quizquestions(quizID, questionNum, questionContent, questionAnswer) VALUES (?, ?, ?, ?)");
+            stmt.setString(1, quizID);
+            stmt.setString(2, questionNum);
+            stmt.setString(3, questionContent);
+            stmt.setString(4, questionAnswer);
+            stmt.executeUpdate();
+        }//end of try
+        catch (SQLException sqle) {
+            System.out.println("ERROR IN >>insertQuizQuestionSQL<< !!!!!");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }//end catch
+    }
+
+    public void deleteQuizSQL(String quizID, String creatorEmail){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM quiz WHERE quizID=? AND creatorEmail=?");
+            stmt.setString(1, quizID);
+            stmt.setString(2, creatorEmail);
+            stmt.executeUpdate();
+        }//end of try
+        catch (SQLException sqle) {
+            System.out.println("ERROR IN >>deleteQuiz<< !!!!!!");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }//end of catch
+    }
+
+    public void deleteQuizQuestionSQL(String quizID, String questionNum){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM quizquestions WHERE quizID=? AND questionNum=?");
+            stmt.setString(1, quizID);
+            stmt.setString(2, questionNum);
+            stmt.executeUpdate();
+        }//end of try
+        catch (SQLException sqle) {
+            System.out.println("ERROR IN >>deleteQuizQuestionSQL<< !!!!!!");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }//end of catch
+    }
+
     /**
      * Method that gets quiz questions 
      * @param quizID the id of the quiz to return
@@ -1037,7 +1093,7 @@ public class UserManager {
      * @param userEmail the user who took the quiz
      * @param score the score to be inserted
      */
-    public void insertQuizScore (String quizID, String userEmail, String score) {
+    public void insertQuizScoreSQL (String quizID, String userEmail, String score) {
         try {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO quizUserScore(quizID,userEmail,score) VALUES(?,?,?)");
             stmt.setString(1, quizID);
