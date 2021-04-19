@@ -14,14 +14,14 @@ import java.util.logging.Logger;
 
 
 
-public class GetDiscussionRoute implements Route{
+public class GetDiscussionLRoute implements Route{
 
-    private static final Logger LOGGER = Logger.getLogger(GetDiscussionRoute.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(GetDiscussionLRoute.class.getName());
 
     private final Configuration conf;
     private UserManager manager;
 
-    public GetDiscussionRoute(UserManager manager, Configuration conf){
+    public GetDiscussionLRoute(UserManager manager, Configuration conf){
         this.conf = conf;
         this.manager = manager;
         LOGGER.config("GetDiscussionRoute Created");
@@ -55,7 +55,7 @@ public class GetDiscussionRoute implements Route{
             viewModel.put("allGroups", allGroups.iterator());
 
 
-            Template template = conf.getTemplate("discussion.ftl");
+            Template template = conf.getTemplate("discussionL.ftl");
             StringWriter writer = new StringWriter();
             template.process(viewModel, writer);
 

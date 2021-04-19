@@ -9,20 +9,20 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpSession;
 
-public class PostDiscussionRoute implements Route {
+public class PostDiscussionARoute implements Route {
 
-    private static final Logger LOGGER = Logger.getLogger(PostDiscussionRoute.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(PostDiscussionARoute.class.getName());
 
     private UserManager manager;
 
-    public PostDiscussionRoute(UserManager manager, TemplateEngine engine) {
+    public PostDiscussionARoute(UserManager manager, TemplateEngine engine) {
         this.manager = manager;
         LOGGER.config("PostDiscussionRoute Created");
     }
 
     @Override
     public Object handle(Request request, Response response) {
-        LOGGER.info("POST /discussion");
+        LOGGER.info("POST /discussionA");
 
         String addGroupName = request.queryParams("addDiscussionName");
         String addDiscussionEmail = request.queryParams("addDiscussionEmail");
@@ -56,7 +56,7 @@ public class PostDiscussionRoute implements Route {
 
         }
 
-        response.redirect(WebServer.DISCUSSION, HttpURLConnection.HTTP_MOVED_PERM);
+        response.redirect(WebServer.DISCUSSIONA, HttpURLConnection.HTTP_MOVED_PERM);
 
         return null;
     }

@@ -41,7 +41,7 @@
             <a href="/lecture">Lectures</a>
             <a href="/multimedia">Multimedia</a>
             <a href="/quiz">Quizzes</a>
-            <a href="/messagesDG">Discussion Messages</a>
+            <a href="/discussionP">Discussion Groups</a>
         </nav>
         <h1>${fname} ${lname}</h1>
         <h2>All Courses</h2>
