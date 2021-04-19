@@ -107,8 +107,6 @@ public class PostLectureRoute implements Route {
         }
 
         if(addLectureName != null && !addLectureName.equals("") && addMultimedia != null & !addMultimedia.equals("") && addLessonID != null && !addLessonID.equals("")){
-            LOGGER.info("ADDING LECTURE WITH NAME " + addLectureName + " with mutimedia " + addMultimedia + ": " + addLessonID);
-
             manager.insertLectureSQL(addMultimedia, addLessonID, addLectureName);
         }
 
