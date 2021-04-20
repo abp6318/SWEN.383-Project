@@ -174,6 +174,10 @@
         var deleteLectureButton = document.getElementById("deleteLectureButton");
 // Add lessons button
         aBtn.addEventListener("click", function() {
+
+            var br0 = document.createElement("br");
+    		addLessonButton.appendChild(br0);
+
             var lessonName = document.createElement("input");
     		lessonName.setAttribute('type', 'text');
     		lessonName.setAttribute('placeholder', 'Enter Lesson Name');
@@ -209,139 +213,154 @@
         });
 // Delete lessons button
         dBtn.addEventListener("click", function() {
+
+            var br0 = document.createElement("br");
+    		deleteLessonButton.appendChild(br0);
+
             var lessonID = document.createElement("input");
             lessonID.setAttribute('type', 'text');
             lessonID.setAttribute('placeholder', 'Enter Lesson ID');
             lessonID.name = "deleteLessonID";
             lessonID.required = true;
-            f.appendChild(lessonID);
+            deleteLessonButton.appendChild(lessonID);
 
             var br = document.createElement("br");
-            f.appendChild(br);
+            deleteLessonButton.appendChild(br);
 
             var submit = document.createElement("input");
             submit.setAttribute('type','submit');
             submit.className = "input-submit";
-            f.appendChild(submit);
+            deleteLessonButton.appendChild(submit);
         });
 // Update lesson times for lecture button
         uBtn.addEventListener("click", function() {
+
+            var br0 = document.createElement("br");
+    		updateLessonTimeButton.appendChild(br0);
+
             var lessonID = document.createElement("input");
             lessonID.setAttribute('type', 'text');
             lessonID.setAttribute('placeholder', 'Enter Lesson ID');
             lessonID.name = "updateTimeLessonID";
             lessonID.required = true;
-            f.appendChild(lessonID);
+            updateLessonTimeButton.appendChild(lessonID);
 
             var br = document.createElement("br");
-            f.appendChild(br);
+            updateLessonTimeButton.appendChild(br);
 
             var start = document.createElement("input");
             start.setAttribute('type', 'date');
             start.setAttribute('placeholder', 'Enter New Start Time');
             start.name = "updatedStartTime";
-            f.appendChild(start);
+            updateLessonTimeButton.appendChild(start);
 
             var br1 = document.createElement("br");
-            f.appendChild(br1);
+            updateLessonTimeButton.appendChild(br1);
 
             var end = document.createElement("input");
             end.setAttribute('type', 'date');
             end.setAttribute('placeholder', 'Enter New End Time');
             end.name = "updatedEndTime";
-            f.appendChild(end);
+            updateLessonTime.appendChild(end);
 
             var br2 = document.createElement("br");
-            f.appendChild(br2);
+            updateLessonTimeButton.appendChild(br2);
 
             var submit = document.createElement("input");
             submit.setAttribute('type','submit');
             submit.className = "input-submit";
-            f.appendChild(submit);
+            updateLessonTimeButton.appendChild(submit);
         });
 // Delete lesson time button
         dtBtn.addEventListener("click", function() {
+
+           var br0 = document.createElement("br");
+    	    deleteLessonTimeButton.appendChild(br0);
+
            var lessonID = document.createElement("input");
            lessonID.setAttribute('type', 'text');
            lessonID.setAttribute('placeholder', 'Enter Lesson ID');
            lessonID.name = "deleteTimeLessonID";
            lessonID.required = true;
-           f.appendChild(lessonID);
+           deleteLessonTimeButton.appendChild(lessonID);
 
            var br = document.createElement("br");
-           f.appendChild(br);
+           deleteLessonTimeButton.appendChild(br);
 
            var start = document.createElement("input");
            start.setAttribute('type', 'text');
            start.setAttribute('placeholder', 'Enter \'Start\' or \'End\'');
            start.name = "deleteTime";
-           f.appendChild(start);
+           deleteLessonTimeButton.appendChild(start);
 
            var br1 = document.createElement("br");
-           f.appendChild(br1);
+           deleteLessonTimeButton.appendChild(br1);
 
            var submit = document.createElement("input");
            submit.setAttribute('type','submit');
            submit.className = "input-submit";
-           f.appendChild(submit);
+           deleteLessonTimeButton.appendChild(submit);
        });
 // Delete Lecture Button
        if(dlecBtn != null){
            dlecBtn.addEventListener("click", function() {
 
-                 var lectureID = document.createElement("input");
-                 lectureID.setAttribute('type', 'text');
-                 lectureID.setAttribute('placeholder', 'Enter Lecture ID');
-                 lectureID.name = "deleteLectureID";
-                 lectureID.required = true;
-                 f1.appendChild(lectureID);
+            var br0 = document.createElement("br");
+    		deleteLectureButton.appendChild(br0);
 
-                 var br2 = document.createElement("br");
-                 f1.appendChild(br2);
+            var lectureID = document.createElement("input");
+            lectureID.setAttribute('type', 'text');
+            lectureID.setAttribute('placeholder', 'Enter Lecture ID');
+            lectureID.name = "deleteLectureID";
+            lectureID.required = true;
+            deleteLectureButton.appendChild(lectureID);
 
-                  var submit = document.createElement("input");
-                  submit.setAttribute('type','submit');
-                  submit.className = "input-submit";
-                  f1.appendChild(submit);
-              });
+            var br2 = document.createElement("br");
+            deleteLectureButton.appendChild(br2);
+
+            var submit = document.createElement("input");
+            submit.setAttribute('type','submit');
+            submit.className = "input-submit";
+            deleteLectureButton.appendChild(submit);
+            });
         }
 // Update lecture fields button
        if(ulecBtn != null){
             ulecBtn.addEventListener("click", function() {
 
-                  var lectureID = document.createElement("input");
-                  lectureID.setAttribute('type', 'text');
-                  lectureID.setAttribute('placeholder', 'Enter Lecture ID');
-                  lectureID.name = "updateLectureID";
-                  lectureID.required = true;
-                  f1.appendChild(lectureID);
+            var lectureID = document.createElement("input");
+            lectureID.setAttribute('type', 'text');
+            lectureID.setAttribute('placeholder', 'Enter Lecture ID');
+            lectureID.name = "updateLectureID";
+            lectureID.required = true;
+            updateLectureButton.appendChild(lectureID);
 
-                  var br2 = document.createElement("br");
-                  f1.appendChild(br2);
+            var br2 = document.createElement("br");
+            updateLectureButton.appendChild(br2);
 
-                   var lectureName = document.createElement("input");
-                   lectureName.setAttribute('type', 'text');
-                   lectureName.setAttribute('placeholder', 'Enter Lecture Name');
-                   lectureName.name = "updateLectureName";
-                   f1.appendChild(lectureName);
+            var lectureName = document.createElement("input");
+            lectureName.setAttribute('type', 'text');
+            lectureName.setAttribute('placeholder', 'Enter Lecture Name');
+            lectureName.name = "updateLectureName";
+            updateLectureButton.appendChild(lectureName);
 
-                   var br = document.createElement("br");
-                   f1.appendChild(br);
+            var br = document.createElement("br");
+            updateLectureButton.appendChild(br);
 
-                   var miltimedia = document.createElement("input");
-                   miltimedia.setAttribute('type', 'text');
-                   miltimedia.setAttribute('placeholder', 'Enter Multimedia Link');
-                   miltimedia.name = "updateMultimedia";
-                   f1.appendChild(miltimedia);
+            var miltimedia = document.createElement("input");
+            miltimedia.setAttribute('type', 'text');
+            miltimedia.setAttribute('placeholder', 'Enter Multimedia Link');
+            miltimedia.name = "updateMultimedia";
+            updateLectureButton.appendChild(miltimedia);
 
-                   var br1 = document.createElement("br");
-                   f1.appendChild(br1);
+            var br1 = document.createElement("br");
+            updateLectureButton.appendChild(br1);
 
-                   var submit = document.createElement("input");
-                   submit.setAttribute('type','submit');
-                   submit.className = "input-submit";
-                   f1.appendChild(submit);
-               });
+            var submit = document.createElement("input");
+            submit.setAttribute('type','submit');
+            submit.className = "input-submit";
+            updateLectureButton.appendChild(submit);
+            });
        }
 // Add lectures button
        if(alecBtn != null){
@@ -352,35 +371,35 @@
                     lessonID.setAttribute('placeholder', 'Enter Lesson ID');
                     lessonID.name = "addLessonID";
                     lessonID.required = true;
-                    f1.appendChild(lessonID);
+                    addLectureButton.appendChild(lessonID);
 
                     var br = document.createElement("br");
-                    f1.appendChild(br);
+                    addLectureButton.appendChild(br);
 
                   var lectureName = document.createElement("input");
                   lectureName.setAttribute('type', 'text');
                   lectureName.setAttribute('placeholder', 'Enter Lecture Name');
                   lectureName.name = "addLectureName";
                   lectureName.required = true;
-                  f1.appendChild(lectureName);
+                  addLectureButton.appendChild(lectureName);
 
                   var br = document.createElement("br");
-                  f1.appendChild(br);
+                  addLectureButton.appendChild(br);
 
                   var miltimedia = document.createElement("input");
                   miltimedia.setAttribute('type', 'text');
                   miltimedia.setAttribute('placeholder', 'Enter Multimedia Link');
                   miltimedia.name = "addMultimedia";
                   miltimedia.required = true;
-                  f1.appendChild(miltimedia);
+                  addLectureButton.appendChild(miltimedia);
 
                   var br1 = document.createElement("br");
-                  f1.appendChild(br1);
+                  addLectureButton.appendChild(br1);
 
                   var submit = document.createElement("input");
                   submit.setAttribute('type','submit');
                   submit.className = "input-submit";
-                  f1.appendChild(submit);
+                  addLectureButton.appendChild(submit);
               });
       }
 
