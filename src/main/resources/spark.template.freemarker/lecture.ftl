@@ -197,7 +197,7 @@
 
     		var end = document.createElement("input");
             end.setAttribute('type', 'date');
-            end.setAttribute('placeholder', 'Enter Email');
+            end.setAttribute('placeholder', 'Enter End Date');
             end.name = "addLessonEndTime";
             addLessonButton.appendChild(end);
 
@@ -259,7 +259,7 @@
             end.setAttribute('type', 'date');
             end.setAttribute('placeholder', 'Enter New End Time');
             end.name = "updatedEndTime";
-            updateLessonTime.appendChild(end);
+            updateLessonTimeButton.appendChild(end);
 
             var br2 = document.createElement("br");
             updateLessonTimeButton.appendChild(br2);
