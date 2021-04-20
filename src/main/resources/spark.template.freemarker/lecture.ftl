@@ -273,7 +273,7 @@
         dtBtn.addEventListener("click", function() {
 
            var br0 = document.createElement("br");
-    	    deleteLessonTimeButton.appendChild(br0);
+    	   deleteLessonTimeButton.appendChild(br0);
 
            var lessonID = document.createElement("input");
            lessonID.setAttribute('type', 'text');
@@ -301,7 +301,7 @@
        });
 // Delete Lecture Button
        if(dlecBtn != null){
-           dlecBtn.addEventListener("click", function() {
+            dlecBtn.addEventListener("click", function() {
 
             var br0 = document.createElement("br");
     		deleteLectureButton.appendChild(br0);
@@ -325,6 +325,9 @@
 // Update lecture fields button
        if(ulecBtn != null){
             ulecBtn.addEventListener("click", function() {
+
+            var br0 = document.createElement("br");
+    		updateLectureButton.appendChild(br0);
 
             var lectureID = document.createElement("input");
             lectureID.setAttribute('type', 'text');
@@ -364,43 +367,45 @@
        if(alecBtn != null){
            alecBtn.addEventListener("click", function() {
 
-                  var lessonID = document.createElement("input");
-                    lessonID.setAttribute('type', 'text');
-                    lessonID.setAttribute('placeholder', 'Enter Lesson ID');
-                    lessonID.name = "addLessonID";
-                    lessonID.required = true;
-                    addLectureButton.appendChild(lessonID);
+            var br0 = document.createElement("br");
+    		addLectureButton.appendChild(br0);
 
-                    var br = document.createElement("br");
-                    addLectureButton.appendChild(br);
+            var lessonID = document.createElement("input");
+            lessonID.setAttribute('type', 'text');
+            lessonID.setAttribute('placeholder', 'Enter Lesson ID');
+            lessonID.name = "addLessonID";
+            lessonID.required = true;
+            addLectureButton.appendChild(lessonID);
 
-                  var lectureName = document.createElement("input");
-                  lectureName.setAttribute('type', 'text');
-                  lectureName.setAttribute('placeholder', 'Enter Lecture Name');
-                  lectureName.name = "addLectureName";
-                  lectureName.required = true;
-                  addLectureButton.appendChild(lectureName);
+            var br = document.createElement("br");
+            addLectureButton.appendChild(br);
 
-                  var br = document.createElement("br");
-                  addLectureButton.appendChild(br);
+            var lectureName = document.createElement("input");
+            lectureName.setAttribute('type', 'text');
+            lectureName.setAttribute('placeholder', 'Enter Lecture Name');
+            lectureName.name = "addLectureName";
+            lectureName.required = true;
+            addLectureButton.appendChild(lectureName);
 
-                  var miltimedia = document.createElement("input");
-                  miltimedia.setAttribute('type', 'text');
-                  miltimedia.setAttribute('placeholder', 'Enter Multimedia Link');
-                  miltimedia.name = "addMultimedia";
-                  miltimedia.required = true;
-                  addLectureButton.appendChild(miltimedia);
+            var br = document.createElement("br");
+            addLectureButton.appendChild(br);
 
-                  var br1 = document.createElement("br");
-                  addLectureButton.appendChild(br1);
+            var miltimedia = document.createElement("input");
+            miltimedia.setAttribute('type', 'text');
+            miltimedia.setAttribute('placeholder', 'Enter Multimedia Link');
+            miltimedia.name = "addMultimedia";
+            miltimedia.required = true;
+            addLectureButton.appendChild(miltimedia);
 
-                  var submit = document.createElement("input");
-                  submit.setAttribute('type','submit');
-                  submit.className = "input-submit";
-                  addLectureButton.appendChild(submit);
+            var br1 = document.createElement("br");
+            addLectureButton.appendChild(br1);
+
+            var submit = document.createElement("input");
+            submit.setAttribute('type','submit');
+            submit.className = "input-submit";
+            addLectureButton.appendChild(submit);
               });
       }
-
     </script>
 </body>
 </html>
