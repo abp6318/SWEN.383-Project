@@ -38,8 +38,6 @@
     <div class="content">
         <nav class="nav" id ="myNav">
             <a href="/professor">Dashboard</a>
-            <a href="/lecture">Lectures</a>
-            <a href="/multimedia">Multimedia</a>
             <a href="/quiz">Quizzes</a>
             <a href="/messagesDG" class="active">Discussion Messages</a>
         </nav>

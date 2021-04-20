@@ -60,7 +60,6 @@
     <div class="content">
         <nav class="nav" id ="myNav">
             <a href="/professor" class="active">Dashboard</a>
-            <a href="/lecture">Lectures</a>
             <a href="/quiz">Quizzes</a>
             <a href="/discussionP">Discussion Groups</a>
         </nav>
@@ -77,13 +76,13 @@
             </tr>
             <#list classes as class>
                 <tr>
-                        <td>${class.classcode}</th>
-                        <td>${class.className}</th>
-                        <td>${class.profEmail}</th>
-                        <td><form id="dis" action="/professor" method="POST">
-                            <button id="toLesson" type="submit" value=${class.classcode} name="classButton">Lessons</button><br>
-                        </form></td>
-                    </tr>
+                    <td>${class.classcode}</th>
+                    <td>${class.className}</th>
+                    <td>${class.profEmail}</th>
+                    <td><form id="dis" action="/professor" method="POST">
+                        <button id="toLesson" type="submit" value=${class.classcode} name="classButton">Lessons</button><br>
+                    </form></td>
+                </tr>
             </#list>
         </table>
 

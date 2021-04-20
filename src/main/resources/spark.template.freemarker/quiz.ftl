@@ -61,7 +61,6 @@
     <div class="content">
         <nav class="nav" id ="myNav">
             <a href="/professor">Dashboard</a>
-            <a href="/lecture">Lectures</a>
             <a href="/quiz" class="active">Quizzes</a>
             <a href="/discussionP">Discussion Groups</a>
         </nav>

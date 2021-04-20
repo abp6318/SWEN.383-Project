@@ -56,7 +56,7 @@ public class PostDiscussionPRoute implements Route {
 
         }
 
-        response.redirect(WebServer.DISCUSSION, HttpURLConnection.HTTP_MOVED_PERM);
+        response.redirect(WebServer.DISCUSSIONP, HttpURLConnection.HTTP_MOVED_PERM);
 
         return null;
     }
