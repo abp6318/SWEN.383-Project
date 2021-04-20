@@ -26,7 +26,6 @@
             color: black;
         }
         .nav a {
-
           float: left;
           display: block;
           color: black;
@@ -38,12 +37,11 @@
         h2 {
           text-decoration: underline overline dotted black;
         }
-
         .nav {
           overflow: hidden;
         }
         .content {
-            width: 40%;
+            width: 60%;
             margin: auto;
             background: white;
             padding: 10px;
@@ -151,7 +149,7 @@
 
              <#if multimediaLink??>
                  <h2>Content</h2>
-                 <iframe src="${multimediaLink}" width="800" height="300" title="Lesson Multimedia"></iframe>
+                 <iframe src="${multimediaLink}" width=100% height=600px title="Lesson Multimedia"></iframe>
              </#if>
 
     </div>

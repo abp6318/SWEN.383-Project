@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-            td{
+            td {
                 border:thin solid black;
                 padding-left: 5px;
                 padding-right: 15px;
             }
-            th{
+            th {
                 text-align: left;
             }
-            .nav a:hover{
+            .nav a:hover {
                 background-color: #F8D7FD;
                 color: black;
             }
@@ -23,7 +23,6 @@
                 color: black;
             }
             .nav a {
-
               float: left;
               display: block;
               color: black;
@@ -32,7 +31,6 @@
               text-decoration: none;
               font-size: 17px;
             }
-
             .flexbox {
                 display: flex;
                 justify-content: space-evenly;
@@ -41,7 +39,6 @@
             h2 {
               text-decoration: underline overline dotted black;
             }
-
             .nav {
               overflow: hidden;
             }
@@ -58,7 +55,6 @@
         </style>
 </head>
 <body>
-
     <div class="content">
         <nav class="nav" id ="myNav">
             <a href="/professor">Dashboard</a>
@@ -66,7 +62,6 @@
             <a href="/discussionP">Discussion Groups</a>
         </nav>
         <h2>Quiz Display</h2>
-
         <form>
             <#list questions as question>
                 <p>${question.questionNum}. ${question.questionContent}</p>
@@ -89,8 +84,5 @@
             </#list>
         </form>
     </div>
-
-
-
 </body>
 </html>

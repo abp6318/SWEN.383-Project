@@ -6,14 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
     <style>
-        td{
+        td {
             border:thin solid black;
             padding-left: 5px;
             padding-right: 15px;
         }
-        th{
+        th {
             text-align: left;
         }
+        hr {
+            border: 2px solid #F8D7FD;
+            width: 100%;
+            }
         .nav a:hover{
             background-color: #F8D7FD;
             color: black;
@@ -23,7 +27,6 @@
             color: black;
         }
         .nav a {
-
           float: left;
           display: block;
           color: black;
@@ -32,16 +35,15 @@
           text-decoration: none;
           font-size: 17px;
         }
-
         .flexbox {
             display: flex;
             justify-content: space-evenly;
             padding: 10px;
+            flex-direction: column;
         }
         h2 {
           text-decoration: underline overline dotted black;
         }
-
         .nav {
           overflow: hidden;
         }
@@ -72,31 +74,31 @@
                 <input id="display" value="Display Quiz" type="button">
                 <form action="/quizDisplay" method="GET" id="DisplayQuizForm"></form>
             </div>
-
+            <hr>
             <!-- Button to add quiz -->
             <div id="addQuiz">
                 <input id="add" value="Add Quiz" type="button">
                 <form action="/quiz" method="POST" id="AddQuizForm"></form>
             </div>
-
+            <hr>
             <!-- Button to add a quiz question -->
             <div id="addQuizQuestion">
                 <input id="addQuestion" value="Add Quiz Question" type="button">
                 <form action="/quiz" method="POST" id="AddQuizQuestionForm"></form>
             </div>
-
+            <hr>
             <!-- Button to delete quiz -->
             <div id="deleteQuiz">
                 <input id="delete" value="Delete Quiz" type="button">
                 <form action="/quiz" method="POST" id="DeleteQuizForm"></form>
             </div>
-
+            <hr>
             <!-- Button to delete a quiz question -->
             <div id="deleteQuizQuestion">
                 <input id="deleteQuestion" value="Delete Quiz Question" type="button">
                 <form action="/quiz" method="POST" id="DeleteQuizQuestionForm"></form>
             </div>
-
+            <hr>
             <!-- Button to add a quiz grade -->
             <div id="addQuizGrade">
                 <input id="addGrade" value="Add Quiz Grade" type="button">
@@ -150,10 +152,10 @@
             displayQuizFormElement.appendChild(submit);
         });
 
-        // addQuiz section
-        var addButtonElement = document.getElementById("add");
-        var addQuizFormElement = document.getElementById("AddQuizForm");
-        addButtonElement.addEventListener("click", function(){
+            // addQuiz section
+            var addButtonElement = document.getElementById("add");
+            var addQuizFormElement = document.getElementById("AddQuizForm");
+            addButtonElement.addEventListener("click", function(){
             while (addQuizFormElement.firstChild) {
                 addQuizFormElement.removeChild(addQuizFormElement.firstChild);
             }
@@ -192,10 +194,10 @@
             addQuizFormElement.appendChild(submit);
         });
 
-        // addQuizQuestion section
-        var addQuestionButtonElement = document.getElementById("addQuestion");
-        var addQuizQuestionFormElement = document.getElementById("AddQuizQuestionForm");
-        addQuestionButtonElement.addEventListener("click", function(){
+            // addQuizQuestion section
+            var addQuestionButtonElement = document.getElementById("addQuestion");
+            var addQuizQuestionFormElement = document.getElementById("AddQuizQuestionForm");
+            addQuestionButtonElement.addEventListener("click", function(){
             while (addQuizQuestionFormElement.firstChild) {
                 addQuizQuestionFormElement.removeChild(addQuizQuestionFormElement.firstChild);
             }
@@ -258,8 +260,6 @@
             addQuizQuestionFormElement.appendChild(id);
             addQuizQuestionFormElement.appendChild(document.createElement("br"));
 
-
-
             // Creates the select list element
             var selectList = document.createElement('select');
             selectList.name = "AddQuizQuestionQuestionAnswer";
@@ -304,10 +304,10 @@
             addQuizQuestionFormElement.appendChild(submit);
         });
 
-        // deleteQuiz section
-        var deleteButtonElement = document.getElementById("delete");
-        var deleteQuizFormElement = document.getElementById("DeleteQuizForm");
-        deleteButtonElement.addEventListener("click", function(){
+            // deleteQuiz section
+            var deleteButtonElement = document.getElementById("delete");
+            var deleteQuizFormElement = document.getElementById("DeleteQuizForm");
+            deleteButtonElement.addEventListener("click", function(){
             while (deleteQuizFormElement.firstChild) {
                 deleteQuizFormElement.removeChild(deleteQuizFormElement.firstChild);
             }
@@ -331,11 +331,11 @@
         });
 
         // deleteQuizQuestion section
-        var deleteQuestionButtonElement = document.getElementById("deleteQuestion");
-        var deleteQuizQuestionFormElement = document.getElementById("DeleteQuizQuestionForm");
-        deleteQuestionButtonElement.addEventListener("click", function(){
-            while (deleteQuizQuestionFormElement.firstChild) {
-                deleteQuizQuestionFormElement.removeChild(deleteQuizQuestionFormElement.firstChild);
+            var deleteQuestionButtonElement = document.getElementById("deleteQuestion");
+            var deleteQuizQuestionFormElement = document.getElementById("DeleteQuizQuestionForm");
+            deleteQuestionButtonElement.addEventListener("click", function(){
+                while (deleteQuizQuestionFormElement.firstChild) {
+                    deleteQuizQuestionFormElement.removeChild(deleteQuizQuestionFormElement.firstChild);
             }
             deleteQuizQuestionFormElement.appendChild(document.createElement("br"));
 
@@ -362,13 +362,13 @@
             deleteQuizQuestionFormElement.appendChild(submit);
         });
 
-        // addQuizGrade section
-        var addGradeButtonElement = document.getElementById("addGrade");
-        var addQuizGradeFormElement = document.getElementById("AddQuizGradeForm");
-        addGradeButtonElement.addEventListener("click", function(){
-            while (addQuizGradeFormElement.firstChild) {
-                addQuizGradeFormElement.removeChild(addQuizGradeFormElement.firstChild);
-            }
+            // addQuizGrade section
+            var addGradeButtonElement = document.getElementById("addGrade");
+            var addQuizGradeFormElement = document.getElementById("AddQuizGradeForm");
+            addGradeButtonElement.addEventListener("click", function(){
+                while (addQuizGradeFormElement.firstChild) {
+                    addQuizGradeFormElement.removeChild(addQuizGradeFormElement.firstChild);
+                }
             addQuizGradeFormElement.appendChild(document.createElement("br"));
 
             // quizID input
@@ -401,9 +401,6 @@
             submit.className = "input-submit";
             addQuizGradeFormElement.appendChild(submit);
         });
-
-
-
     </script>
 </body>
 </html>
