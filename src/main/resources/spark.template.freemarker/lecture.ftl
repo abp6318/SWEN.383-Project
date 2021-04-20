@@ -14,6 +14,9 @@
         th{
             text-align: left;
         }
+        hr {
+            border: 2px solid #F8D7FD;
+        }
         .nav a:hover{
             background-color: #F8D7FD;
             color: black;
@@ -90,12 +93,23 @@
             </table>
             </div><br>
 
-
         <form id="dis" action="/lecture" method="POST">
+            <div id="addLessonButton">
                 <input id="addLesson" value="Add Lesson" type="button">
+            </div>
+            <hr>
+            <div id="deleteLessonButton">
                 <input id="deleteLesson" value="Delete Lesson" type="button">
+            </div>
+            <hr>
+            <div id="updateLessonTimeButton">
                 <input id="updateLessonTime" value="Update Lesson Time" type="button">
-                <input id="deleteLessonTime" value="Delete Lesson Time" type="button"><br>
+            </div>
+            <hr>
+            <div id="deleteLessonTimeButton">
+                <input id="deleteLessonTime" value="Delete Lesson Time" type="button">
+            </div>
+            <hr>
          </form>
 
         <#if allLectures??>
@@ -120,25 +134,25 @@
                  </table>
 
                  <form id="lecForm" action="/lecture" method="POST">
-                    <div>
+                    <div id="addLectureButton">
                          <input id="addLecture" value="Add Lecture" type="button">
                     </div>
-                    <div>
+                    <hr>
+                    <div id="deleteLectureButton">
                          <input id="deleteLecture" value="Delete Lecture" type="button">
                     </div>
-                    <div>
+                    <hr>
+                    <div id="updateLectureButton">
                          <input id="updateLecture" value="Update Lecture" type="button"><br>
                     </div>
+                    <hr>
                   </form>
-
              </#if>
-
 
              <#if multimediaLink??>
                  <h2>Content</h2>
                  <iframe src="${multimediaLink}" width="800" height="300" title="Lesson Multimedia"></iframe>
              </#if>
-
 
     </div>
     <script>
@@ -151,41 +165,49 @@
         var dlecBtn = document.getElementById("deleteLecture");
         var f = document.getElementById("dis");
         var f1 = document.getElementById("lecForm");
+        var addLessonButton = document.getElementById("addLessonButton");
+        var deleteLessonButton = document.getElementById("deleteLessonButton");
+        var updateLessonTimeButton = document.getElementById("updateLessonTimeButton");
+        var deleteLessonTimeButton = document.getElementById("deleteLessonTimeButton");
+        var addLectureButton = document.getElementById("addLectureButton");
+        var updateLectureButton = document.getElementById("updateLectureButton");
+        var deleteLectureButton = document.getElementById("deleteLectureButton");
+// Add lessons button
         aBtn.addEventListener("click", function() {
-
             var lessonName = document.createElement("input");
     		lessonName.setAttribute('type', 'text');
     		lessonName.setAttribute('placeholder', 'Enter Lesson Name');
             lessonName.name = "addLessonName";
             lessonName.required = true;
-            f.appendChild(lessonName);
+            addLessonButton.appendChild(lessonName);
 
             var br = document.createElement("br");
-    		f.appendChild(br);
+    		addLessonButton.appendChild(br);
 
             var start = document.createElement("input");
     		start.setAttribute('type', 'date');
     		start.setAttribute('placeholder', 'Enter Start Date');
             start.name = "addLessonStartTime";
-            f.appendChild(start);
+            addLessonButton.appendChild(start);
 
             var br1 = document.createElement("br");
-    		f.appendChild(br1);
+    		addLessonButton.appendChild(br1);
 
     		var end = document.createElement("input");
             end.setAttribute('type', 'date');
             end.setAttribute('placeholder', 'Enter Email');
             end.name = "addLessonEndTime";
-            f.appendChild(end);
+            addLessonButton.appendChild(end);
 
             var br2 = document.createElement("br");
-            f.appendChild(br2);
+            addLessonButton.appendChild(br2);
 
             var submit = document.createElement("input");
     		submit.setAttribute('type','submit');
     		submit.className = "input-submit";
-            f.appendChild(submit);
+            addLessonButton.appendChild(submit);
         });
+// Delete lessons button
         dBtn.addEventListener("click", function() {
             var lessonID = document.createElement("input");
             lessonID.setAttribute('type', 'text');
@@ -202,7 +224,7 @@
             submit.className = "input-submit";
             f.appendChild(submit);
         });
-
+// Update lesson times for lecture button
         uBtn.addEventListener("click", function() {
             var lessonID = document.createElement("input");
             lessonID.setAttribute('type', 'text');
@@ -237,7 +259,7 @@
             submit.className = "input-submit";
             f.appendChild(submit);
         });
-
+// Delete lesson time button
         dtBtn.addEventListener("click", function() {
            var lessonID = document.createElement("input");
            lessonID.setAttribute('type', 'text');
@@ -263,7 +285,7 @@
            submit.className = "input-submit";
            f.appendChild(submit);
        });
-
+// Delete Lecture Button
        if(dlecBtn != null){
            dlecBtn.addEventListener("click", function() {
 
@@ -282,9 +304,8 @@
                   submit.className = "input-submit";
                   f1.appendChild(submit);
               });
-
         }
-
+// Update lecture fields button
        if(ulecBtn != null){
             ulecBtn.addEventListener("click", function() {
 
@@ -321,9 +342,8 @@
                    submit.className = "input-submit";
                    f1.appendChild(submit);
                });
-
        }
-
+// Add lectures button
        if(alecBtn != null){
            alecBtn.addEventListener("click", function() {
 
@@ -362,8 +382,6 @@
                   submit.className = "input-submit";
                   f1.appendChild(submit);
               });
-
-
       }
 
     </script>
