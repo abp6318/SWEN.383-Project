@@ -32,6 +32,28 @@
           text-decoration: none;
           font-size: 17px;
         }
+        h2 {
+          text-decoration: underline overline dotted black;
+        }
+
+        .nav {
+          overflow: hidden;
+        }
+        .content {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 10px;
+            height: 100%;
+        }
+        body {
+            background-color: #F8D7FD;
+        }
+        .flexbox {
+            display: flex;
+            justify-content: space-evenly;
+            padding: 10px;
+        }
     </style>
 </head>
 <body>
@@ -39,9 +61,8 @@
         <nav class="nav" id ="myNav">
             <a href="/professor" class="active">Dashboard</a>
             <a href="/lecture">Lectures</a>
-            <a href="/multimedia">Multimedia</a>
             <a href="/quiz">Quizzes</a>
-            <a href="/messagesDG">Discussion Messages</a>
+            <a href="/discussionP">Discussion Groups</a>
         </nav>
         <h1>${fname} ${lname}</h1>
         <h2>All Courses</h2>
@@ -59,7 +80,9 @@
                         <td>${class.classcode}</th>
                         <td>${class.className}</th>
                         <td>${class.profEmail}</th>
-                        <td><a href="#">Link</a></th>
+                        <td><form id="dis" action="/professor" method="POST">
+                            <button id="toLesson" type="submit" value=${class.classcode} name="classButton">Lessons</button><br>
+                        </form></td>
                     </tr>
             </#list>
         </table>

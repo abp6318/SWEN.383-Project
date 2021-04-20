@@ -26,7 +26,9 @@ public class WebServer {
     public static final String PROFESSOR = "/professor";
     public static final String LEARNER = "/learner";
     public static final String FAILED = "/failed";
-    public static final String DISCUSSION = "/discussion";
+    public static final String DISCUSSIONA = "/discussionA";
+    public static final String DISCUSSIONP = "/discussionP";
+    public static final String DISCUSSIONL = "/discussionL";
     public static final String FEEDBACK = "/feedback";
     public static final String QUIZ = "/quiz";
     public static final String MULTIMEDIA = "/multimedia";
@@ -53,8 +55,12 @@ public class WebServer {
         get(PROFESSOR, new GetProfessorRoute(manager, conf));
         get(LEARNER, new GetLearnerRoute(manager, conf));
         get(FAILED, new GetFailedRoute(manager, conf));
-        get(DISCUSSION, new GetDiscussionRoute(manager, conf));
-        post(DISCUSSION, new PostDiscussionRoute(manager, engine));
+        get(DISCUSSIONA, new GetDiscussionARoute(manager, conf));
+        post(DISCUSSIONA, new PostDiscussionARoute(manager, engine));
+        get(DISCUSSIONP, new GetDiscussionPRoute(manager, conf));
+        post(DISCUSSIONP, new PostDiscussionPRoute(manager, engine));
+        get(DISCUSSIONL, new GetDiscussionLRoute(manager, conf));
+        post(DISCUSSIONL, new PostDiscussionLRoute(manager, engine));
         get(FEEDBACK, new GetFeedbackRoute(manager, conf));
         post(FEEDBACK, new PostFeedbackRoute(manager, engine));
         post(ADMIN, new PostAdminRoute(manager, engine));
@@ -67,7 +73,7 @@ public class WebServer {
         get(MULTIMEDIA, new GetMultimediaRoute(manager, conf));
         post(MULTIMEDIA, new PostMultimediaRoute(manager, engine));
         get(QUIZDISPLAY, new GetQuizDisplayRoute(manager, conf));
-
+        post(PROFESSOR, new PostProfessorRoute(manager,engine));
     }
 
     public void initialize() {

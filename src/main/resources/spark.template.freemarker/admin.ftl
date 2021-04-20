@@ -6,24 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <style>
-        td{
+        td {
             border:thin solid black;
             padding-left: 5px;
             padding-right: 15px;
         }
-        th{
+        th {
             text-align: left;
         }
-        .nav a:hover{
-                    background-color: #F8D7FD;
-                    color: black;
-                }
-                .nav a.active {
-                    background-color: #F8D7FD;
-                    color: black;
-                }
+        .nav a:hover {
+            background-color: #F8D7FD;
+            color: black;
+        }
+        .nav a.active {
+            background-color: #F8D7FD;
+            color: black;
+        }
         .nav a {
-
           float: left;
           display: block;
           color: black;
@@ -35,7 +34,6 @@
         h2 {
           text-decoration: underline overline dotted black;
         }
-
         .nav {
           overflow: hidden;
         }
@@ -60,7 +58,7 @@
 <div class="content">
     <nav class="nav" id ="myNav">
         <a href="/admin" class="active">Dashboard</a>
-        <a href="/discussion">Discussion Groups</a>
+        <a href="/discussionA">Discussion Groups</a>
         <a href="/feedback">Feedback Module</a>
     </nav>
 
