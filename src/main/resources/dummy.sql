@@ -149,30 +149,22 @@ INSERT INTO quiz (name, timeLimit, classCode, creatorEmail) VALUES ('Quiz #2', '
 INSERT INTO quiz (name, timeLimit, classCode, creatorEmail) VALUES ('Quiz #3', '180', 'ISTE.140', 'professor@rit.edu');
 
 -- quizquestions
-INSERT INTO quizquestions (quizID, questionNum, questionContent, questionAnswer) VALUES ('4', '1', 'What is my favorite color?', 'green');
-INSERT INTO quizquestions (quizID, questionNum, questionContent, questionAnswer) VALUES ('4', '2', 'What is my favorite candy?', 'kitkat bars');
-INSERT INTO quizquestions (quizID, questionNum, questionContent, questionAnswer) VALUES ('4', '3', "What is my cat's name?", 'copland');
-
-INSERT INTO quizquestions (quizID, questionNum, questionContent, questionAnswer) VALUES ('14', '1', "What is my favorite string instrument?", 'electric bass');
-INSERT INTO quizquestions (quizID, questionNum, questionContent, questionAnswer) VALUES ('14', '2', "When is my birthday?", '04-01-2001');
-INSERT INTO quizquestions (quizID, questionNum, questionContent, questionAnswer) VALUES ('14', '3', "What is my middle name?", 'bergon');
-
-INSERT INTO quizquestions (quizID, questionNum, questionContent, questionAnswer) VALUES ('24', '1', "What is my favorite type of weather?", 'rainy');
-INSERT INTO quizquestions (quizID, questionNum, questionContent, questionAnswer) VALUES ('24', '2', "What is my favorite season?", 'spring');
-INSERT INTO quizquestions (quizID, questionNum, questionContent, questionAnswer) VALUES ('24', '3', "Why?", 'because');
+INSERT INTO quizquestions (quizID, questionNum, questionContent, optionA, optionB, optionC, optionD, questionAnswer) VALUES ('4', '1', 'What is my favorite color?', 'green', 'yellow', 'blue', 'red', 'a');
+INSERT INTO quizquestions (quizID, questionNum, questionContent, optionA, optionB, optionC, optionD, questionAnswer) VALUES ('4', '2', 'What is my favorite candy?', 'kitkat bars', 'm&ms', 'licorice', 'twizzlers', 'a');
+INSERT INTO quizquestions (quizID, questionNum, questionContent, optionA, optionB, optionC, optionD, questionAnswer) VALUES ('4', '3', "What is my cat's name?", 'copland', 'jerry', 'alfredo', 'canada', 'a');
 
 -- the answers students gave table that Vicky or I will make at some point
-INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','1', 'harry@rit.edu', 'green');
-INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','2', 'harry@rit.edu', 'm&ms');
-INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','3', 'harry@rit.edu', 'jerry');
+INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','1', 'harry@rit.edu', 'a');
+INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','2', 'harry@rit.edu', 'b');
+INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','3', 'harry@rit.edu', 'b');
 
-INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','1', 'hermoine@rit.edu', 'yellow');
-INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','2', 'hermoine@rit.edu', 'kitkat bars');
-INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','3', 'hermoine@rit.edu', 'copland');
+INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','1', 'hermoine@rit.edu', 'b');
+INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','2', 'hermoine@rit.edu', 'a');
+INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','3', 'hermoine@rit.edu', 'a');
 
-INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','1', 'ron@rit.edu', 'green');
-INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','2', 'ron@rit.edu', 'kitkat bars');
-INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','3', 'ron@rit.edu', 'copland');
+INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','1', 'ron@rit.edu', 'a');
+INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','2', 'ron@rit.edu', 'a');
+INSERT INTO studentAnswers (quizID, questionNum, studentEmail, studentAnswer) VALUES ('4','3', 'ron@rit.edu', 'a');
 
 -- quizuserscore
 INSERT INTO quizUserScore (quizID, userEmail, score) VALUES ('4', 'harry@rit.edu', '33.33');

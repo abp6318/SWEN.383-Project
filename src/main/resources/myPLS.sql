@@ -142,6 +142,10 @@ CREATE TABLE quizQuestions (
 quizID INT, -- FK quiz
 questionNum INT,
 questionContent TEXT,
+optionA TEXT,
+optionB TEXT,
+optionC TEXT,
+optionD TEXT,
 questionAnswer TEXT,
 PRIMARY KEY (quizID, questionNum),
 -- quizID references the quizID in the quiz table

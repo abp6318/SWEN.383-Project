@@ -25,7 +25,6 @@ public class PostQuizRoute implements Route {
 
         response.redirect(WebServer.QUIZ, HttpURLConnection.HTTP_MOVED_PERM);
 
-        // TODO: Display Quiz functionality
 
         // Add Quiz functionality
         String addQuizName = request.queryParams("AddQuizName");
@@ -48,13 +47,19 @@ public class PostQuizRoute implements Route {
         String addQuizQuestionQuizID = request.queryParams("AddQuizQuestionQuizID");
         String addQuizQuestionQuestionNum = request.queryParams("AddQuizQuestionQuestionNum");
         String addQuizQuestionQuestionContent = request.queryParams("AddQuizQuestionQuestionContent");
-        String AddQuizQuestionQuestionAnswer = request.queryParams("AddQuizQuestionQuestionAnswer");
-        if (addQuizQuestionQuizID != null && !addQuizQuestionQuizID.equals("")) {
-            if (addQuizQuestionQuestionNum != null && !addQuizQuestionQuestionNum.equals("")) {
-                if (addQuizQuestionQuestionContent != null && !addQuizQuestionQuestionContent.equals("")) {
-                    if (AddQuizQuestionQuestionAnswer != null && !AddQuizQuestionQuestionAnswer.equals("")) {
-                        // if everything has a value, perform action
-                        manager.insertQuizQuestionSQL(addQuizQuestionQuizID, addQuizQuestionQuestionNum, addQuizQuestionQuestionContent, AddQuizQuestionQuestionAnswer);
+        String addQuizQuestionOptionA = request.queryParams("AddQuizQuestionOptionA");
+        String addQuizQuestionOptionB = request.queryParams("AddQuizQuestionOptionB");
+        String addQuizQuestionOptionC = request.queryParams("AddQuizQuestionOptionC");
+        String addQuizQuestionOptionD = request.queryParams("AddQuizQuestionOptionD");
+        String addQuizQuestionQuestionAnswer = request.queryParams("AddQuizQuestionQuestionAnswer");
+        if((addQuizQuestionOptionA != null && !addQuizQuestionOptionA.equals("")) || (addQuizQuestionOptionB != null && !addQuizQuestionOptionB.equals("")) || (addQuizQuestionOptionC != null && !addQuizQuestionOptionC.equals("")) || (addQuizQuestionOptionD != null && !addQuizQuestionOptionD.equals(""))){
+            if (addQuizQuestionQuizID != null && !addQuizQuestionQuizID.equals("")) {
+                if (addQuizQuestionQuestionNum != null && !addQuizQuestionQuestionNum.equals("")) {
+                    if (addQuizQuestionQuestionContent != null && !addQuizQuestionQuestionContent.equals("")) {
+                        if (addQuizQuestionQuestionAnswer != null && !addQuizQuestionQuestionAnswer.equals("")) {
+                            // if everything has a value, perform action
+                            manager.insertQuizQuestionSQL(addQuizQuestionQuizID, addQuizQuestionQuestionNum, addQuizQuestionQuestionContent, addQuizQuestionOptionA, addQuizQuestionOptionB, addQuizQuestionOptionC, addQuizQuestionOptionD, addQuizQuestionQuestionAnswer);
+                        }
                     }
                 }
             }
@@ -80,7 +85,7 @@ public class PostQuizRoute implements Route {
             }
         }
 
-        // TODO: Add Student Quiz Grade
+        // Add Student Quiz Grade
         String addQuizGradeQuizID = request.queryParams("AddQuizGradeQuizID");
         String addQuizGradeLearnerEmail = request.queryParams("AddQuizGradeLearnerEmail");
         String addQuizGradeScore = request.queryParams("AddQuizGradeScore");

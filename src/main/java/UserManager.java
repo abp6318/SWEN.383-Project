@@ -36,7 +36,7 @@ public class UserManager {
         try {
             Class.forName(DEFAULT_DRIVER);
             conn = DriverManager.getConnection(url, userName, password);
-            System.out.println("\nCreated Connection!\n");
+            System.out.println("\nCreated Connection!\nhttp://localhost:4567/login \n");
         } catch (ClassNotFoundException cnfe) {
             System.out.println("ERROR, CAN NOT CONNECT!!");
             System.out.println("Class");
@@ -897,13 +897,17 @@ public class UserManager {
         }//end catch
     }
 
-    public void insertQuizQuestionSQL(String quizID, String questionNum, String questionContent, String questionAnswer){
+    public void insertQuizQuestionSQL(String quizID, String questionNum, String questionContent, String optionA, String optionB, String optionC, String optionD, String questionAnswer){
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO quizquestions(quizID, questionNum, questionContent, questionAnswer) VALUES (?, ?, ?, ?)");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO quizquestions(quizID, questionNum, questionContent, optionA, optionB, optionC, optionD, questionAnswer) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             stmt.setString(1, quizID);
             stmt.setString(2, questionNum);
             stmt.setString(3, questionContent);
-            stmt.setString(4, questionAnswer);
+            stmt.setString(4, optionA);
+            stmt.setString(5, optionB);
+            stmt.setString(6, optionC);
+            stmt.setString(7, optionD);
+            stmt.setString(8, questionAnswer);
             stmt.executeUpdate();
         }//end of try
         catch (SQLException sqle) {
@@ -960,7 +964,8 @@ public class UserManager {
         return q;
     }
 
-    //should i get all of the questions for each quiz or just store values???? 
+    //should i get all of the questions for each quiz or just store values????
+    // message from Aaron - I added a selectQuizQuestions method below that accounts for options!
     public List<Quiz> getUserQuizzes(String email) {
         List<Quiz> quizzes = new ArrayList<Quiz>();
         try {
@@ -1222,6 +1227,35 @@ public class UserManager {
         }//end catch
     }
 
+
+    public List<QuizQuestion> selectQuizQuestionsSQL(String quizID){
+        List<QuizQuestion> quizQuestions = new ArrayList<>();
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT quizID, questionNum, questionContent, optionA, optionB, optionC, optionD, questionAnswer FROM quizQuestions WHERE quizID=? ORDER BY questionNum");
+            stmt.setString(1, quizID);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                String outQuizID = rs.getString(1);
+                String questionNum = rs.getString(2);
+                String questionContent = rs.getString(3);
+                String optionA = rs.getString(4);
+                String optionB = rs.getString(5);
+                String optionC = rs.getString(6);
+                String optionD = rs.getString(7);
+                String questionAnswer = rs.getString(8);
+
+                QuizQuestion qq = new QuizQuestion(outQuizID, questionNum, questionContent, optionA, optionB, optionC, optionD, questionAnswer);
+                quizQuestions.add(qq);
+            }
+
+        } catch (SQLException sqle) {
+            System.out.println("\n\nERROR IN >>selectQuizQuestionsSQL<< !!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+        return quizQuestions;
+    }
+
     /**
      * Updates a lecture's name
      * @param lectureID     A lecture's unique ID
@@ -1312,5 +1346,6 @@ public class UserManager {
 
 
     // TODO: Get Multimedia/Documents/Materials for lessons
+
 
 }
