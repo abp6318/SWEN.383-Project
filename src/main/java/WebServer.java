@@ -35,6 +35,7 @@ public class WebServer {
     public static final String MESSAGESDG = "/messagesDG";
     public static final String LECTURE = "/lecture";
     public static final String QUIZDISPLAY = "/quizDisplay";
+    public static final String QUIZLEARNER = "/quizLearner";
 
     private Configuration conf;
 
@@ -74,6 +75,8 @@ public class WebServer {
         post(MULTIMEDIA, new PostMultimediaRoute(manager, engine));
         get(QUIZDISPLAY, new GetQuizDisplayRoute(manager, conf));
         post(PROFESSOR, new PostProfessorRoute(manager,engine));
+        get(QUIZLEARNER, new GetQuizLearnerRoute(manager, conf));
+        post(QUIZLEARNER, new PostQuizLearnerRoute(manager, engine));
     }
 
     public void initialize() {
