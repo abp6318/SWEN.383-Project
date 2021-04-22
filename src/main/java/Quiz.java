@@ -7,6 +7,7 @@ public class Quiz {
     String quizName = "";
     String timeLimit = "";
     String classCode = "";
+    String score = "";
 
     public Quiz(String id, String name, String time, String inClass) {
         quizID = id;
@@ -34,18 +35,27 @@ public class Quiz {
         }
     }
 
-    
+    /**
+     * Gets the hashmap of the attributes to display in the ftl
+     * @return hashmap
+     */
     public HashMap<String, String> getHash() {
         HashMap<String, String> qMap = new HashMap<>();
         qMap.put("quizID",quizID);
         qMap.put("quizName", quizName);
         qMap.put("timeLimit", timeLimit);
         qMap.put("classCode", classCode);
+        //qMap.put("score", score);
         return qMap;
     }
     
-    //student view
-
-    //prof view
+    /**
+     * Adding score in a separate method because I didnt want to have to update
+     * every time we created a quzi
+     * @param inScore the score to be added
+     */
+    public void setQuizScore(String inScore) {
+        score = inScore;
+    }
 
 }

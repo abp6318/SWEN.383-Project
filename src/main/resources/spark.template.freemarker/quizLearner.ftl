@@ -70,12 +70,9 @@
 
         <!-- Add quiz questions list here-->
 
-        <!-- Display quiz grade 
-                need to change quiz class probably 
+        <!-- Display quiz grade  
                 change mysql method 
-                add quiz.grade
             add link to take quiz? 
-                in table
             -->
         <div class="quizQuestions">
         <table>
@@ -84,6 +81,7 @@
                 <th>Quiz Name</th>
                 <th>Time Limit</th>
                 <th>Class Code</th>
+                <th>Score</th>
             </tr>
              <#list quizzes as quiz>
                 <tr>
@@ -91,6 +89,7 @@
                     <td>${quiz.quizName}</td>
                     <td>${quiz.timeLimit}</td>
                     <td>${quiz.classCode}</td>
+                    <td>${quiz.score}</td>
                 </tr>     
             </#list>
         </table>

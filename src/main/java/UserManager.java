@@ -964,8 +964,7 @@ public class UserManager {
         return q;
     }
 
-    //should i get all of the questions for each quiz or just store values????
-    // message from Aaron - I added a selectQuizQuestions method below that accounts for options!
+    
     public List<Quiz> getUserQuizzes(String email) {
         List<Quiz> quizzes = new ArrayList<Quiz>();
         try {
@@ -973,6 +972,7 @@ public class UserManager {
             stmt.setString(1, email);
             rs = stmt.executeQuery();
             while (rs.next()) {
+                //TODO: add a join here that also gets the quiz grade??
                 Quiz q = new Quiz(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
                 stmt = conn.prepareStatement("SELECT questionContent, questionAnswer FROM quizQuestions WHERE quizID = ?");
                 stmt.setString(1, rs.getString(1));
@@ -1343,7 +1343,6 @@ public class UserManager {
         }
         return null;
     }
-
 
     // TODO: Get Multimedia/Documents/Materials for lessons
 
