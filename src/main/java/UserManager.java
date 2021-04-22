@@ -975,7 +975,7 @@ public class UserManager {
                 //not sure what type of join too tired to figure it out rn
                 //think its left?? not sold on that tho 
                 Quiz q = new Quiz(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
-                stmt = conn.prepareStatement("SELECT quizQuestions.questionContent, quizQuestions.questionAnswer, quizUserScore.score FROM quizQuestions LEFT JOIN quizUserScore WHERE quizID = ?");
+                stmt = conn.prepareStatement("SELECT quizQuestions.questionContent, quizQuestions.questionAnswer, quizUserScore.score FROM quizQuestions LEFT JOIN quizUserScore USING(quizID) WHERE quizID = ?");
                 stmt.setString(1, rs.getString(1));
                 ResultSet rs2 = stmt.executeQuery();
                 while (rs2.next()) {
