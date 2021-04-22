@@ -972,13 +972,15 @@ public class UserManager {
             stmt.setString(1, email);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                //TODO: add a join here that also gets the quiz grade??
+                //not sure what type of join too tired to figure it out rn
+                //think its left?? not sold on that tho 
                 Quiz q = new Quiz(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
-                stmt = conn.prepareStatement("SELECT questionContent, questionAnswer FROM quizQuestions WHERE quizID = ?");
+                stmt = conn.prepareStatement("SELECT quizQuestions.questionContent, quizQuestions.questionAnswer, quizUserScore.score FROM quizQuestions LEFT JOIN quizUserScore WHERE quizID = ?");
                 stmt.setString(1, rs.getString(1));
                 ResultSet rs2 = stmt.executeQuery();
                 while (rs2.next()) {
                     q.addQuizQuestion(rs2.getString(1),rs2.getString(2));
+                    q.setQuizScore(rs2.getString(3));
                 }
                 quizzes.add(q);
             }

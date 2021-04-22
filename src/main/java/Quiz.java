@@ -45,7 +45,7 @@ public class Quiz {
         qMap.put("quizName", quizName);
         qMap.put("timeLimit", timeLimit);
         qMap.put("classCode", classCode);
-        //qMap.put("score", score);
+        qMap.put("score", score);
         return qMap;
     }
     
