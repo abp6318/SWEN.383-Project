@@ -9,6 +9,10 @@ public class Quiz {
     String classCode = "";
     String score = "";
 
+    public Quiz() {
+
+    }
+
     public Quiz(String id, String name, String time, String inClass) {
         quizID = id;
         quizName = name;
@@ -57,5 +61,23 @@ public class Quiz {
     public void setQuizScore(String inScore) {
         score = inScore;
     }
+
+    public void setQuizId(String id) {
+        quizID = id;
+    }
+    public void setQuizName(String name) {
+        quizName = name;
+    }
+
+    public void setTimeLimit(String time) {
+        timeLimit = time;
+    }
+
+    public void setQuizClass(String inClass) {
+        classCode = inClass;
+    }
+
+
+
 
 }

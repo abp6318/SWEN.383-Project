@@ -992,6 +992,46 @@ public class UserManager {
         return quizzes;
     }
 
+    //this method is a work in progress
+    public List<Quiz> getStudentQuizzes(String email) {
+        List<Quiz> quizzes = new ArrayList<Quiz>();
+        try {
+            Quiz q = new Quiz();;
+            PreparedStatement stmt = conn.prepareStatement("SELECT quizID FROM studentAnswers WHERE studentEmail = ?");
+            stmt.setString(1, email);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                //not sure what type of join too tired to figure it out rn
+                //think its left?? not sold on that tho 
+                stmt = conn.prepareStatement("SELECT quizID, name, timeLimit, classCode FROM quiz WHERE quizID = ?");
+                stmt.setString(1, rs.getString(1));
+                ResultSet rs2 = stmt.executeQuery();
+                while (rs2.next()) {
+                    q.setQuizId(rs2.getString(1));
+                    q.setQuizName(rs2.getString(2));
+                    q.setTimeLimit(rs2.getString(3));
+                    q.setQuizClass(rs2.getString(4));
+                    stmt = conn.prepareStatement("SELECT quizQuestions.questionContent, quizQuestions.questionAnswer, quizUserScore.score FROM quizQuestions LEFT JOIN quizUserScore USING(quizID) WHERE quizQuestions.quizID = ? AND quizUserScore.userEmail = ?");
+                    stmt.setString(1, rs2.getString(1));
+                    stmt.setString(2, email);
+                    ResultSet rs3 = stmt.executeQuery();
+                    while (rs3.next()){
+                        q.addQuizQuestion(rs3.getString(1),rs3.getString(2));
+                        q.setQuizScore(rs3.getString(3)); 
+                    } 
+                    
+                } 
+                
+            }
+            quizzes.add(q); 
+        }
+        catch (SQLException sqle) {
+            System.out.println("Error while trying to get student quizzes.");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }
+        return quizzes;
+    }
+    
     /**
      * Inserts the start time for a lesson
      * @param lessonID the lesson 

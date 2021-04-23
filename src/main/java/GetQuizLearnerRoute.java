@@ -33,15 +33,15 @@ public class GetQuizLearnerRoute implements Route {
             Map<String, Object> viewModel = new HashMap<>(); // mapping dynamic variables for ftl files (freemarker template)  
             User user = request.session().attribute("User");     
             
-            List<Quiz> quizzesList = manager.getUserQuizzes(user.getEmail());
+            List<Quiz> stuQuizzesList = manager.getStudentQuizzes(user.getEmail());
 
             //very much not done here
-            Collection quizzes = new ArrayList();
-            for (int index = 0; index<quizzesList.size(); index++) {
-                HashMap<String, String> quiz = quizzesList.get(index).getHash();
-                ((ArrayList) quizzes).add(quiz);
+            Collection studentQuizzes = new ArrayList();
+            for (int index = 0; index<stuQuizzesList.size(); index++) {
+                HashMap<String, String> quiz = stuQuizzesList.get(index).getHash();
+                ((ArrayList) studentQuizzes).add(quiz);
             }
-            viewModel.put("quizzes", quizzes.iterator());
+            viewModel.put("studentQuizzes", studentQuizzes.iterator());
 
             Template template = conf.getTemplate("quizLearner.ftl");
             StringWriter writer = new StringWriter();
