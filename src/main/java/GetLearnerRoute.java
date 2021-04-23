@@ -3,8 +3,7 @@ import freemarker.template.Template;
 import spark.*;
 
 import java.io.StringWriter;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Logger;
 
 
@@ -25,20 +24,44 @@ public class GetLearnerRoute implements Route{
     public Object handle(Request request, Response response) {
         LOGGER.info("GetLearner Called");
         try {
-            Map<String, Object> viewModel = new HashMap<>(); // mapping dynamic variables for ftl files (freemarker template)
-            User user = request.session().attribute("User");
-            viewModel.put("fname", user.getFirstName());
-            viewModel.put("lname", user.getLastName());
+                Map<String, Object> viewModel = new HashMap<>(); // mapping dynamic variables for ftl files (freemarker template)
+                User user = request.session().attribute("User");
+                viewModel.put("fname", user.getFirstName());
+                viewModel.put("lname", user.getLastName());
 
-            Template template = conf.getTemplate("learner.ftl");
-            StringWriter writer = new StringWriter();
-            template.process(viewModel, writer);
+                List<Course> courses = manager.selectLearnerClassesSQL(user.getEmail());
+                Collection classes = new ArrayList();
+                for (int count = 0; count < courses.size(); count++) {
+                    HashMap<String, String> course = courses.get(count).getHash();
+                    ((ArrayList) classes).add(course);
+                }
+                viewModel.put("classes", classes.iterator());
 
-            return writer;
-        } catch (Exception e){
-            LOGGER.warning(e.getMessage());
-        }
+                // start of adding discussion groups to admin dashboard
+
+                List<DiscussionGroup> discussionGroupsList = manager.selectDiscussionGroupsSQL(user.getEmail());
+
+                Collection discussionGroups = new ArrayList();
+                for (int index = 0; index < discussionGroupsList.size(); index++) {
+                    HashMap<String, String> discussionGroup = discussionGroupsList.get(index).getHash();
+                    ((ArrayList) discussionGroups).add(discussionGroup);
+                }
+
+                viewModel.put("discussionGroups", discussionGroups.iterator());
+
+                Template template = conf.getTemplate("learner.ftl");
+                StringWriter writer = new StringWriter();
+                template.process(viewModel, writer);
+
+
+                return writer;
+            } catch (Exception e) {
+                LOGGER.warning(e.getMessage());
+            }
         return null;
     }
 
 }
+
+
+
