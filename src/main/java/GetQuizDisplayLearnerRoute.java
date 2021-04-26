@@ -30,7 +30,8 @@ public class GetQuizDisplayLearnerRoute implements Route{
             Map<String, Object> viewModel = new HashMap<>(); // mapping dynamic variables for ftl files (freemarker template)
             User user = request.session().attribute("User");
             //i think the problem is here 
-            String quizID = request.session().attribute("DisplayQuizID");
+            String quizID = request.session().attribute("quizID");
+            System.out.println(quizID);
 
             List<QuizQuestion> quizQuestionsList = manager.selectQuizQuestionsSQL(quizID);
 

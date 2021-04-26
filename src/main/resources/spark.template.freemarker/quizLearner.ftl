@@ -67,14 +67,6 @@
             <a href="/discussionL">Discussion Groups</a>
         </nav>
         <h2>Quizzes</h2>
-
-        <!-- Add quiz questions list here-->
-
-        <!-- Display quiz grade  
-                change mysql method 
-            add link to take quiz? 
-            -->
-        <div class="quizQuestions">
         <table>
             <tr>
                 <th>Quiz ID</th>
@@ -91,23 +83,14 @@
                     <td>${quiz.timeLimit}</td>
                     <td>${quiz.classCode}</td>
                     <td>
-                        <div id="displayQuiz">  
-                            <form action="/quizDisplayLearner" method="GET" id="DisplayQuizForm">
-                                <input id="display" name="${quiz.quizID}" value="Take Quiz" type="submit">
-                            </form>
-                        </div>
+                        <form action="/quizDisplayLearner" method="POST" id="DisplayQuizLearnerForm">
+                            <button id="displayLearner" type="submit" value="${quiz.quizID}" name="quizDisplayLearner">Take Quiz</button><br>
+                        </form>
                     </td>
                     <td>${quiz.score}</td>
                 </tr>     
             </#list>
         </table>
-        </div>
     </div>
 </body>
-<script>
-    var displayButtonElement = document.getElementById("display");
-    displayButtonElement.addEventListener("click",function() {
-        sessionStorage.setItem("DisplayQuizID", displayButtonElement.name);
-    })
-</script>
 </html>

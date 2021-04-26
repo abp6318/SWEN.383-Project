@@ -23,7 +23,7 @@ public class PostQuizLearnerRoute implements Route {
     public Object handle(Request request, Response response) {
         LOGGER.info("POST /quizLearner");
 
-        response.redirect(WebServer.QUIZ, HttpURLConnection.HTTP_MOVED_PERM);
+        response.redirect(WebServer.QUIZDISPLAYLEARNER, HttpURLConnection.HTTP_MOVED_PERM);
 
         //what does this file even need in it??? 
         //left the user email stuff just in case 

@@ -23,7 +23,9 @@ public class PostQuizDisplayLearnerRoute implements Route {
     public Object handle(Request request, Response response) {
         LOGGER.info("POST /quizDisplayLearner");
 
-        response.redirect(WebServer.QUIZ, HttpURLConnection.HTTP_MOVED_PERM);
+        String quizID = request.queryParams("quizDisplayLearner");
+        request.session().attribute("quizID", quizID);
+        response.redirect(WebServer.QUIZDISPLAYLEARNER, HttpURLConnection.HTTP_MOVED_PERM);
 
         //add calculate score stuff??
         // Add Student Quiz Grade
