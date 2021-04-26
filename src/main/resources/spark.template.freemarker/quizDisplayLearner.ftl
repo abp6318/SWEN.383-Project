@@ -62,8 +62,9 @@
             <a href="/discussionL">Discussion Groups</a>
         </nav>
         <h2>Quiz Display</h2>
+        <!-- not displaying for some reason -->
         <form>
-            <#list questions as question>
+            <#list questionsL as question>
                 <p>${question.questionNum}. ${question.questionContent}</p>
                 <#if question.optionA?has_content>
                     <input type="radio" id="TBD" name="TBD" value="${question.optionA}">

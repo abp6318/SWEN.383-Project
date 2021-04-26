@@ -27,16 +27,16 @@ public class GetQuizDisplayLearnerRoute implements Route{
         try {
             Map<String, Object> viewModel = new HashMap<>(); // mapping dynamic variables for ftl files (freemarker template)
             User user = request.session().attribute("User");
-            String quizID = request.queryParams("DisplayQuizID");
+            String quizID = request.session().attribute("DisplayQuizID");
 
-            List<QuizQuestion> quizQuestions = manager.selectQuizQuestionsSQL(quizID);
+            List<QuizQuestion> quizQuestionsList = manager.selectQuizQuestionsSQL(quizID);
 
-            Collection questions = new ArrayList();
-            for (int count = 0; count<quizQuestions.size(); count++) {
-                HashMap<String, String> question = quizQuestions.get(count).getHash();
-                ((ArrayList) questions).add(question);
+            Collection questionsL = new ArrayList();
+            for (int count = 0; count<quizQuestionsList.size(); count++) {
+                HashMap<String, String> question = quizQuestionsList.get(count).getHash();
+                ((ArrayList) questionsL).add(question);
             }
-            viewModel.put("questions", questions.iterator());
+            viewModel.put("questionsL", questionsL.iterator());
 
             Template template = conf.getTemplate("quizDisplayLearner.ftl");
             StringWriter writer = new StringWriter();

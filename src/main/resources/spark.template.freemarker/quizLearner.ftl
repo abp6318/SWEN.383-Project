@@ -81,6 +81,7 @@
                 <th>Quiz Name</th>
                 <th>Time Limit</th>
                 <th>Class Code</th>
+                <th>Link</th>
                 <th>Score</th>
             </tr>
              <#list studentQuizzes as quiz>
@@ -89,6 +90,13 @@
                     <td>${quiz.quizName}</td>
                     <td>${quiz.timeLimit}</td>
                     <td>${quiz.classCode}</td>
+                    <td>
+                        <div id="displayQuiz">  
+                            <form action="/quizDisplayLearner" method="GET" id="DisplayQuizForm">
+                                <input id="display" name="${quiz.quizID}" value="Take Quiz" type="submit">
+                            </form>
+                        </div>
+                    </td>
                     <td>${quiz.score}</td>
                 </tr>     
             </#list>
@@ -96,4 +104,10 @@
         </div>
     </div>
 </body>
+<script>
+    var displayButtonElement = document.getElementById("display");
+    displayButtonElement.addEventListener("click",function() {
+        sessionStorage.setItem("DisplayQuizID", displayButtonElement.name);
+    })
+</script>
 </html>
