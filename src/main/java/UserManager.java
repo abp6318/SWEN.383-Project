@@ -780,7 +780,7 @@ public class UserManager {
             return courses;
 
         } catch (SQLException sqle) {
-            System.out.println("\n\nSELECT PROFESSOR CLASSES FAILED!!!!");
+            System.out.println("\n\nSELECT LEARNER CLASSES FAILED!!!!");
             System.out.println("ERROR MESSAGE IS -> " + sqle);
             sqle.printStackTrace();
         }
