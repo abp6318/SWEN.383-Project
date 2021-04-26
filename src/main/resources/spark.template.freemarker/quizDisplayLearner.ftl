@@ -63,7 +63,7 @@
         </nav>
         <h2>Quiz Display</h2>
         <!-- not displaying for some reason -->
-        <form>
+        <form method="POST">
             <#list questionsL as question>
                 <p>${question.questionNum}. ${question.questionContent}</p>
                 <#if question.optionA?has_content>
@@ -84,6 +84,7 @@
                 </#if>
             </#list>
             <!-- add submit button here -->
+            <input type="submit" value="Submit">
         </form>
     </div>
 </body>
