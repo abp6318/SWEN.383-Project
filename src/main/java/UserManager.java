@@ -1386,7 +1386,5 @@ public class UserManager {
         return null;
     }
 
-    // TODO: Get Multimedia/Documents/Materials for lessons
-
 
 }

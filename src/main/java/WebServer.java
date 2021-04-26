@@ -9,10 +9,6 @@ import spark.template.freemarker.FreeMarkerEngine;
 
 public class WebServer {
 
-    // general TODOs
-    // TODO: add redirect in POST to new discussion group page if something is
-    // added/updated
-
     private static final Logger LOGGER = Logger.getLogger(WebServer.class.getName());
 
     private UserManager manager;
