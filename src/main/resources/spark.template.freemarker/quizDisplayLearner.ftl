@@ -67,20 +67,20 @@
             <#list questionsL as question>
                 <p>${question.questionNum}. ${question.questionContent}</p>
                 <#if question.optionA?has_content>
-                    <input type="radio" id="TBD" name="TBD" value="${question.optionA}">
-                    <label for="TBD">a. ${question.optionA}</label><br>
+                    <input type="radio" id="TBD" name="${question.questionNum}" value="${question.optionA}">
+                    <label for="${question.questionNum}">a. ${question.optionA}</label><br>
                 </#if>
                 <#if question.optionB?has_content>
-                    <input type="radio" id="TBD" name="TBD" value="${question.optionB}">
-                    <label for="TBD">b. ${question.optionB}</label><br>
+                    <input type="radio" id="TBD" name="${question.questionNum}" value="${question.optionB}">
+                    <label for="${question.questionNum}">b. ${question.optionB}</label><br>
                 </#if>
                 <#if question.optionC?has_content>
-                    <input type="radio" id="TBD" name="TBD" value="${question.optionC}">
-                    <label for="TBD">c. ${question.optionC}</label><br>
+                    <input type="radio" id="TBD" name="${question.questionNum}" value="${question.optionC}">
+                    <label for="${question.questionNum}">c. ${question.optionC}</label><br>
                 </#if>
                 <#if question.optionD?has_content>
-                    <input type="radio" id="TBD" name="TBD" value="${question.optionD}">
-                    <label for="TBD">d. ${question.optionD}</label><br>
+                    <input type="radio" id="TBD" name="${question.questionNum}" value="${question.optionD}">
+                    <label for="${question.questionNum}">d. ${question.optionD}</label><br>
                 </#if>
             </#list>
             <!-- add submit button here -->
