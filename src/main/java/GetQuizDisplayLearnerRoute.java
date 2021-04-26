@@ -7,6 +7,8 @@ import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.logging.Logger;
 
+import javax.servlet.http.HttpSession;
+
 
 public class GetQuizDisplayLearnerRoute implements Route{
 
@@ -27,6 +29,7 @@ public class GetQuizDisplayLearnerRoute implements Route{
         try {
             Map<String, Object> viewModel = new HashMap<>(); // mapping dynamic variables for ftl files (freemarker template)
             User user = request.session().attribute("User");
+            //i think the problem is here 
             String quizID = request.session().attribute("DisplayQuizID");
 
             List<QuizQuestion> quizQuestionsList = manager.selectQuizQuestionsSQL(quizID);
