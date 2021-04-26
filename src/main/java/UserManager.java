@@ -1386,5 +1386,61 @@ public class UserManager {
         return null;
     }
 
+    public void automaticallyGrade(String studentEmail, String quizID){
+        // get the number of questions answered correctly
+        int total = selectTotalNumQuestions(studentEmail, quizID);
+        // get the number of questions total
+        int correct = selectNumQuestionsCorrect(studentEmail, quizID);
+        // divide the values, multiply by 100
+        int grade = 0;
+
+        try {
+            grade = (correct / total) * 100;
+        }catch(NullPointerException npe){
+            npe.printStackTrace();
+        }finally {
+            // insert grade into quizuserscore
+            insertQuizScoreSQL(quizID, studentEmail, Integer.toString(grade));
+        }
+    }
+
+    public int selectTotalNumQuestions(String studentEmail, String quizID){
+        int totalNumQuestions = 0;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT count(*) FROM quizquestions JOIN studentanswers USING(quizID, questionNum) WHERE studentEmail = ? AND quizID = ?");
+            stmt.setString(1, studentEmail);
+            stmt.setString(2, quizID);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                totalNumQuestions = rs.getInt(1);
+            }
+
+        } catch (SQLException sqle) {
+            System.out.println("\n\nERROR IN >>selectTotalNumQuestions<< !!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+        return totalNumQuestions;
+    }
+
+    public int selectNumQuestionsCorrect(String studentEmail, String quizID){
+        int numQuestionsCorrect = 0;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT count(*) FROM quizquestions JOIN studentanswers USING(quizID, questionNum) WHERE studentEmail = ? AND quizID = ? AND questionAnswer = studentAnswer");
+            stmt.setString(1, studentEmail);
+            stmt.setString(2, quizID);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                numQuestionsCorrect = rs.getInt(1);
+            }
+
+        } catch (SQLException sqle) {
+            System.out.println("\n\nERROR IN >>selectNumQuestionsCorrect<< !!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+        return numQuestionsCorrect;
+    }
+
 
 }
