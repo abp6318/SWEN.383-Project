@@ -63,29 +63,47 @@
         </nav>
         <h2>Quiz Display</h2>
         <!-- not displaying for some reason -->
-        <form method="POST">
+        <form action = "/quizLearner" method="POST">
             <#list questionsL as question>
                 <p>${question.questionNum}. ${question.questionContent}</p>
                 <#if question.optionA?has_content>
-                    <input type="radio" id="TBD" name="${question.questionNum}" value="${question.optionA}">
+                    <input type="radio" id="TBDA" name="${question.questionNum}" value="${question.optionA}">
                     <label for="${question.questionNum}">a. ${question.optionA}</label><br>
                 </#if>
                 <#if question.optionB?has_content>
-                    <input type="radio" id="TBD" name="${question.questionNum}" value="${question.optionB}">
+                    <input type="radio" id="TBDB" name="${question.questionNum}" value="${question.optionB}">
                     <label for="${question.questionNum}">b. ${question.optionB}</label><br>
                 </#if>
                 <#if question.optionC?has_content>
-                    <input type="radio" id="TBD" name="${question.questionNum}" value="${question.optionC}">
+                    <input type="radio" id="TBDC" name="${question.questionNum}" value="${question.optionC}">
                     <label for="${question.questionNum}">c. ${question.optionC}</label><br>
                 </#if>
                 <#if question.optionD?has_content>
-                    <input type="radio" id="TBD" name="${question.questionNum}" value="${question.optionD}">
+                    <input type="radio" id="TBDD" name="${question.questionNum}" value="${question.optionD}">
                     <label for="${question.questionNum}">d. ${question.optionD}</label><br>
                 </#if>
-            </#list>
-            <!-- add submit button here -->
-            <input type="submit" value="Submit">
+            </#list><br>
+            <input  id="submitQuiz" type="submit" value="Submit">
         </form>
     </div>
 </body>
+<script>
+    //If im being honest i have no idea what im doing
+    var sub = document.getElementById("submitQuiz");
+    var ans;
+    sub.addEventListener("click", function() {
+        if (document.getElementById('TBDA').checked) {
+            ans = document.getElementById('TBDA').value;
+        }
+        else if (document.getElementById('TBDB').checked) {
+            ans = document.getElementById('TBDB').value;
+        }
+        else if (document.getElementById('TBDC').checked) {
+            ans = document.getElementById('TBDC').value;
+        }
+        else if (document.getElementById('TBDD').checked) {
+            ans = document.getElementById('TBDD').value;
+        }
+    })
+</script>
 </html>
