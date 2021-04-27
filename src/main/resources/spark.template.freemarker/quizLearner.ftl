@@ -83,11 +83,13 @@
                     <td>${quiz.timeLimit}</td>
                     <td>${quiz.classCode}</td>
                     <td>
+                    <#if !quiz.score??>
                         <form action="/quizDisplayLearner" method="POST" id="DisplayQuizLearnerForm">
                             <button id="displayLearner" type="submit" value="${quiz.quizID}" name="quizDisplayLearner">Take Quiz</button><br>
                         </form>
+                    </#if>
                     </td>
-                    <td>${quiz.score}</td>
+                    <td><#if quiz.score??>${quiz.score}</#if></td>
                 </tr>     
             </#list>
         </table>
