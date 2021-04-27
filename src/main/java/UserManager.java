@@ -1031,7 +1031,31 @@ public class UserManager {
         }
         return quizzes;
     }
-    
+
+    //this method is a work in progress
+    public List<Quiz> getAllLearnerQuizzes(String email) {
+        List<Quiz> quizzes = new ArrayList<Quiz>();
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT quiz.quizID, name, timeLimit, quiz.classCode, score FROM quiz INNER JOIN classListLookup ON classListLookup.classCode=quiz.classCode LEFT JOIN quizUserScore ON quizUserScore.userEmail=classListLookup.userEmail AND quizUserScore.quizID=quiz.quizID WHERE classListLookup.userEmail = ?");
+            stmt.setString(1, email);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Quiz q = new Quiz();
+                q.setQuizId(rs.getString(1));
+                q.setQuizName(rs.getString(2));
+                q.setTimeLimit(rs.getString(3));
+                q.setQuizClass(rs.getString(4));
+                q.setQuizScore(rs.getString(5));
+                quizzes.add(q);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return quizzes;
+    }
+
     /**
      * Inserts the start time for a lesson
      * @param lessonID the lesson 
@@ -1388,31 +1412,31 @@ public class UserManager {
 
     public void automaticallyGrade(String studentEmail, String quizID){
         // get the number of questions answered correctly
-        int total = selectTotalNumQuestions(studentEmail, quizID);
+        double total = selectTotalNumQuestions(studentEmail, quizID);
+        System.out.println(total);
         // get the number of questions total
-        int correct = selectNumQuestionsCorrect(studentEmail, quizID);
+        double correct = selectNumQuestionsCorrect(studentEmail, quizID);
+        System.out.println(correct);
         // divide the values, multiply by 100
-        int grade = 0;
 
         try {
-            grade = (correct / total) * 100;
+            double grade = (correct / total) * 100;
+            System.out.println(grade);
+            insertQuizScoreSQL(quizID, studentEmail, Double.toString(Math.round(grade * 100.0) / 100.0));
         }catch(NullPointerException npe){
             npe.printStackTrace();
-        }finally {
-            // insert grade into quizuserscore
-            insertQuizScoreSQL(quizID, studentEmail, Integer.toString(grade));
         }
     }
 
-    public int selectTotalNumQuestions(String studentEmail, String quizID){
-        int totalNumQuestions = 0;
+    public double selectTotalNumQuestions(String studentEmail, String quizID){
+        double totalNumQuestions = 0;
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT count(*) FROM quizquestions JOIN studentanswers USING(quizID, questionNum) WHERE studentEmail = ? AND quizID = ?");
             stmt.setString(1, studentEmail);
             stmt.setString(2, quizID);
             rs = stmt.executeQuery();
             if (rs.next()) {
-                totalNumQuestions = rs.getInt(1);
+                totalNumQuestions = rs.getDouble(1);
             }
 
         } catch (SQLException sqle) {
@@ -1423,15 +1447,15 @@ public class UserManager {
         return totalNumQuestions;
     }
 
-    public int selectNumQuestionsCorrect(String studentEmail, String quizID){
-        int numQuestionsCorrect = 0;
+    public double selectNumQuestionsCorrect(String studentEmail, String quizID){
+        double numQuestionsCorrect = 0;
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT count(*) FROM quizquestions JOIN studentanswers USING(quizID, questionNum) WHERE studentEmail = ? AND quizID = ? AND questionAnswer = studentAnswer");
             stmt.setString(1, studentEmail);
             stmt.setString(2, quizID);
             rs = stmt.executeQuery();
             if (rs.next()) {
-                numQuestionsCorrect = rs.getInt(1);
+                numQuestionsCorrect = rs.getDouble(1);
             }
 
         } catch (SQLException sqle) {
@@ -1440,6 +1464,21 @@ public class UserManager {
             sqle.printStackTrace();
         }
         return numQuestionsCorrect;
+    }
+
+    public void insertStudentAnswers(String quizID, String questionNum, String studentEmail, String studentAnswer){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO studentanswers(quizID, questionNum, studentEmail, studentAnswer) VALUES (?, ?, ?, ?)");
+            stmt.setString(1, quizID);
+            stmt.setString(2, questionNum);
+            stmt.setString(3, studentEmail);
+            stmt.setString(4, studentAnswer);
+            stmt.executeUpdate();
+        }//end of try
+        catch (SQLException sqle) {
+            System.out.println("\n\nERROR >>>insertStudentAnswers<<< FAILED!!!");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }//end catch
     }
 
 

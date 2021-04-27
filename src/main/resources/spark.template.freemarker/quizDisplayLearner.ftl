@@ -62,7 +62,7 @@
             <a href="/discussionL">Discussion Groups</a>
         </nav>
         <h2>Quiz Display</h2>
-        <form action = "/quizLearner" method="POST">
+        <form action = "/quizDisplayLearner" method="POST">
             <#list questionsL as question>
                 <div class="question" id="${question.questionNum}">
                     <p>${question.questionNum}. ${question.questionContent}</p>
@@ -84,7 +84,7 @@
                     </#if>
                 </div>
             </#list><br>
-            <input id="allStudentAnswers" name="allStudentAnswers">
+            <input type="text" id="allStudentAnswers" name="allStudentAnswers">
             <input  id="submitQuiz" type="submit" value="Submit">
         </form>
     </div>
@@ -105,7 +105,11 @@
     sub.addEventListener("click", function() {
         // return things in POST
         var postingMap = document.getElementById("allStudentAnswers");
-        postingMap.value = studentAnswersMap;
+        let asString = "";
+        for(let questionNum of studentAnswersMap.keys()){
+            asString += questionNum + ":" + studentAnswersMap.get(questionNum) + ",";
+        }
+        postingMap.value = asString;
     });
 </script>
 </html>

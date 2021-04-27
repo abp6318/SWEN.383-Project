@@ -27,14 +27,17 @@ public class PostQuizDisplayLearnerRoute implements Route {
 
 //        String quizID = request.queryParams("quizDisplayLearner");
         String quizID = request.session().attribute("quizID");
-        Object mapOfAnswers = request.queryParams("allStudentAnswers");
-        System.out.println(mapOfAnswers);
+        String studentEmail = ((User) request.session().attribute("User")).getEmail();
+        String mapOfAnswers = request.queryParams("allStudentAnswers");
+        System.out.println("Map: " + mapOfAnswers);
 
+        String[] map = mapOfAnswers.split(",");
+        for(int index=0; index<map.length; index++){
+            manager.insertStudentAnswers(quizID, map[index].split(":")[0], studentEmail, map[index].split(":")[1]);
+        }
+        manager.automaticallyGrade(studentEmail, quizID);
 
-
-
-
-        response.redirect(WebServer.QUIZDISPLAYLEARNER, HttpURLConnection.HTTP_MOVED_PERM);
+        response.redirect(WebServer.QUIZLEARNER, HttpURLConnection.HTTP_MOVED_PERM);
 
         return null;
     }
