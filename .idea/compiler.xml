@@ -6,9 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="project" />
         <module name="projectClone" />
         <module name="SWEN.383-Project" />
+        <module name="project" />
       </profile>
     </annotationProcessing>
   </component>
