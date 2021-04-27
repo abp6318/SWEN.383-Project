@@ -83,7 +83,7 @@
                     <td>${quiz.timeLimit}</td>
                     <td>${quiz.classCode}</td>
                     <td>
-                        <form action="/quizDisplayLearner" method="POST" id="DisplayQuizLearnerForm">
+                        <form action="/quizLearner" method="POST" id="DisplayQuizLearnerForm">
                             <button id="displayLearner" type="submit" value="${quiz.quizID}" name="quizDisplayLearner">Take Quiz</button><br>
                         </form>
                     </td>

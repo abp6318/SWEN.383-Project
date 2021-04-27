@@ -62,48 +62,50 @@
             <a href="/discussionL">Discussion Groups</a>
         </nav>
         <h2>Quiz Display</h2>
-        <!-- not displaying for some reason -->
         <form action = "/quizLearner" method="POST">
             <#list questionsL as question>
-                <p>${question.questionNum}. ${question.questionContent}</p>
-                <#if question.optionA?has_content>
-                    <input type="radio" id="TBDA" name="${question.questionNum}" value="${question.optionA}">
-                    <label for="${question.questionNum}">a. ${question.optionA}</label><br>
-                </#if>
-                <#if question.optionB?has_content>
-                    <input type="radio" id="TBDB" name="${question.questionNum}" value="${question.optionB}">
-                    <label for="${question.questionNum}">b. ${question.optionB}</label><br>
-                </#if>
-                <#if question.optionC?has_content>
-                    <input type="radio" id="TBDC" name="${question.questionNum}" value="${question.optionC}">
-                    <label for="${question.questionNum}">c. ${question.optionC}</label><br>
-                </#if>
-                <#if question.optionD?has_content>
-                    <input type="radio" id="TBDD" name="${question.questionNum}" value="${question.optionD}">
-                    <label for="${question.questionNum}">d. ${question.optionD}</label><br>
-                </#if>
+                <div class="question" id="${question.questionNum}">
+                    <p>${question.questionNum}. ${question.questionContent}</p>
+                    <#if question.optionA?has_content>
+                        <input type="radio" name="${question.questionNum}" value="${question.optionA}" onclick="mapAnswers(${question.questionNum}, 'a')" required>
+                        <label for="${question.questionNum}">a. ${question.optionA}</label><br>
+                    </#if>
+                    <#if question.optionB?has_content>
+                        <input type="radio" name="${question.questionNum}" value="${question.optionB}"  onclick="mapAnswers(${question.questionNum}, 'b')">
+                        <label for="${question.questionNum}">b. ${question.optionB}</label><br>
+                    </#if>
+                    <#if question.optionC?has_content>
+                        <input type="radio" name="${question.questionNum}" value="${question.optionC}"  onclick="mapAnswers(${question.questionNum}, 'c')">
+                        <label for="${question.questionNum}">c. ${question.optionC}</label><br>
+                    </#if>
+                    <#if question.optionD?has_content>
+                        <input type="radio" name="${question.questionNum}" value="${question.optionD}" onclick="mapAnswers(${question.questionNum}, 'd')">
+                        <label for="${question.questionNum}">d. ${question.optionD}</label><br>
+                    </#if>
+                </div>
             </#list><br>
+            <input id="allStudentAnswers" name="allStudentAnswers">
             <input  id="submitQuiz" type="submit" value="Submit">
         </form>
     </div>
 </body>
 <script>
-    //If im being honest i have no idea what im doing
+
+    var studentAnswersMap = new Map();
+
+    function mapAnswers(questionNum, studentAnswer){
+        // update HashMap with answer selected
+        studentAnswersMap.set(questionNum, studentAnswer);
+    }
+
+    // { unique key : non-unique value }
+    // { question number : studentAnswer }
+
     var sub = document.getElementById("submitQuiz");
-    var ans;
     sub.addEventListener("click", function() {
-        if (document.getElementById('TBDA').checked) {
-            ans = document.getElementById('TBDA').value;
-        }
-        else if (document.getElementById('TBDB').checked) {
-            ans = document.getElementById('TBDB').value;
-        }
-        else if (document.getElementById('TBDC').checked) {
-            ans = document.getElementById('TBDC').value;
-        }
-        else if (document.getElementById('TBDD').checked) {
-            ans = document.getElementById('TBDD').value;
-        }
-    })
+        // return things in POST
+        var postingMap = document.getElementById("allStudentAnswers");
+        postingMap.value = studentAnswersMap;
+    });
 </script>
 </html>

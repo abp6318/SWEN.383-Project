@@ -23,23 +23,18 @@ public class PostQuizDisplayLearnerRoute implements Route {
     public Object handle(Request request, Response response) {
         LOGGER.info("POST /quizDisplayLearner");
 
-        String quizID = request.queryParams("quizDisplayLearner");
-        request.session().attribute("quizID", quizID);
-        response.redirect(WebServer.QUIZDISPLAYLEARNER, HttpURLConnection.HTTP_MOVED_PERM);
 
-        //add calculate score stuff??
-        // Add Student Quiz Grade
-        String addQuizGradeQuizID = request.queryParams("AddQuizGradeQuizID");
-        String addQuizGradeLearnerEmail = request.queryParams("AddQuizGradeLearnerEmail");
-        String addQuizGradeScore = request.queryParams("AddQuizGradeScore");
-        if (addQuizGradeQuizID != null && !addQuizGradeQuizID.equals("")) {
-            if (addQuizGradeLearnerEmail != null && !addQuizGradeLearnerEmail.equals("")) {
-                if (addQuizGradeScore != null && !addQuizGradeScore.equals("")) {
-                    // if everything has a value, perform action
-                    manager.insertQuizScoreSQL(addQuizGradeQuizID, addQuizGradeLearnerEmail, addQuizGradeScore);
-                }
-            }
-        }
+
+//        String quizID = request.queryParams("quizDisplayLearner");
+        String quizID = request.session().attribute("quizID");
+        Object mapOfAnswers = request.queryParams("allStudentAnswers");
+        System.out.println(mapOfAnswers);
+
+
+
+
+
+        response.redirect(WebServer.QUIZDISPLAYLEARNER, HttpURLConnection.HTTP_MOVED_PERM);
 
         return null;
     }
