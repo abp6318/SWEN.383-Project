@@ -1031,6 +1031,30 @@ public class UserManager {
         }
         return quizzes;
     }
+
+    //this method is a work in progress
+    public List<Quiz> getAllLearnerQuizzes(String email) {
+        List<Quiz> quizzes = new ArrayList<Quiz>();
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT quiz.quizID, name, timeLimit, quiz.classCode, score FROM quiz INNER JOIN classListLookup ON classListLookup.classCode=quiz.classCode LEFT JOIN quizUserScore ON quizUserScore.userEmail=classListLookup.userEmail AND quizUserScore.quizID=quiz.quizID WHERE classListLookup.userEmail = ?");
+            stmt.setString(1, email);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Quiz q = new Quiz();
+                q.setQuizId(rs.getString(1));
+                q.setQuizName(rs.getString(2));
+                q.setTimeLimit(rs.getString(3));
+                q.setQuizClass(rs.getString(4));
+                q.setQuizScore(rs.getString(5));
+                quizzes.add(q);
+            }
+
+            } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return quizzes;
+    }
     
     /**
      * Inserts the start time for a lesson
