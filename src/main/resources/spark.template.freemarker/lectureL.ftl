@@ -61,8 +61,8 @@
     <div class="content">
         <nav class="nav" id ="myNav">
             <a href="/learner">Dashboard</a>
-            <a href="/lecture" class="active">Lectures</a>
-            <a href="/quiz">Quizzes</a>
+            <a href="/lectureL" class="active">Lectures</a>
+            <a href="/quizLearner">Quizzes</a>
             <a href="/discussionL">Discussion Groups</a>
         </nav>
         <h2><#if classCode??>${classCode}</#if> Lessons</h2>

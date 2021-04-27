@@ -84,7 +84,7 @@
                     </#if>
                 </div>
             </#list><br>
-            <input type="text" id="allStudentAnswers" name="allStudentAnswers">
+            <input type="hidden" id="allStudentAnswers" name="allStudentAnswers">
             <input  id="submitQuiz" type="submit" value="Submit">
         </form>
     </div>
