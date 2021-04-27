@@ -58,7 +58,7 @@
     <div class="content">
         <nav class="nav" id ="myNav">
             <a href="/learner" class="active">Dashboard</a>
-            <a href="/quiz">Quizzes</a>
+            <a href="/quizLearner">Quizzes</a>
             <a href="/discussionL">Discussion</a>
         </nav>
         <h1>${fname} ${lname}</h1>

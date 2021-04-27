@@ -9,10 +9,6 @@ import spark.template.freemarker.FreeMarkerEngine;
 
 public class WebServer {
 
-    // general TODOs
-    // TODO: add redirect in POST to new discussion group page if something is
-    // added/updated
-
     private static final Logger LOGGER = Logger.getLogger(WebServer.class.getName());
 
     private UserManager manager;
@@ -35,6 +31,8 @@ public class WebServer {
     public static final String MESSAGESDG = "/messagesDG";
     public static final String LECTURE = "/lecture";
     public static final String QUIZDISPLAY = "/quizDisplay";
+    public static final String QUIZLEARNER = "/quizLearner";
+    public static final String QUIZDISPLAYLEARNER = "/quizDisplayLearner";
     public static final String LECTUREL = "/lectureL";
 
     private Configuration conf;
@@ -75,6 +73,10 @@ public class WebServer {
         post(MULTIMEDIA, new PostMultimediaRoute(manager, engine));
         get(QUIZDISPLAY, new GetQuizDisplayRoute(manager, conf));
         post(PROFESSOR, new PostProfessorRoute(manager,engine));
+        get(QUIZLEARNER, new GetQuizLearnerRoute(manager, conf));
+        post(QUIZLEARNER, new PostQuizLearnerRoute(manager, engine));
+        get(QUIZDISPLAYLEARNER, new GetQuizDisplayLearnerRoute(manager, conf));
+        post(QUIZDISPLAYLEARNER, new PostQuizDisplayLearnerRoute(manager, engine));
         post(LEARNER, new PostLearnerRoute(manager, engine));
         get(LECTUREL, new GetLectureLRoute(manager, conf));
         post(LECTUREL, new PostLectureLRoute(manager, engine));

@@ -56,16 +56,15 @@
 <div class="content">
     <nav class="nav" id ="myNav">
         <a href="/learner">Dashboard</a>
+        <a href="/quizLearner">Quizzes</a>
         <a href="/discussionL" class="active">Discussion Groups</a>
         <a href="/feedback">Feedback Module</a>
     </nav>
     <h1>Create a Discussion Group</h1>
 
-    <form id="dis" action="/discussion" method="POST">
+    <form id="dis" action="/discussionL" method="POST">
         <input id="search" type="text" placeholder="Search..." name="searchBar">
         <button id="searchButton" type="submit"><i class="fa fa-search"></i></button><br>
-        <input id="add" value="Add Discussion Group" type="button">
-        <input id="delete" value="Delete Discussion Group" type="button"><br>
     </form>
     <#if discussionGroups??>
     <h2>Discussion Groups Search Results</h2>
@@ -108,48 +107,4 @@
     </table>
     </div>
 </body>
-<script>
-    var aBtn = document.getElementById("add");
-    var dBtn = document.getElementById("delete");
-    var f = document.getElementById("dis");
-    aBtn.addEventListener("click", function() {
-        var groupName = document.createElement("input");
-		groupName.setAttribute('type', 'text');
-		groupName.setAttribute('placeholder', 'Enter Group Name');
-        groupName.name = "addDiscussionName";
-        f.appendChild(groupName);
-
-        var br = document.createElement("br");
-		f.appendChild(br);
-
-        var email = document.createElement("input");
-		email.setAttribute('type', 'text');
-		email.setAttribute('placeholder', 'Enter Email');
-        email.name = "addDiscussionEmail";
-        f.appendChild(email);
-
-        var br1 = document.createElement("br");
-		f.appendChild(br1);
-
-        var submit = document.createElement("input");
-		submit.setAttribute('type','submit');
-		submit.className = "input-submit";
-        f.appendChild(submit);
-    });
-    dBtn.addEventListener("click", function() {
-        var groupName = document.createElement("input");
-		groupName.setAttribute('type', 'text');
-		groupName.setAttribute('placeholder', 'Enter Group ID');
-        groupName.name = "DeleteDiscussionID";
-        f.appendChild(groupName);
-
-        var br = document.createElement("br");
-		f.appendChild(br);
-
-        var submit = document.createElement("input");
-		submit.setAttribute('type','submit');
-		submit.className = "input-submit";
-        f.appendChild(submit);
-    });
-</script>
 </html>

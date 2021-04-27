@@ -1007,8 +1007,7 @@ public class UserManager {
         return q;
     }
 
-    //should i get all of the questions for each quiz or just store values????
-    // message from Aaron - I added a selectQuizQuestions method below that accounts for options!
+    
     public List<Quiz> getUserQuizzes(String email) {
         List<Quiz> quizzes = new ArrayList<Quiz>();
         try {
@@ -1016,12 +1015,15 @@ public class UserManager {
             stmt.setString(1, email);
             rs = stmt.executeQuery();
             while (rs.next()) {
+                //not sure what type of join too tired to figure it out rn
+                //think its left?? not sold on that tho 
                 Quiz q = new Quiz(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
-                stmt = conn.prepareStatement("SELECT questionContent, questionAnswer FROM quizQuestions WHERE quizID = ?");
+                stmt = conn.prepareStatement("SELECT quizQuestions.questionContent, quizQuestions.questionAnswer, quizUserScore.score FROM quizQuestions LEFT JOIN quizUserScore USING(quizID) WHERE quizID = ?");
                 stmt.setString(1, rs.getString(1));
                 ResultSet rs2 = stmt.executeQuery();
                 while (rs2.next()) {
                     q.addQuizQuestion(rs2.getString(1),rs2.getString(2));
+                    q.setQuizScore(rs2.getString(3));
                 }
                 quizzes.add(q);
             }
@@ -1030,6 +1032,70 @@ public class UserManager {
             System.out.println("Error while trying to get user quizzes.");
             System.out.println("ERROR MESSAGE --> " + sqle);
         }
+        return quizzes;
+    }
+
+    //this method is a work in progress
+    public List<Quiz> getStudentQuizzes(String email) {
+        List<Quiz> quizzes = new ArrayList<Quiz>();
+        try {
+            Quiz q = new Quiz();;
+            PreparedStatement stmt = conn.prepareStatement("SELECT quizID FROM studentAnswers WHERE studentEmail = ?");
+            stmt.setString(1, email);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                //not sure what type of join too tired to figure it out rn
+                //think its left?? not sold on that tho 
+                stmt = conn.prepareStatement("SELECT quizID, name, timeLimit, classCode FROM quiz WHERE quizID = ?");
+                stmt.setString(1, rs.getString(1));
+                ResultSet rs2 = stmt.executeQuery();
+                while (rs2.next()) {
+                    q.setQuizId(rs2.getString(1));
+                    q.setQuizName(rs2.getString(2));
+                    q.setTimeLimit(rs2.getString(3));
+                    q.setQuizClass(rs2.getString(4));
+                    stmt = conn.prepareStatement("SELECT quizQuestions.questionContent, quizQuestions.questionAnswer, quizUserScore.score FROM quizQuestions LEFT JOIN quizUserScore USING(quizID) WHERE quizQuestions.quizID = ? AND quizUserScore.userEmail = ?");
+                    stmt.setString(1, rs2.getString(1));
+                    stmt.setString(2, email);
+                    ResultSet rs3 = stmt.executeQuery();
+                    while (rs3.next()){
+                        q.addQuizQuestion(rs3.getString(1),rs3.getString(2));
+                        q.setQuizScore(rs3.getString(3)); 
+                    } 
+                    
+                } 
+                
+            }
+            quizzes.add(q); 
+        }
+        catch (SQLException sqle) {
+            System.out.println("Error while trying to get student quizzes.");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }
+        return quizzes;
+    }
+
+    //this method is a work in progress
+    public List<Quiz> getAllLearnerQuizzes(String email) {
+        List<Quiz> quizzes = new ArrayList<Quiz>();
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT quiz.quizID, name, timeLimit, quiz.classCode, score FROM quiz INNER JOIN classListLookup ON classListLookup.classCode=quiz.classCode LEFT JOIN quizUserScore ON quizUserScore.userEmail=classListLookup.userEmail AND quizUserScore.quizID=quiz.quizID WHERE classListLookup.userEmail = ?");
+            stmt.setString(1, email);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Quiz q = new Quiz();
+                q.setQuizId(rs.getString(1));
+                q.setQuizName(rs.getString(2));
+                q.setTimeLimit(rs.getString(3));
+                q.setQuizClass(rs.getString(4));
+                q.setQuizScore(rs.getString(5));
+                quizzes.add(q);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return quizzes;
     }
 
@@ -1387,8 +1453,76 @@ public class UserManager {
         return null;
     }
 
+    public void automaticallyGrade(String studentEmail, String quizID){
+        // get the number of questions answered correctly
+        double total = selectTotalNumQuestions(studentEmail, quizID);
+        System.out.println(total);
+        // get the number of questions total
+        double correct = selectNumQuestionsCorrect(studentEmail, quizID);
+        System.out.println(correct);
+        // divide the values, multiply by 100
 
-    // TODO: Get Multimedia/Documents/Materials for lessons
+        try {
+            double grade = (correct / total) * 100;
+            System.out.println(grade);
+            insertQuizScoreSQL(quizID, studentEmail, Double.toString(Math.round(grade * 100.0) / 100.0));
+        }catch(NullPointerException npe){
+            npe.printStackTrace();
+        }
+    }
+
+    public double selectTotalNumQuestions(String studentEmail, String quizID){
+        double totalNumQuestions = 0;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT count(*) FROM quizquestions JOIN studentanswers USING(quizID, questionNum) WHERE studentEmail = ? AND quizID = ?");
+            stmt.setString(1, studentEmail);
+            stmt.setString(2, quizID);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                totalNumQuestions = rs.getDouble(1);
+            }
+
+        } catch (SQLException sqle) {
+            System.out.println("\n\nERROR IN >>selectTotalNumQuestions<< !!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+        return totalNumQuestions;
+    }
+
+    public double selectNumQuestionsCorrect(String studentEmail, String quizID){
+        double numQuestionsCorrect = 0;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT count(*) FROM quizquestions JOIN studentanswers USING(quizID, questionNum) WHERE studentEmail = ? AND quizID = ? AND questionAnswer = studentAnswer");
+            stmt.setString(1, studentEmail);
+            stmt.setString(2, quizID);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                numQuestionsCorrect = rs.getDouble(1);
+            }
+
+        } catch (SQLException sqle) {
+            System.out.println("\n\nERROR IN >>selectNumQuestionsCorrect<< !!!!");
+            System.out.println("ERROR MESSAGE IS -> " + sqle);
+            sqle.printStackTrace();
+        }
+        return numQuestionsCorrect;
+    }
+
+    public void insertStudentAnswers(String quizID, String questionNum, String studentEmail, String studentAnswer){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO studentanswers(quizID, questionNum, studentEmail, studentAnswer) VALUES (?, ?, ?, ?)");
+            stmt.setString(1, quizID);
+            stmt.setString(2, questionNum);
+            stmt.setString(3, studentEmail);
+            stmt.setString(4, studentAnswer);
+            stmt.executeUpdate();
+        }//end of try
+        catch (SQLException sqle) {
+            System.out.println("\n\nERROR >>>insertStudentAnswers<<< FAILED!!!");
+            System.out.println("ERROR MESSAGE --> " + sqle);
+        }//end catch
+    }
 
 
 }
