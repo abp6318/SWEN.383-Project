@@ -71,171 +71,35 @@
                 <th>Professor</th>
                 <th>Link</th>
             </tr>
-            <tr>
-                <td>IGME.384.02</td>
-                <td>Introduction To Geographic Information Systems</td>
-                <td>Justin Cole</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-            <tr>
-                <td>ISTE.252.01</td>
-                <td>Foundations of Mobile Design</td>
-                <td>Stephen Cady</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-            <tr>
-                <td>ISTE.340.01</td>
-                <td>Client Programming</td>
-                <td>Paul Goldman</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-            <tr>
-                <td>ISTE.438.01</td>
-                <td>Contemporary Databases</td>
-                <td>Edward Holden</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-            <tr>
-                <td>SWEN.383.01</td>
-                <td>Software Design Principles and Patterns</td>
-                <td>Abdulmutalib Masaud-Wahaishi</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-        </table>
-
-        <h2>Archived Classes</h2>
-        <table>
-            <tr>
-                <th>Number</th>
-                <th>Name</th>
-                <th>Professor</th>
-                <th>Link</th>
-            </tr>
-            <tr>
-                <td>IGME.333.01</td>
-                <td>Learning How To Fly</td>
-                <td>Batman Androbin</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-            <tr>
-                <td>ISTE.400.01</td>
-                <td>Eating With Your Mouth Full 101</td>
-                <td>Plea Sedonot</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-            <tr>
-                <td>ISTE.111.01</td>
-                <td>Crossing The Street Safely</td>
-                <td>Lookin Bothdirections</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-            <tr>
-                <td>ISTE.200.01</td>
-                <td>Sneezing Into Your Hand</td>
-                <td>Ewwy Booger</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-            <tr>
-                <td>IGME.333.01</td>
-                <td>Learning How To Fly</td>
-                <td>Batman Androbin</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-            <tr>
-                <td>ISTE.400.01</td>
-                <td>Eating With Your Mouth Full 101</td>
-                <td>Plea Sedonot</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-            <tr>
-                <td>ISTE.111.01</td>
-                <td>Crossing The Street Safely</td>
-                <td>Lookin Bothdirections</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-            <tr>
-                <td>ISTE.200.01</td>
-                <td>Sneezing Into Your Hand</td>
-                <td>Ewwy Booger</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-            <tr>
-                <td>IGME.333.01</td>
-                <td>Learning How To Fly</td>
-                <td>Batman Androbin</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-            <tr>
-                <td>ISTE.400.01</td>
-                <td>Eating With Your Mouth Full 101</td>
-                <td>Plea Sedonot</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-            <tr>
-                <td>ISTE.111.01</td>
-                <td>Crossing The Street Safely</td>
-                <td>Lookin Bothdirections</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-            <tr>
-                <td>ISTE.200.01</td>
-                <td>Sneezing Into Your Hand</td>
-                <td>Ewwy Booger</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-            <tr>
-                <td>IGME.333.01</td>
-                <td>Learning How To Fly</td>
-                <td>Batman Androbin</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-            <tr>
-                <td>ISTE.400.01</td>
-                <td>Eating With Your Mouth Full 101</td>
-                <td>Plea Sedonot</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-            <tr>
-                <td>ISTE.111.01</td>
-                <td>Crossing The Street Safely</td>
-                <td>Lookin Bothdirections</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-            <tr>
-                <td>ISTE.200.01</td>
-                <td>Sneezing Into Your Hand</td>
-                <td>Ewwy Booger</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-        </table>
+            <#list classes as class>
+                <tr>
+                    <td>${class.classcode}</th>
+                    <td>${class.className}</th>
+                    <td>${class.profEmail}</th>
+                    <td><form id="dis" action="/learner" method="POST">
+                        <button id="toLessonLearner" type="submit" value=${class.classcode} name="classButtonLearner">Lessons</button><br>
+                    </form></td>
+                </tr>
+            </#list>
+         </table>
 
         <h2>Dicussions</h2>
         <p><a href="#">Create a new discussion</a></p>
         <table>
             <tr>
-                <th>Access</th>
+                <th>Discussion Group ID</th>
                 <th>Name</th>
                 <th>Owner</th>
                 <th>Link</th> <!-- Users can click on the link to view the discussion page, and either join or request for access -->
             </tr>
-            <tr>
-                <td>Public</td>
-                <td>Community Channel</td>
-                <td>N/A</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-            <tr>
-                <td>Public</td>
-                <td>ISTE.384.02</td>
-                <td>jd4111@rit.edu</td>
-                <td><a href="#">Link</a></td>
-            </tr>
-            <tr>
-                <td>Private</td>
-                <td>Goofing around!!! xDDDD</td>
-                <td>abp6318@rit.edu</td>
-                <td><a href="#">Link</a></td>
-            </tr>
+            <#list discussionGroups as discussionGroup>
+                <tr>
+                        <td>${discussionGroup.discussionID}</th>
+                        <td>${discussionGroup.groupName}</th>
+                        <td>${discussionGroup.userEmail}</th>
+                        <td><a href="#">Link</a></th>
+                    </tr>
+            </#list>
         </table>
     </div>    
 </body>
