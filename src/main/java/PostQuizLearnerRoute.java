@@ -23,6 +23,9 @@ public class PostQuizLearnerRoute implements Route {
     public Object handle(Request request, Response response) {
         LOGGER.info("POST /quizLearner");
 
+        String quizID = request.queryParams("quizDisplayLearner");
+        request.session().attribute("quizID", quizID);
+
         response.redirect(WebServer.QUIZDISPLAYLEARNER, HttpURLConnection.HTTP_MOVED_PERM);
 
         //what does this file even need in it??? 
